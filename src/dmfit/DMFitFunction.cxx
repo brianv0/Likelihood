@@ -131,10 +131,10 @@ double DMFitFunction::derivByParam(optimizers::Arg & xarg,
     // Save data member version, preserving any environment variables.
     m_filename = filename; 
     if(m_filename.empty()){
-      filename="$(LIKELIHOODDATAPATH)/gammamc_dif.dat";
+      m_filename="$(LIKELIHOODDATAPATH)/gammamc_dif.dat";
     }
     // Use expanded local copy for reading the data.
-    std::string expanded_filename = filename;
+    std::string expanded_filename = m_filename;
     facilities::Util::expandEnvVar(&expanded_filename);
     //std::cout<<filename<<" "<<expanded_filename<<std::endl;
     st_facilities::Util::file_ok(expanded_filename);
