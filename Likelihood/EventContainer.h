@@ -66,6 +66,10 @@ public:
       return m_events;
    }
 
+   std::vector<Event> & events() {
+      return m_events;
+   }
+
    void clear() {
       m_events.clear();
    }
