@@ -460,6 +460,9 @@ bool BinnedLikelihood::fixedModelUpdated() const {
 
 const std::vector<double> & BinnedLikelihood::
 modelCountsSpectrum(const std::string & srcname) const {
+   if (!m_modelIsCurrent) {
+      computeModelMap();
+   }
    std::map<std::string, std::vector<double> >::const_iterator it;
    it = m_meas_counts.find(srcname);
    if (it == m_meas_counts.end()) {
