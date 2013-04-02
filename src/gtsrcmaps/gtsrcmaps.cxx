@@ -21,6 +21,7 @@
 
 #include "facilities/Util.h"
 
+#include "st_facilities/FitsUtil.h"
 #include "st_facilities/Util.h"
 
 #include "st_app/AppParGroup.h"
@@ -175,7 +176,20 @@ void gtsrcmaps::run() {
 
    std::string srcMapsFile = m_pars["outfile"];
 
-   dataMap.writeOutput("gtsrcmaps", srcMapsFile);
+   bool clobber = m_pars["clobber"];
+   bool copyall = m_pars["copyall"];
+   if (copyall) {
+      st_facilities::FitsUtil::fcopy(cntsMapFile, srcMapsFile, 
+                                     "", "", clobber);
+   } else {
+      if (clobber || !st_facilities::Util::fileExists(srcMapsFile)) {
+         dataMap.writeOutput("gtsrcmaps", srcMapsFile);
+      } else {
+         std::string message(srcMapsFile + 
+                             " already exists, and clobber set to no.");
+         throw std::runtime_error(message);
+      }
+   }
 
    m_binnedLikelihood->saveSourceMaps(srcMapsFile);
 
