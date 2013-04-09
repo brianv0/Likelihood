@@ -188,6 +188,9 @@ void MapBase::getCorners(std::vector<astro::SkyDir> & corners) const {
 
 double MapBase::interpolatePowerLaw(double x, double x1, double x2,
                                     double y1, double y2) {
+   if (y1 == 0 && y2 == 0) {
+      return 0;
+   }
    if (x1 <= 0 || x2 <= 0 || y1 <= 0 || y2 <= 0) {
       std::ostringstream message;
       message << "MapBase::interpolatePowerLaw:\n"
