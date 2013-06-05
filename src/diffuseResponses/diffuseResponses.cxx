@@ -165,6 +165,7 @@ void diffuseResponses::run() {
    bool clobber = m_pars["clobber"];
    m_helper = new AppHelpers(&m_pars, "UNBINNED");
    m_helper->setRoi("", "EVENTS", false);
+   m_helper->observation().roiCuts().setCuts(0, 0, 180, 1e-9, 1e9);
    m_helper->readScData();
    m_srcModel = new SourceModel(m_helper->observation(), true);
 //   m_useEdisp = m_pars["edisp"];
