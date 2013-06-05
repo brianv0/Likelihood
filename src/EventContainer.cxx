@@ -43,7 +43,8 @@ EventContainer::~EventContainer() {
    delete m_formatter;
 }
 
-void EventContainer::getEvents(std::string event_file) {
+void EventContainer::getEvents(std::string event_file, 
+                               bool apply_roi_cut) {
 
    facilities::Util::expandEnvVar(&event_file);
 
@@ -116,7 +117,7 @@ void EventContainer::getEvents(std::string event_file) {
                       m_scData.xAxis(time), cos(zenAngle*M_PI/180.), 
                       m_respFuncs.useEdisp(), m_respFuncs.respName(),
                       eventType, efficiency);
-      if (m_roiCuts.accept(thisEvent)) {
+      if (!apply_roi_cut || m_roiCuts.accept(thisEvent)) {
          m_events.push_back(thisEvent);
          for (std::vector<std::string>::iterator name = diffuseNames.begin();
               name != diffuseNames.end(); ++name) {
