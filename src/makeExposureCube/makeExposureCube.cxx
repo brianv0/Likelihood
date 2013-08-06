@@ -47,19 +47,6 @@ namespace {
          }
       }         
    }
-   void getTimeBounds(const std::vector< std::pair<double, double> > & gtis,
-                      const std::vector< std::pair<double, double> > & tranges,
-                      double & tmin, double & tmax) {
-      getTBounds(gtis, tmin, tmax);
-      double t0(tmin), t1(tmax);
-      getTBounds(tranges, t0, t1);
-      if (t0 < tmin) {
-         tmin = t0;
-      }
-      if (t1 > tmax) {
-         tmax = t1;
-      }
-   }
 }
 
 /**
@@ -200,13 +187,11 @@ void ExposureCube::createDataCube() {
    st_stream::StreamFormatter formatter("gtltcube", 
                                         "createDataCube", 2);
 
-   std::vector<std::pair<double, double> > timeCuts;
    std::vector<std::pair<double, double> > gtis;
-   m_roiCuts->getTimeCuts(timeCuts);
    m_roiCuts->getGtis(gtis);
 
    double tmin, tmax;
-   ::getTimeBounds(gtis, timeCuts, tmin, tmax);
+   ::getTBounds(gtis, tmin, tmax);
    static double maxIntervalSize(30);
    tmin -= 2.*maxIntervalSize;
    tmax += 2.*maxIntervalSize;
@@ -226,6 +211,9 @@ void ExposureCube::createDataCube() {
       healpix::CosineBinner::setPhiBins(nphibins);
    }
 
+   // timeCuts is just needed for LikeExposure constructor, but it is
+   // otherwise not used.
+   std::vector<std::pair<double, double> > timeCuts; 
    m_exposure = new Likelihood::LikeExposure(m_pars["binsz"], 
                                              m_pars["dcostheta"],
                                              timeCuts, gtis, zmax, zmin);
