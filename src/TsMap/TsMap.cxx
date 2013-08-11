@@ -29,8 +29,6 @@
 #include "st_facilities/Environment.h"
 #include "st_facilities/Util.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "optimizers/dArg.h"
 #include "optimizers/Optimizer.h"
 #include "optimizers/OptimizerFactory.h"
@@ -156,8 +154,6 @@ void TsMap::run() {
    std::string expcube = m_pars["expcube"];
    std::string irfs = m_pars["irfs"];
    if (expcube != "" && expcube != "none") {
-      std::string cmap = m_pars["cmap"];
-      dataSubselector::Cuts::checkIrfs(cmap, "", irfs);
       m_helper->observation().expCube().readExposureCube(expcube);
    }
    if (m_statistic == "UNBINNED") {
@@ -167,7 +163,6 @@ void TsMap::run() {
       bool compareGtis;
       bool relyOnStreams;
       bool skipEventClassCuts(irfs != "DSS");
-      dataSubselector::Cuts::checkIrfs(evfiles.at(0), "EVENTS", irfs);
       for (size_t i(1); i < evfiles.size(); i++) {
          AppHelpers::checkCuts(evfiles[0], evtable,
                                evfiles[i], evtable,

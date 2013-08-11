@@ -356,16 +356,16 @@ computeExposureWithHyperCube(const astro::SkyDir & srcDir,
    (void)(verbose);
    exposure.clear();
 
-   st_stream::StreamFormatter formatter("PointSource",
-                                        "computeExposureWithHyperCube", 4);
-   formatter.warn() << "Computing exposure at (" 
-                    << srcDir.ra() << ", " 
-                    << srcDir.dec() << ")";
+//    st_stream::StreamFormatter formatter("PointSource",
+//                                         "computeExposureWithHyperCube", 4);
+//    formatter.warn() << "Computing exposure at (" 
+//                     << srcDir.ra() << ", " 
+//                     << srcDir.dec() << ")";
    for (std::vector<double>::const_iterator it = energies.begin();
         it != energies.end(); it++) {
-      if (verbose) {
-         formatter.warn() << ".";
-      }
+//       if (verbose) {
+//          formatter.warn() << ".";
+//       }
       double time((observation.expCube().tstart() 
                    + observation.expCube().tstop())/2.);
       PointSource::Aeff aeff(*it, srcDir, observation.roiCuts(),
@@ -374,7 +374,7 @@ computeExposureWithHyperCube(const astro::SkyDir & srcDir,
       double exposure_value = observation.expCube().value(srcDir, aeff, *it);
       exposure.push_back(exposure_value);
    }
-   formatter.warn() << "!" << std::endl;
+//    formatter.warn() << "!" << std::endl;
 }
 
 void PointSource::computeExposure(const astro::SkyDir & srcDir,

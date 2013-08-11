@@ -31,8 +31,6 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/DiffRespNames.h"
 #include "Likelihood/DiffuseSource.h"
@@ -174,9 +172,6 @@ void diffuseResponses::run() {
    respFuncs.setEdispFlag(m_useEdisp);
    std::vector<std::string> eventFiles;
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], eventFiles);
-
-   std::string irfs = m_pars["irfs"];
-   dataSubselector::Cuts::checkIrfs(eventFiles.at(0), "EVENTS", irfs);
 
    std::vector<std::string>::const_iterator evtfile;
    buildSourceModel();

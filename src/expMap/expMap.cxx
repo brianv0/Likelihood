@@ -25,8 +25,6 @@
 #include "tip/IFileSvc.h"
 #include "tip/Image.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/Observation.h"
@@ -111,17 +109,15 @@ void ExpMap::promptForParameters() {
    m_pars.Prompt("expcube");
    std::string expCubeFile = m_pars["expcube"];
    std::string evtable = m_pars["evtable"];
+   m_pars.Prompt("outfile");
+   AppHelpers::checkOutputFile(m_pars["clobber"], m_pars["outfile"]);
+   m_pars.Prompt("irfs");
    std::vector<std::string> eventFiles;
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], eventFiles);
-   std::string irfs = m_pars["irfs"];
-   dataSubselector::Cuts::checkIrfs(eventFiles.at(0), evtable, irfs);
    if (expCubeFile != "none") {
       AppHelpers::checkTimeCuts(eventFiles, evtable,
                                 m_pars["expcube"], "Exposure");
    }
-   m_pars.Prompt("outfile");
-   AppHelpers::checkOutputFile(m_pars["clobber"], m_pars["outfile"]);
-   m_pars.Prompt("irfs");
    m_pars.Prompt("srcrad");
    m_pars.Prompt("nlong");
    m_pars.Prompt("nlat");

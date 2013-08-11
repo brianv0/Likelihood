@@ -24,8 +24,6 @@
 
 #include "st_facilities/Util.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "optimizers/Amoeba.h"
 #include "optimizers/dArg.h"
 #include "optimizers/Exception.h"
@@ -117,9 +115,6 @@ void findSrc::run() {
    bool compareGtis(false);
    bool relyOnStreams(false);
    std::string irfs = m_pars["irfs"];
-
-   dataSubselector::Cuts::checkIrfs(m_eventFiles.at(0), "EVENTS", irfs);
-
    bool skipEventClassCuts(irfs != "DSS");
    for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
       AppHelpers::checkCuts(m_eventFiles[0], evtable, m_eventFiles[i],
@@ -129,9 +124,6 @@ void findSrc::run() {
    compareGtis = true;
    if (exposureFile != "none" && exposureFile != "") {
          AppHelpers::checkExpMapCuts(m_eventFiles, exposureFile, evtable, "");
-//       AppHelpers::checkCuts(m_eventFiles, evtable, exposureFile, "",
-//                             compareGtis, relyOnStreams,
-//                             skipEventClassCuts);
    }
    if (expcube_file != "none" && expcube_file != "") {
       AppHelpers::checkTimeCuts(m_eventFiles, evtable, expcube_file, 

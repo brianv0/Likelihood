@@ -36,8 +36,6 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "optimizers/Optimizer.h"
 #include "optimizers/OptimizerFactory.h"
 
@@ -219,7 +217,6 @@ void likelihood::run() {
    std::string irfs = m_pars["irfs"];
    if (m_statistic == "BINNED") {
       std::string cmap = m_pars["cmap"];
-      dataSubselector::Cuts::checkIrfs(cmap, "", irfs);
       m_helper->setRoi(cmap, "", false);
    } else {
       std::string exposureFile = m_pars["expmap"];
@@ -230,7 +227,6 @@ void likelihood::run() {
       st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
       bool compareGtis(false);
       bool relyOnStreams(false);
-      dataSubselector::Cuts::checkIrfs(m_eventFiles.at(0), "EVENTS", irfs);
       bool skipEventClassCuts(irfs != "DSS");
       for (size_t i = 1; i < m_eventFiles.size(); i++) {
          AppHelpers::checkCuts(m_eventFiles[0], evtable, m_eventFiles[i],

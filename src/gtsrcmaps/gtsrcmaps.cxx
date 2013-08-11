@@ -108,8 +108,6 @@ void gtsrcmaps::run() {
    expCube.readExposureCube(expCubeFile);
 
    std::string cntsMapFile = m_pars["cmap"];
-   std::string irfs = m_pars["irfs"];
-   dataSubselector::Cuts::checkIrfs(cntsMapFile, "", irfs);
    dataSubselector::Cuts my_cuts(cntsMapFile, "", false);
    CountsMap dataMap(cntsMapFile);
    std::vector<double> energies;

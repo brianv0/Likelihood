@@ -17,8 +17,6 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
@@ -82,11 +80,6 @@ void ModelMap::banner() const {
 void ModelMap::run() {
    m_pars.Prompt();
    m_pars.Save();
-
-   std::string smaps = m_pars["srcmaps"];
-   std::string irfs = m_pars["irfs"];
-   dataSubselector::Cuts::checkIrfs(smaps, "", irfs);
-
    computeModelMap();
 }
 

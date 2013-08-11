@@ -78,11 +78,6 @@ void ExpCube::run() {
    std::string cmap_file = m_pars["cmap"];
    std::string ltcube_file = m_pars["infile"];
 
-   if (cmap_file != "none") {
-      std::string irfs = m_pars["irfs"];
-      dataSubselector::Cuts::checkIrfs(cmap_file, "", irfs);
-   }
-
    bool useEbounds(true);
    std::string bincalc = m_pars["bincalc"];
    if (bincalc == "CENTER") {

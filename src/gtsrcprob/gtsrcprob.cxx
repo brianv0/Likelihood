@@ -37,8 +37,6 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
-#include "dataSubselector/Cuts.h"
-
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/DiffRespNames.h"
 #include "Likelihood/DiffuseSource.h"
@@ -131,9 +129,6 @@ void SourceProbs::promptForParameters() {
 
    std::string evfile = m_pars["evfile"];
    std::string outfile = m_pars["outfile"];
-
-   std::string irfs = m_pars["irfs"];
-   dataSubselector::Cuts::checkIrfs(evfile, "EVENTS", irfs);
 
    if (outfile == evfile) {
       m_formatter->info() << "The output file cannot be the same as the "
