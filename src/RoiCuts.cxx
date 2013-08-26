@@ -260,4 +260,10 @@ bool RoiCuts::accept(const Event &event) const {
    return acceptEvent;
 }
 
+void RoiCuts::setIrfsVersion(const std::string & irfsName) {
+   if (m_cuts) {
+      m_cuts->addVersionCut("IRF_VERSION", irfsName);
+   }
+}
+
 } // namespace Likelihood

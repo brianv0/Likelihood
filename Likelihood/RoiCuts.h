@@ -134,6 +134,8 @@ public:
       return m_maxTime;
    }
 
+   void setIrfsVersion(const std::string & irfsName);
+
 private:
 
    dataSubselector::Cuts * m_cuts;

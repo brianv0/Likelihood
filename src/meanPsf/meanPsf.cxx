@@ -25,6 +25,8 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
+#include "dataSubselector/Cuts.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/MeanPsf.h"
 
@@ -148,6 +150,12 @@ void meanPsf::writeFitsFile() {
          Psf[i] = (*m_meanPsf)(*energy, *theta, 0);
       }
    }
+
+   // Write irfs version using DSS keywords.
+   dataSubselector::Cuts my_cuts;
+   my_cuts.addVersionCut("IRF_VERSION", m_helper->irfsName());
+   my_cuts.writeDssKeywords(psf_table->getHeader());
+
    extension = "THETA";
    tip::IFileSvc::instance().appendTable(output_file, extension);
    std::auto_ptr<tip::Table> 

@@ -17,6 +17,9 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "tip/IFileSvc.h"
+#include "tip/Image.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
@@ -62,6 +65,7 @@ private:
    Likelihood::BinnedLikelihood * m_logLike;
 
    void computeModelMap();
+   void updateDssKeywords();
 
    static std::string s_cvs_id;
 };
@@ -81,6 +85,7 @@ void ModelMap::run() {
    m_pars.Prompt();
    m_pars.Save();
    computeModelMap();
+   updateDssKeywords();
 }
 
 void ModelMap::computeModelMap() {
@@ -116,4 +121,16 @@ void ModelMap::computeModelMap() {
    std::string outtype = m_pars["outtype"];
 
    modelMap.writeOutputMap(outfile, outtype);
+}
+
+void ModelMap::updateDssKeywords() {
+   std::string smaps = m_pars["srcmaps"];
+   dataSubselector::Cuts my_cuts(smaps, "PRIMARY", false, false, false);
+   // Ensure that the irfs used are written to the DSS keywords.
+   my_cuts.addVersionCut("IRF_VERSION", m_helper->irfsName());
+
+   std::string outfile = m_pars["outfile"];
+   tip::Image * my_image = tip::IFileSvc::instance().editImage(outfile, "");
+   my_cuts.writeDssKeywords(my_image->getHeader());
+   delete my_image;
 }

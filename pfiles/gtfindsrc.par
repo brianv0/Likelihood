@@ -7,7 +7,7 @@ scfile,f,a,"",,,Spacecraft file
 sctable,s,h,SC_DATA,,,Spacecraft data extension
 outfile,f,a,"",,,Output file for trial points
 
-irfs,s,a,"P7SOURCE_V6",,,Response functions to use
+irfs,s,a,"CALDB",,,Response functions to use
 expcube,f,a,"none",,,Livetime cube file
 expmap,f,a,"none",,,Unbinned exposure map
 srcmdl,f,a,"none",,,Source model file

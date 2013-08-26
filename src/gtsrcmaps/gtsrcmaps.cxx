@@ -193,6 +193,7 @@ void gtsrcmaps::run() {
 
    std::auto_ptr<tip::Image>
       image(tip::IFileSvc::instance().editImage(srcMapsFile, ""));
+   my_cuts.addVersionCut("IRF_VERSION", m_helper->irfsName());
    my_cuts.writeDssKeywords(image->getHeader());
    my_cuts.writeGtiExtension(srcMapsFile);
 }

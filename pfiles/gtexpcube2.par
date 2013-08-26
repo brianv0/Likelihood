@@ -4,7 +4,7 @@
 infile,f,a,"",,,"Livetime cube file"
 cmap,f,a,"",,,"Counts map file"
 outfile,f,a,"",,,"Output file name"
-irfs,s,a,"P7SOURCE_V6",,,"Response functions to use"
+irfs,s,a,"CALDB",,,"Response functions to use"
 
 # Parameters for user-defined map.
 nxpix,i,a,360,,,"Size of the X axis in pixels"

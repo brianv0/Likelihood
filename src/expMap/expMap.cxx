@@ -185,6 +185,8 @@ void ExpMap::createExposureMap() {
                                                nlatmin, nlatmax); 
    tip::Image * image = 
       tip::IFileSvc::instance().editImage(exposureFile, "");
+   // Ensure that irfs version name is written to DSS keywords.
+   roiCuts.setIrfsVersion(m_helper->irfsName());
    roiCuts.writeDssKeywords(image->getHeader());
    roiCuts.writeGtiExtension(exposureFile);
 

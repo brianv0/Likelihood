@@ -3,7 +3,7 @@
 #
 # Parameters common to binned and unbinned
 #
-irfs,s,a,"P7SOURCE_V6",,,"Response functions to use"
+irfs,s,a,"CALDB",,,"Response functions to use"
 expcube,f,a,"none",,,"Exposure hypercube file"
 srcmdl,f,a,"",,,"Source model file"
 statistic,s,a,"UNBINNED",BINNED|UNBINNED,,"Statistic to use"
