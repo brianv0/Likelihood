@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-18-02-00 27-Aug-2013 jchiang changes for FSSC-requested irfs handling
  Likelihood-18-01-01 10-Aug-2013 jchiang move irf checking and handling code to single location in AppHelpers
  Likelihood-18-01-00 06-Aug-2013 jchiang fix gtltcube bug for FT1 files with explicit time range selections in DSS keywords
  Likelihood-18-00-12 15-Jun-2013 jchiang set gtsrcmaps copyall=no as default to restore previous default behavior
