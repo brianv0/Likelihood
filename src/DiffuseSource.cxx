@@ -236,7 +236,8 @@ double DiffuseSource::diffuseResponse(const Event & evt) const {
    double trueEnergy(evt.getEnergy());
    const ResponseFunctions & respFuncs(m_observation->respFuncs());
    const WcsMap2 & wcsmap(mapBaseObject()->wcsmap());
-   const std::vector< std::vector<double> > & solidAngles(wcsmap.solidAngles());
+//   const std::vector< std::vector<double> > & solidAngles(wcsmap.solidAngles());
+   const std::vector< std::vector<float> > & solidAngles(wcsmap.solidAngles());
    double my_value(0);
    for (size_t i(0); i < solidAngles.size(); i++) {
       for (size_t j(0); j < solidAngles.at(i).size(); j++) {

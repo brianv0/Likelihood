@@ -26,6 +26,14 @@ public:
    convolve2d(const std::vector< std::vector<double> > & signal,
               const std::vector< std::vector<double> > & psf);
 
+   static std::vector<float> 
+   convolve(const std::vector<float> & signal,
+            const std::vector<float> & psf);
+
+   static std::vector< std::vector<float> > 
+   convolve2d(const std::vector< std::vector<float> > & signal,
+              const std::vector< std::vector<float> > & psf);
+
 };
 
 } // namespace Likelihood

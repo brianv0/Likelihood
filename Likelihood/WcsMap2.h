@@ -59,9 +59,13 @@ public:
                     bool performConvolution=true,
                     int k=0) const;
 
-   const std::vector< std::vector< std::vector<double> > > & image() const {
+//    const std::vector< std::vector< std::vector<double> > > & image() const {
+//       return m_image;
+//    }
+   const std::vector< std::vector< std::vector<float> > > & image() const {
       return m_image;
    }
+
 
    /// @return Solid angle of the (ilon, ilat) pixel
    static double solidAngle(const astro::SkyProj & proj, 
@@ -69,7 +73,8 @@ public:
 
    double solidAngle(double ilon, double ilat) const;
 
-   const std::vector< std::vector<double> > & solidAngles() const;
+//   const std::vector< std::vector<double> > & solidAngles() const;
+   const std::vector< std::vector<float> > & solidAngles() const;
 
    /// @return Pixel value as a function of index
    double pixelValue(double ilon, double ilat, int k=0) const;
@@ -138,7 +143,8 @@ private:
 
    astro::SkyDir m_refDir;
 
-   typedef std::vector< std::vector<double> > ImagePlane_t;
+//   typedef std::vector< std::vector<double> > ImagePlane_t;
+   typedef std::vector< std::vector<float> > ImagePlane_t;
 
    std::vector<ImagePlane_t> m_image;
 
@@ -168,7 +174,8 @@ private:
 
    double m_mapIntegral;
 
-   std::vector<double> m_mapIntegrals;
+//   std::vector<double> m_mapIntegrals;
+   std::vector<float> m_mapIntegrals;
 
    bool m_enforceEnergyRange;
 

@@ -215,4 +215,51 @@ Convolve::convolve(const std::vector<double> & signal,
    return output;
 }
 
+std::vector<float> 
+Convolve::convolve(const std::vector<float> & signal,
+                   const std::vector<float> & psf) {
+   std::vector<double> dsignal(signal.size(), 0);
+   std::vector<double> dpsf(psf.size(), 0);
+   for (size_t i(0); i < signal.size(); i++) {
+      dsignal[i] = signal[i];
+   }
+   for (size_t i(0); i < psf.size(); i++) {
+      dpsf[i] = psf[i];
+   }
+   std::vector<double> foo(convolve(dsignal, dpsf));
+   std::vector<float> my_result(foo.size(), 0);
+   for (size_t i(0); i < foo.size(); i++) {
+      my_result[i] = foo[i];
+   }
+   return my_result;
+}
+
+std::vector< std::vector<float> > 
+Convolve::convolve2d(const std::vector< std::vector<float> > & signal,
+                     const std::vector< std::vector<float> > & psf) {
+   std::vector< std::vector<double> > dsignal(signal.size(),
+                                              std::vector<double>(signal[0].size(), 0));
+   std::vector< std::vector<double> > dpsf(psf.size(),
+                                           std::vector<double>(psf[0].size(), 0));
+   for (size_t i(0); i < signal.size(); i++) {
+      for (size_t j(0); j < signal[i].size(); j++) {
+         dsignal[i][j] = signal[i][j];
+      }
+   }
+   for (size_t i(0); i < psf.size(); i++) {
+      for (size_t j(0); j < psf[i].size(); j++) {
+         dpsf[i][j] = psf[i][j];
+      }
+   }
+   std::vector< std::vector<double> > foo(convolve2d(dsignal, dpsf));
+   std::vector< std::vector<float> > my_result(foo.size(),
+                                               std::vector<float>(foo[0].size(), 0));
+   for (size_t i(0); i < foo.size(); i++) {
+      for (size_t j(0); j < foo[i].size(); j++) {
+         my_result[i][j] = foo[i][j];
+      }
+   }
+   return my_result;
+}
+
 } // namespace Likelihood

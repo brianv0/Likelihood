@@ -78,11 +78,14 @@ void SpatialMap::integrateSpatialDist(const std::vector<double> & energies,
                                       const ExposureMap & expmap,
                                       std::vector<double> & exposure) const {
    exposure.clear();
-   const std::vector< std::vector<double> > & 
+//    const std::vector< std::vector<double> > & 
+//       solid_angles(wcsmap().solidAngles());
+//    const std::vector< std::vector< std::vector<double> > > & 
+//       image(wcsmap().image());
+   const std::vector< std::vector<float> > & 
       solid_angles(wcsmap().solidAngles());
-   const std::vector< std::vector< std::vector<double> > > & 
+   const std::vector< std::vector< std::vector<float> > > & 
       image(wcsmap().image());
-
    // Compute exposures using exposure map energy grid
    std::vector<double> map_energies;
    expmap.getEnergies(map_energies);

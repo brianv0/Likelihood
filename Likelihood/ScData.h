@@ -75,6 +75,8 @@ public:
 
    size_t time_index(double time) const;
 
+   void clear_arrays(bool realloc=true);
+
 private:
 
    std::vector<double> m_start;
@@ -82,8 +84,6 @@ private:
    std::vector<double> m_livetime;
    std::vector<astro::SkyDir> m_zAxis;
    std::vector<astro::SkyDir> m_xAxis;
-
-   void clear_arrays();
 
 };
 
