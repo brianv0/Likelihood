@@ -346,6 +346,8 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
          evfile = "none";
       }
 
+      // Need to explicitly test for evfile=="none", since
+      // that is a possible value for expmap.
       if (evfile == "none") {
          std::string alt_file = pars["evfile"];
          evfile = alt_file;
@@ -353,14 +355,16 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
       }
    } else if (analysisType == "BINNED") {
       try {
-         std::string myfile = pars["cmap"];
+         std::string myfile = pars["bexpmap"];
          evfile = myfile;
       } catch (hoops::Hexception &) {
-         std::string myfile = pars["srcmaps"];
+         // Must be running gtexpcube2.
+         std::string myfile = pars["cmap"];
          evfile = myfile;
       }
       extname = "";
    } else {
+      // Running gtexpcube2.
       if (respBase == "CALDB") {
          throw std::runtime_error("A valid set of irfs must be explicitly "
                                   "specified when running this tool in "
@@ -375,9 +379,31 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
    if (respBase == "CALDB") {
       // Determine irfs from $CALDB/bcf/irf_index.fits file, using
       // most recent version.
-      dataSubselector::Cuts::Cuts my_cuts(files.at(0), extname,
-                                          false, true, true);
-      respBase = my_cuts.CALDB_implied_irfs();
+      dataSubselector::Cuts * my_cuts(0);
+      try {
+         my_cuts = new dataSubselector::Cuts::Cuts(files.at(0), extname,
+                                                   false, true, true);
+         respBase = my_cuts->CALDB_implied_irfs();
+      } catch (std::runtime_error & eObj) {
+         if (st_facilities::Util::expectedException(eObj, 
+                                                    "No bitmask cut in")) {
+            try {
+               // Use counts or source maps file since they will have the bit
+               // mask cut that will be used to infer the irfs.
+               std::string myfile = pars["cmap"];
+               evfile = myfile;
+            } catch (hoops::Hexception &) {
+               std::string myfile = pars["srcmaps"];
+               evfile = myfile;
+            }
+         } else {
+            throw;
+         }
+         my_cuts = new dataSubselector::Cuts::Cuts(evfile, "",
+                                                   false, true, true);
+         respBase = my_cuts->CALDB_implied_irfs();
+      }
+      delete my_cuts;
    }
    // Check that requested irfs match those in the upstream files.
    dataSubselector::Cuts::checkIrfs(files.at(0), extname, respBase);
