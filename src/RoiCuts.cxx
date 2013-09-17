@@ -159,6 +159,9 @@ void RoiCuts::setRoiData() {
    }
    std::vector<const dataSubselector::GtiCut *> gtiCuts;
    m_cuts->getGtiCuts(gtiCuts);
+   if (gtiCuts.empty()) {
+      throw std::runtime_error("No GTIs found in input event file(s).");
+   }
    double tmin(gtiCuts.front()->gti().minValue());
    double tmax(gtiCuts.front()->gti().maxValue());
    for (size_t i(1); i < gtiCuts.size(); i++) {
