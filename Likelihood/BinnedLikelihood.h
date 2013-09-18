@@ -61,7 +61,9 @@ public:
 
    /// Create a counts map based on the current model.
    virtual CountsMap * createCountsMap(const CountsMap & dataMap) const {
-      return SourceModel::createCountsMap(dataMap);
+      std::vector<float> map;
+      computeModelMap(map);
+      dataMap.setImage(map);
    }
 
    virtual void readXml(std::string xmlFile, 
@@ -153,7 +155,9 @@ public:
                        const SourceMap * srcMap) const;
    void set_external_model_map(std::vector<float> * external_map) {
       m_external_model_map = external_map;
-      external_map->resize(m_pixels.size()*(m_energies.size()-1));
+      if (external_map != 0) {
+         external_map->resize(m_pixels.size()*(m_energies.size()-1));
+      }
    }
 
    bool fixedModelUpdated() const;

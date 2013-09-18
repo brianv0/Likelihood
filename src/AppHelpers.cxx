@@ -406,14 +406,41 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
       delete my_cuts;
    }
    // Check that requested irfs match those in the upstream files.
-   dataSubselector::Cuts::checkIrfs(files.at(0), extname, respBase);
+   try {
+      dataSubselector::Cuts::checkIrfs(files.at(0), extname, respBase);
+   } catch(tip::TipException & eObj) {
+      if (st_facilities::Util::expectedException(eObj,
+                                                 "Cannot read keyword")) {
+         // This will occur if legacy bexpmap file does not have DSS
+         // keywords.  For backwards compatibility, do nothing.
+      } else {
+         // rethrow the exception.
+         throw;
+      }
+   }
 
    if (respBase == "DSS") {
       std::string respFuncs = responseFuncs(files.front(), "DC2");
       m_respFuncs->load(respFuncs, "DC2");
    } else {
       std::vector<size_t> selectedEvtTypes;
-      getSelectedEvtTypes(files.front(), extname, selectedEvtTypes);
+      try {
+         getSelectedEvtTypes(files.front(), extname, selectedEvtTypes);
+      } catch (tip::TipException & eObj) {
+         if (st_facilities::Util::expectedException(eObj, 
+                                                    "Cannot read keyword")) {
+            // This will occur for legacy bexpmap files.
+            try {
+               // Use counts or source maps file since they will have the bit
+               // mask cut that will be used to infer the event types.
+               getSelectedEvtTypes(pars["cmap"], "", selectedEvtTypes);
+            } catch (hoops::Hexception &) {
+               getSelectedEvtTypes(pars["srcmaps"], "", selectedEvtTypes);
+            }
+         } else {
+            throw;
+         }
+      }
       m_respFuncs->load(respBase, "", selectedEvtTypes);
    }
    m_irfsName = respBase;
