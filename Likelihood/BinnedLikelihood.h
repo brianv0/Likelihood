@@ -149,6 +149,12 @@ public:
    }
 
    void computeModelMap(std::vector<float> & modelMap) const;
+   void updateModelMap(std::vector<float> & modeMap, 
+                       const SourceMap * srcMap) const;
+   void set_external_model_map(std::vector<float> * external_map) {
+      m_external_model_map = external_map;
+      external_map->resize(m_pixels.size()*(m_energies.size()-1));
+   }
 
    bool fixedModelUpdated() const;
 
@@ -246,6 +252,8 @@ private:
    Drm * m_drm;
 
    bool m_use_single_fixed_map;
+
+   std::vector<float> * m_external_model_map;
 
    mutable std::map<std::string, std::vector<double> > m_true_counts;
    mutable std::map<std::string, std::vector<double> > m_meas_counts;

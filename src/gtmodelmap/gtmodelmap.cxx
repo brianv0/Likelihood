@@ -108,6 +108,9 @@ void ModelMap::computeModelMap() {
                                                 resample, rfactor);
    m_logLike->set_use_single_fixed_map(false);
 
+   std::vector<float> ext_model_map;
+   m_logLike->set_external_model_map(&ext_model_map);
+
    std::string bexpmap = m_pars["bexpmap"];
    Likelihood::AppHelpers::checkExposureMap(cmapfile, bexpmap);
    bool requireExposure, addPointSources, loadMaps, createAllMaps;
@@ -115,7 +118,7 @@ void ModelMap::computeModelMap() {
                       requireExposure=false, addPointSources=true,
                       loadMaps=false);
 
-   Likelihood::ModelMap modelMap(*m_logLike);
+   Likelihood::ModelMap modelMap(*m_logLike, &ext_model_map);
    
    std::string outfile = m_pars["outfile"];
    std::string outtype = m_pars["outtype"];

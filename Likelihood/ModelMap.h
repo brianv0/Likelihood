@@ -27,7 +27,8 @@ class ModelMap {
 
 public:
 
-   ModelMap(BinnedLikelihood & logLike);
+   ModelMap(BinnedLikelihood & logLike,
+            const std::vector<float> * model_map=0);
 
    void writeOutputMap(const std::string & outfile,
                        std::string outtype="CMAP");
