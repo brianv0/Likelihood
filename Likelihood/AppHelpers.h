@@ -177,7 +177,9 @@ protected:
 
    static bool checkTimeCuts(const dataSubselector::Cuts & cuts1,
                              const dataSubselector::Cuts & cuts2,
-                             bool compareGtis);
+                             bool compareGtis,
+                             double & gti_start_diffs,
+                             double & gti_stop_diffs);
 
    static dataSubselector::Cuts gtiCuts(const dataSubselector::Cuts &);
 
