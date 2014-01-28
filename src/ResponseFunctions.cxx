@@ -136,6 +136,10 @@ void ResponseFunctions::load(const std::string & respFuncs,
       }
       throw std::invalid_argument(message.str());
    }
+   if (m_respPtrs.size() == 0) {
+      throw std::runtime_error("No valid irfs loaded for the "
+                               "specified event selection.");
+   }
 }
 
 irfInterface::IEdisp & ResponseFunctions::edisp(int type) const {
