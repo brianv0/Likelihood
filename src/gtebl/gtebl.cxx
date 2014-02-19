@@ -88,7 +88,7 @@ void Ebl::run() {
    double redshift = m_pars["redshift"];
    double emin = m_pars["emin"];
    double emax = m_pars["emax"];
-   size_t nee = m_pars["nenergies"];
+   int nee = m_pars["nenergies"];
 
    double estep(std::log(emax/emin)/(nee - 1));
 
@@ -97,7 +97,7 @@ void Ebl::run() {
 
    IRB::EblAtten tau(modelId);
 
-   for (size_t k(0); k < nee; k++) {
+   for (int k(0); k < nee; k++) {
       double energy(emin*std::exp(estep*k));
       output << energy << "  "
              << tau(energy, redshift) << std::endl;
