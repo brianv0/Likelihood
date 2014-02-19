@@ -54,15 +54,15 @@ public:
 
    BinnedExposure(const std::string & filename);
 
-   ~BinnedExposure();
+   virtual ~BinnedExposure();
 
    /// @return Exposure (effective area integrated over time) (cm^2-s)
    /// @param energy True photon energy (MeV)
    /// @param ra Right Ascension of desired sky location (degrees)
    /// @param dec Declination of desired sky location (degrees)
-   double operator()(double energy, double ra, double dec) const;
+   virtual double operator()(double energy, double ra, double dec) const;
 
-   void writeOutput(const std::string & filename) const;
+   virtual void writeOutput(const std::string & filename) const;
 
    const std::vector<double> & energies() const {
       return m_energies;
@@ -91,7 +91,7 @@ protected:
 
    void setMapGeometry();
 
-private:
+//private:
 
    const Observation * m_observation;
 
