@@ -28,8 +28,11 @@
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedExposure.h"
+#include "Likelihood/BinnedHealpixExposure.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/Observation.h"
+
+#include "evtbin/HealpixMap.h"
 
 using namespace Likelihood;
 
@@ -98,14 +101,35 @@ void ExpCube::run() {
    ltcube.readExposureCube(ltcube_file);
 
    if (cmap_file != "none") {
-// Create map to match counts map.
-      m_helper->checkTimeCuts(cmap_file, "", ltcube_file, "Exposure");
-      CountsMap cmap(cmap_file);
-      BinnedExposure bexpmap(cmap, m_helper->observation(), useEbounds, 
-                             &m_pars);
-      bexpmap.writeOutput(m_pars["outfile"]);
+     // Create map to match counts map.
+     m_helper->checkTimeCuts(cmap_file, "", ltcube_file, "Exposure");
+
+     //Start with the HEALPIX case, where primary HDU is empty
+     const tip::Image * image = tip::IFileSvc::instance().readImage(cmap_file, "");
+     int image_size=image->getImageDimensions().size();
+     delete image;
+     if(image_size==0) {
+       tip::Table * table = tip::IFileSvc::instance().readTable(cmap_file, "SKYMAP");
+       std::string hpx("");
+       tip::Header & header(table->getHeader());
+       header["PIXTYPE"].get(hpx);
+       delete table;
+       if(hpx=="HEALPIX"){
+	 evtbin::HealpixMap cmap(cmap_file);
+	 BinnedHealpixExposure bexpmap(cmap, m_helper->observation(), 
+				       useEbounds, &m_pars);
+	 bexpmap.writeOutput(m_pars["outfile"]);
+       } else {
+	 std::cout<<"Unrecognized extension for the input count map"<<std::endl;
+	 throw;}
+     } else {
+       CountsMap cmap(cmap_file);
+       BinnedExposure bexpmap(cmap, m_helper->observation(), 
+			      useEbounds, &m_pars);
+       bexpmap.writeOutput(m_pars["outfile"]);
+     }
    } else {
-// Create map for user-defined geometry.
+     // Create map for user-defined geometry.
       std::vector<double> energies;
       generateEnergies(energies);
       if (!useEbounds) {

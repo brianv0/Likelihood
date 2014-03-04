@@ -367,7 +367,6 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
          std::string myfile = pars["cmap"];
          evfile = myfile;
       }
-      extname = "";
    } else {
       // Running gtexpcube2.
       if (respBase == "CALDB") {
