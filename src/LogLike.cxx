@@ -151,6 +151,10 @@ double LogLike::logSourceModel(const Event & event,
    if (::getenv("LOGLIKE_CATCH_NEG_PROB")) {
       throw std::runtime_error("negative probability density for this event.");
    }
+   if (m_sources.size() == 1) {
+      // special case of a single source in the model
+      return 0;
+   }
    return -1e30;
 }
 
@@ -159,7 +163,8 @@ void LogLike::getLogSourceModelDerivs(const Event & event,
 				 ResponseCache::EventRef* srcRespCache) const {
    derivs.clear();
    derivs.reserve(getNumFreeParams());
-   double srcSum = std::exp(logSourceModel(event,srcRespCache));
+   double my_logSourceModel = logSourceModel(event, srcRespCache);
+   double srcSum = std::exp(my_logSourceModel);
 
    std::map<std::string, Source *>::const_iterator source = m_sources.begin();
    for ( ; source != m_sources.end(); ++source) {
