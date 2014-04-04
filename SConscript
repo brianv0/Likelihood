@@ -1,6 +1,6 @@
 # -*- python -*-
 # $Id$
-# Authors: James Chiang <jchiang@slac.stanford.edu>, Pat Nolan <pln@razzle.stanford.edu>
+# Authors: James Chiang <jchiang@slac.stanford.edu>
 # Version: Likelihood-18-00-10
 
 import sys
