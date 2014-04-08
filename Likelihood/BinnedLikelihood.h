@@ -60,7 +60,7 @@ public:
    virtual void getFreeDerivs(std::vector<double> & derivs) const;
 
    /// Create a counts map based on the current model.
-   virtual CountsMap * createCountsMap(const CountsMap & dataMap) const {
+   virtual CountsMap * createCountsMap(CountsMap & dataMap) const {
       std::vector<float> map;
       computeModelMap(map);
       dataMap.setImage(map);
