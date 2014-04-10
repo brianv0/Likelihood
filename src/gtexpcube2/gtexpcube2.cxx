@@ -109,9 +109,9 @@ void ExpCube::run() {
      int image_size=image->getImageDimensions().size();
      delete image;
      if(image_size==0) {
-       tip::Table * table = tip::IFileSvc::instance().readTable(cmap_file, "SKYMAP");
+       const tip::Table * table = tip::IFileSvc::instance().readTable(cmap_file, "SKYMAP");
        std::string hpx("");
-       tip::Header & header(table->getHeader());
+       const tip::Header & header(table->getHeader());
        header["PIXTYPE"].get(hpx);
        delete table;
        if(hpx=="HEALPIX"){
