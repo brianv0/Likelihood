@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-18-05-00 14-Apr-2014 jchiang Pass 8 bit masking support
  Likelihood-18-04-06 10-Apr-2014 jchiang another const correctness fix
  Likelihood-18-04-05 08-Apr-2014 jchiang const fixes
  Likelihood-18-04-04 04-Apr-2014 jchiang trivial mod to SConscript file
