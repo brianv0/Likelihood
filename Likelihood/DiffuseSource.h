@@ -219,6 +219,9 @@ private:
    // of the source times the unbinned exposure map.
    void integrateSpatialDist();
 
+   /// @return Approximate energy-dependent outer angle (in radians) 
+   ///         for diffuse response calculation.
+   double psfRange(double energy) const;
 };
 
 } //namespace Likelihood
