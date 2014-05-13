@@ -70,7 +70,8 @@ public:
    /// @param energy Energy at which to evaluate the integral (MeV).
    double integral(double angle, double energy) const;
    
-   /// @return The acceptance cone radius for the specified containment fraction (degrees)
+   /// @return The acceptance cone radius for the specified containment
+   ///         fraction (degrees)
    /// @param energy Photon energy (MeV)
    /// @param frac Desired containment fraction (0.68 default)
    double containmentRadius(double energy, double frac=0.68) const;
