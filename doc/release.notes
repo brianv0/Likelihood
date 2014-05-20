@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-18-05-03 20-May-2014 jchiang attempt to improve point source map calculation
  Likelihood-18-05-02 13-May-2014 jchiang cache psf partial integrals
  Likelihood-18-05-01 21-Apr-2014 jchiang use energy-dependent cutoff angle in map-based diffuse response integral
  Likelihood-18-05-00 14-Apr-2014 jchiang Pass 8 bit masking support
