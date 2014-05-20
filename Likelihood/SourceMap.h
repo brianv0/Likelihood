@@ -24,6 +24,7 @@ namespace Likelihood {
 
    class CountsMap;
    class DiffuseSource;
+   class MeanPsf;
    class PointSource;
    class Source;
 
@@ -128,6 +129,9 @@ private:
                            bool verbose);
 
    void applyPhasedExposureMap();
+
+   double psfValueEstimate(const MeanPsf & meanPsf, double energy,
+                           double offset, double pixelSolidAngle) const;
 
 };
 
