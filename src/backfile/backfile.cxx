@@ -98,7 +98,10 @@ void BackFile::setup() {
    std::string expCube = m_pars["expcube"];
    m_helper->observation().expCube().readExposureCube(expCube);
 
-   m_helper->checkCuts(phafile, "SPECTRUM", expMap, "");
+//   m_helper->checkCuts(phafile, "SPECTRUM", expMap, "");
+   std::vector<std::string> phafiles;
+   phafiles.push_back(phafile);
+   m_helper->checkExpMapCuts(phafiles, expMap, "SPECTRUM", "");
 }
 
 void BackFile::run() {
