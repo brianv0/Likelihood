@@ -131,8 +131,10 @@ private:
    void applyPhasedExposureMap();
 
    double psfValueEstimate(const MeanPsf & meanPsf, double energy,
-                           double offset, double pixelSolidAngle) const;
+                           const astro::SkyDir & srcDir, const Pixel & pixel) const;
 
+   double integrate_psf(const MeanPsf & meanPsf, double energy,
+                        const astro::SkyDir & srcDir, const Pixel & pixel) const;
 };
 
 } // namespace Likelihood

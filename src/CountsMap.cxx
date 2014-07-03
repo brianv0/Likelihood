@@ -510,7 +510,7 @@ const std::vector<Pixel> & CountsMap::pixels() const {
       getPixels(pixelDirs, solidAngles);
       m_pixels.reserve(pixelDirs.size());
       for (unsigned int i = 0; i < pixelDirs.size(); i++) {
-         m_pixels.push_back(Pixel(pixelDirs[i], solidAngles[i]));
+         m_pixels.push_back(Pixel(pixelDirs[i], solidAngles[i], m_proj));
       }
    }
    return m_pixels;

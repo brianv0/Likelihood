@@ -17,6 +17,10 @@
 
 #include "Likelihood/ExposureCube.h"
 
+namespace astro {
+   class SkyProj;
+}
+
 namespace Likelihood {
 
    class Source;
@@ -37,11 +41,14 @@ class Pixel {
 
 public:
 
-   Pixel(double ra=0, double dec=0, double solidAngle=0) 
-      : m_dir(astro::SkyDir(ra, dec)), m_solidAngle(solidAngle) {}
+   Pixel(double ra=0, double dec=0, double solidAngle=0,
+         const astro::SkyProj * proj=0) 
+      : m_dir(astro::SkyDir(ra, dec)), m_solidAngle(solidAngle), m_proj(proj) {
+   }
 
-   Pixel(const astro::SkyDir & dir, double solidAngle) 
-      : m_dir(dir), m_solidAngle(solidAngle) {}
+   Pixel(const astro::SkyDir & dir, double solidAngle, 
+         const astro::SkyProj * proj=0) 
+      : m_dir(dir), m_solidAngle(solidAngle), m_proj(proj) {}
 
    double modelCounts(double emin, double emax, SourceModel & srcModel) const;
 
@@ -51,6 +58,10 @@ public:
    const astro::SkyDir & dir() const {return m_dir;}
 
    double solidAngle() const {return m_solidAngle;}
+
+   const astro::SkyProj & proj() const {
+      return *m_proj;
+   }
 
    /// @return The iterator to the Pixel object that is closest to the
    /// input Pixel object in angular distance.
@@ -114,6 +125,7 @@ private:
 
    astro::SkyDir m_dir;
    double m_solidAngle;
+   const astro::SkyProj * m_proj;
 
 };
 
