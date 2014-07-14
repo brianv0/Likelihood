@@ -94,7 +94,9 @@ void ModelMap::computeModelMap() {
    m_helper->setRoi(m_pars["srcmaps"], "", false);
    std::string cmapfile = m_pars["srcmaps"];
    m_dataMap = new Likelihood::CountsMap(cmapfile);
-   bool computePointSources, apply_psf_corrections;
+   bool computePointSources;
+   bool apply_psf_corrections = Likelihood::AppHelpers::param(m_pars, 
+                                                              "psfcorr", true);
    bool performConvolution = m_pars["convol"];
    bool resample = m_pars["resample"];
    int resamp_factor = m_pars["rfactor"];
@@ -103,7 +105,7 @@ void ModelMap::computeModelMap() {
                                                 m_helper->observation(),
                                                 cmapfile, 
                                                 computePointSources=true, 
-                                                apply_psf_corrections=true,
+                                                apply_psf_corrections,
                                                 performConvolution,
                                                 resample, rfactor);
    m_logLike->set_use_single_fixed_map(false);

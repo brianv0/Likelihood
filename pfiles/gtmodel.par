@@ -12,6 +12,7 @@ convol,b,h,yes,,,"Perform convolution with psf"
 resample,b,h,yes,,,"Resample input counts map for convolution"
 rfactor,i,h,2,,,"Resampling factor"
 outtype,s,h,"CMAP",CCUBE|CMAP,,"Output type"
+psfcorr,b,h,yes,,,"Appy psf integral corrections"
 
 chatter,i,h,2,0,4,Output verbosity
 clobber,        b, h, yes, , , "Overwrite existing output files"
