@@ -107,7 +107,7 @@ public:
 
    const astro::SkyDir & refDir() const {return m_refDir;}
 
-   bool withinBounds(const astro::SkyDir & dir, double energy) const;
+   bool withinBounds(const astro::SkyDir & dir, double energy, long border_size=0) const;
 
    const std::string & proj_name() const {return m_proj_name;}
 

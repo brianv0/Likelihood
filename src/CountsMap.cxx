@@ -377,11 +377,12 @@ CountsMap::~CountsMap() throw() {
    }
 }
 
-bool CountsMap::withinBounds(const astro::SkyDir & dir, double energy) const {
+bool CountsMap::withinBounds(const astro::SkyDir & dir, double energy,
+                             long border_size) const {
    std::pair<double, double> coord = dir.project(*m_proj);
    double my_values[] = {coord.first, coord.second, energy};
    std::vector<double> values(my_values, my_values + 3);
-   long indx = m_hist->binIndex(values);
+   long indx = m_hist->binIndex(values, border_size);
    return indx >= 0;
 }
 

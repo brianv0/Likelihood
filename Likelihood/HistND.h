@@ -46,7 +46,13 @@ public:
    virtual void fillBin(const std::vector<double> & values, 
                         double weight = 1.);
 
-   long binIndex(const std::vector<double> & values) const;
+   /// @return The unrolled index of the point in N-dimensional space
+   /// corresponding to the specified coordinates.  If the point is
+   /// outside the bounded volume (minus an border region in pixels),
+   /// return -1.
+   /// @param values N-dimensional coordinates (x, y, z,...)
+   /// @param border_size Border region to exclude in units of pixels.
+   long binIndex(const std::vector<double> & values, long border_size=0) const;
 
    long binIndex(const std::vector<long> & ivalues) const;
    
