@@ -49,6 +49,12 @@ public:
       return m_filename;
    }
 
+   void setSpectrum(const std::vector<double> & energy,
+                    const std::vector<double> & dnde);
+
+   const std::vector<double> & log_energy() const;
+   const std::vector<double> & log_dnde() const;
+
 protected:
 
 // This is disabled.

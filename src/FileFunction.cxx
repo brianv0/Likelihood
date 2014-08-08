@@ -90,6 +90,26 @@ void FileFunction::readFunction(const std::string & filename) {
    }
 }   
 
+void FileFunction::setSpectrum(const std::vector<double> & energy,
+                               const std::vector<double> & dnde) {
+   if (energy.size() != m_x.size() || dnde.size() != m_y.size()) {
+      throw std::runtime_error("FileFunction::setSpectrum: inconsistent "
+                               "array sizes for input spectra.");
+   }
+   for (size_t k(0); k < m_x.size(); k++) {
+      m_x[k] = std::log(energy[k]);
+      m_y[k] = std::log(dnde[k]);
+   }
+}
+
+const std::vector<double> & FileFunction::log_energy() const {
+   return m_x;
+}
+
+const std::vector<double> & FileFunction::log_dnde() const {
+   return m_y;
+}
+
 double FileFunction::
 integral(optimizers::Arg &, optimizers::Arg &) const {
    throw std::runtime_error("FileFunction::integral is disabled.");
