@@ -172,7 +172,7 @@ public:
 
    void set_edisp_flag(bool use_edisp);
 
-   bool use_edisp() const;
+   bool use_edisp(const std::string & srcname="") const;
 
    void set_use_single_fixed_map(bool use_sfm);
    bool use_single_fixed_map() const;

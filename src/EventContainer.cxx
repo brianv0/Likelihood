@@ -129,6 +129,10 @@ void EventContainer::getEvents(std::string event_file,
       if (eff_factor) {
          efficiency = eff_factor->value(energy, m_scData.livetimefrac(time),
                                         time);
+         if (efficiency < 0) {
+            throw std::runtime_error("EventContainer::getEvents: "
+                                     "efficiency < 0");
+         }
       }
       Event thisEvent(ra, dec, energy, time, m_scData.zAxis(time),
                       m_scData.xAxis(time), cos(zenAngle*M_PI/180.), 

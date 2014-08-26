@@ -192,6 +192,14 @@ public:
       m_observation = observation;
    }
 
+   bool use_edisp() const {
+      return m_useEdisp;
+   }
+
+   void set_edisp_flag(bool useEdisp) {
+      m_useEdisp = useEdisp;
+   }
+
 protected:
 
    /// A unique source name.

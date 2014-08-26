@@ -355,6 +355,13 @@ void SourceFactory::setSpectrum(Source * src, const DOMElement * spectrum,
    }
 
    src->setSpectrum(spec);
+   /// Determine if energy dispersion can be applied.
+   std::string apply_edisp(xmlBase::Dom::getAttribute(spectrum, "apply_edisp"));
+   if (apply_edisp != "true" && apply_edisp != "false" && apply_edisp != "") {
+      throw std::runtime_error("Invalid value for apply_edisp attribute in xml definition of " + src->getName());
+   }
+   src->set_edisp_flag(apply_edisp != "false");
+
    delete spec;
 }
 
