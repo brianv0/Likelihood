@@ -63,7 +63,8 @@ void Drm::convolve(const std::vector<double> & true_counts,
    std::deque<double> counts(true_counts.size());
    std::copy(true_counts.begin(), true_counts.end(), counts.begin());
    double value(0);
-   if (counts[0] > 0 && counts[1] > 0){
+   double min_counts_value(1e-10);
+   if (counts[0] > min_counts_value && counts[1] > min_counts_value) {
       value = counts[1]*std::exp(std::log(m_ebounds[0]/m_ebounds[2])/
                                  std::log(m_ebounds[1]/m_ebounds[2])*
                                  std::log(counts[0]/counts[1]));
