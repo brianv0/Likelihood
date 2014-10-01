@@ -108,6 +108,8 @@ void ModelMap::computeModelMap() {
                                                 apply_psf_corrections,
                                                 performConvolution,
                                                 resample, rfactor);
+   bool edisp = m_pars["edisp"];
+   m_logLike->set_edisp_flag(edisp);
    m_logLike->set_use_single_fixed_map(false);
 
    std::vector<float> ext_model_map;

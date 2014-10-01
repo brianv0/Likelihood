@@ -72,12 +72,12 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
      m_meas_counts(),
      m_fixed_counts_spec(),
      m_krefs() {
-  dataMap.getAxisVector(2, m_energies);
-  m_kmax = m_energies.size() - 1;
-  identifyFilledPixels();
-  m_fixedModelWts.resize(m_filledPixels.size(), std::make_pair(0, 0));
-  m_fixedNpreds.resize(m_energies.size(), 0);
-  computeCountsSpectrum();
+   dataMap.getAxisVector(2, m_energies);
+   m_kmax = m_energies.size() - 1;
+   identifyFilledPixels();
+   m_fixedModelWts.resize(m_filledPixels.size(), std::make_pair(0, 0));
+   m_fixedNpreds.resize(m_energies.size(), 0);
+   computeCountsSpectrum();
 }
 
 BinnedLikelihood::
