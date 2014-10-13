@@ -21,7 +21,6 @@
 #include "dataSubselector/Gti.h"
 #include "dataSubselector/RangeCut.h"
 
-#include "Likelihood/Exception.h"
 #include "Likelihood/Event.h"
 #include "Likelihood/RoiCuts.h"
 
