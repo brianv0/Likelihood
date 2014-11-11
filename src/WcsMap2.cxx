@@ -444,7 +444,7 @@ double WcsMap2::operator()(const astro::SkyDir & dir, double energy) const {
    check_energy(energy);
 
    int k(0);
-   if (m_naxes == 3) {
+   if (m_naxes == 3 && m_energies.size() > 1) {
       k = std::upper_bound(m_energies.begin(), m_energies.end(), energy)
          - m_energies.begin() - 1;
       /// Extrapolate beyond highest energy.  This will only occur if
