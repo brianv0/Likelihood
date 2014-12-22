@@ -113,7 +113,7 @@ public:
    }
 
    void load(const std::string & respFuncs, const std::string & respBase="",
-             const std::vector<size_t> &selectedEvtTypes=std::vector<size_t>());
+             const std::vector<unsigned int> & evtTypes=std::vector<unsigned int>());
 
    irfInterface::IEdisp & edisp(int type) const;
 

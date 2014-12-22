@@ -137,7 +137,7 @@ public:
 
    static void getSelectedEvtTypes(const std::string & evfile,
                                    const std::string & extname,
-                                   std::vector<size_t> & selectedEvtTypes);
+                                   std::vector<unsigned int> &selectedEvtTypes);
 
    static void addFunctionPrototypes(optimizers::FunctionFactory * funcFactory);
 

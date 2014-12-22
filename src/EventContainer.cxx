@@ -20,6 +20,9 @@
 
 #include "irfInterface/IEfficiencyFactor.h"
 
+#include "dataSubselector/BitMaskCut.h"
+#include "dataSubselector/Cuts.h"
+
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/EventContainer.h"
 #include "Likelihood/ResponseFunctions.h"
@@ -55,6 +58,16 @@ void EventContainer::getEvents(std::string event_file,
    tip::Table * events = 
       tip::IFileSvc::instance().editTable(event_file, "events");
 
+   dataSubselector::Cuts cuts(event_file, "EVENTS");
+   std::vector<dataSubselector::BitMaskCut *> bit_mask_cuts(cuts.bitMaskCuts());
+   unsigned int event_type_mask(3);  // Default mask of FRONT/BACK bits.
+   for (size_t i(0); i < bit_mask_cuts.size(); i++) {
+      if (bit_mask_cuts[i]->colname() == "EVENT_TYPE") {
+         event_type_mask = bit_mask_cuts[i]->bitPosition();
+      }
+      delete bit_mask_cuts[i];
+   }
+
    int evclsver(0); // version of event class definition
 
    tip::Header & header(events->getHeader());
@@ -82,7 +95,7 @@ void EventContainer::getEvents(std::string event_file,
    double zenAngle;
    unsigned long eventClass;
    int conversionType;
-   int eventType;
+   unsigned long eventType;
 
    double respValue;
 
@@ -120,7 +133,12 @@ void EventContainer::getEvents(std::string event_file,
       if (evclsver == 0) {
          eventType = conversionType;
       } else {
-         eventType = conversionType + 2*eventClass;
+         //eventType = conversionType + 2*eventClass;
+         tip::BitStruct event_type;
+         event["event_type"].get(event_type);
+         eventType = event_type;
+         eventType = static_cast<int>(std::log(eventType & event_type_mask)
+                                      /std::log(2));
       }
       const irfInterface::IEfficiencyFactor * eff_factor =
          m_respFuncs.respPtr(eventType)->efficiencyFactor();
