@@ -461,14 +461,14 @@ getSelectedEvtTypes(const std::string & evfile,
 
    // Set the default event_type mask corresponding to FRONT/BACK
    // selections.
-   unsigned long evtype_bit_mask(3);
+   unsigned int evtype_bit_mask(3);
    // Find the event_type BitMaskCut, if it exists, and get mask.
    for (size_t i(0); i < my_cuts.size(); i++) {
       if (my_cuts[i].type() == "bit_mask") {
          const dataSubselector::BitMaskCut & event_type_cut
             = dynamic_cast<const dataSubselector::BitMaskCut &>(my_cuts[i]);
          if (event_type_cut.colname() == "EVENT_TYPE") {
-            evtype_bit_mask = event_type_cut.bitPosition();
+            evtype_bit_mask = event_type_cut.mask();
          }
       }
    }

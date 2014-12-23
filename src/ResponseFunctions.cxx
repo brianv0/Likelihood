@@ -12,6 +12,8 @@
 
 #include "astro/SkyDir.h"
 
+#include "st_stream/StreamFormatter.h"
+
 #include "irfInterface/IrfsFactory.h"
 
 #undef ST_API_EXPORTS
@@ -140,6 +142,15 @@ void ResponseFunctions::load(const std::string & respFuncs,
       throw std::runtime_error("No valid irfs loaded for the "
                                "specified event selection.");
    }
+   st_stream::StreamFormatter formatter("ResponseFunctions", "load", 3);
+   formatter.info() << "ResponseFunctions::load: IRF used: " 
+                    << m_respName << "\n"
+                    << "  event_types:";
+   for (std::map<unsigned int, irfInterface::Irfs *>::const_iterator 
+           it(m_respPtrs.begin()); it != m_respPtrs.end(); ++ it) {
+      formatter.info() << "  " << it->first;
+   }
+   formatter.info() << std::endl;
 }
 
 irfInterface::IEdisp & ResponseFunctions::edisp(int type) const {
