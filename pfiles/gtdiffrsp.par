@@ -9,6 +9,7 @@ srcmdl,fr,a,"",,,"Source model file"
 irfs,s,a,"CALDB",,,"Response functions to use"
 evclsmin,i,h,0,,,"Minimum event class level"
 evclass,i,h,INDEF,,,"Target class level"
+evtype,i,h,INDEF,,,"Event type selections"
 convert,b,h,no,,,"convert header to new diffrsp format?"
 
 chatter,i,h,2,0,4,Output verbosity

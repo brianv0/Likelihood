@@ -48,7 +48,8 @@ public:
 
    ~EventContainer();
 
-   void getEvents(std::string event_file, bool apply_roi_cut=true);
+   void getEvents(std::string event_file, bool apply_roi_cut=true,
+                  unsigned int event_type_mask=3);
                   
    void computeEventResponses(Source & src, double sr_radius=30.);
 

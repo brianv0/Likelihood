@@ -359,7 +359,14 @@ void diffuseResponses::readEventData(std::string eventFile) {
                                     m_helper->observation().roiCuts(),
                                     m_helper->observation().scData());
    bool apply_roi_cut;
-   m_eventCont->getEvents(eventFile, apply_roi_cut=false);
+   unsigned int event_type_mask(3);
+   try {
+      unsigned int evtype_mask = m_pars["evtype"];
+      event_type_mask = evtype_mask;
+   } catch (hoops::Hexception &) {
+      // use default Front/Back event type filter
+   }
+   m_eventCont->getEvents(eventFile,apply_roi_cut=false, event_type_mask);
 }
 
 void diffuseResponses::computeEventResponses() {
