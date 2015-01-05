@@ -31,6 +31,9 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
+#include "dataSubselector/BitMaskCut.h"
+#include "dataSubselector/Cuts.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/DiffRespNames.h"
 #include "Likelihood/DiffuseSource.h"
@@ -366,7 +369,7 @@ void diffuseResponses::readEventData(std::string eventFile) {
    } catch (hoops::Hexception &) {
       // use default Front/Back event type filter
    }
-   m_eventCont->getEvents(eventFile,apply_roi_cut=false, event_type_mask);
+   m_eventCont->getEvents(eventFile, apply_roi_cut=false, event_type_mask);
 }
 
 void diffuseResponses::computeEventResponses() {
@@ -488,7 +491,25 @@ void diffuseResponses::writeEventResponses(std::string eventFile) {
    }
    if (m_columnNames.size() > m_ndifrsp) {
       events->getHeader()["NDIFRSP"].set(m_columnNames.size());
-   }      
+   }
+
+// Update the DSS keywords to add EVENT_TYPE bit-mask cut if specified
+// and if not already present in the evfile.
+   try {
+      unsigned int evtype_mask = m_pars["evtype"];
+      // Get the Cuts from the DSS keywords in the input evfile.
+      dataSubselector::Cuts cuts(eventFile, "EVENTS");
+      dataSubselector::BitMaskCut * evtype_cut(0);
+      // Add the event_type bit-mask cut if not already in the file.
+      if (!(evtype_cut=cuts.bitMaskCut("EVENT_TYPE"))) {
+         cuts.addBitMaskCut("EVENT_TYPE", evtype_mask, cuts.pass_ver());
+         // Overwrite existing keywords with the updated set.
+         cuts.writeDssKeywords(events->getHeader());
+      }
+      delete evtype_cut;
+   } catch (hoops::Hexception &) {
+      // evtype option not given so do nothing.
+   }
    delete events;
 }
 
