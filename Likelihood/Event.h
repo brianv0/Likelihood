@@ -166,7 +166,7 @@ private:
    double m_arrTime;
    double m_muZenith;
 
-   /// Event type (front vs back for now)
+   /// Event type
    int m_type;
 
    /// Classification tree class level (EVENT_CLASS in FT1).
