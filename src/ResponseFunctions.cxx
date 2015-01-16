@@ -51,10 +51,12 @@ double ResponseFunctions::totalResponse(double energy, double appEnergy,
       double psf_val(psf->value(appDir, energy, srcDir, zAxis, xAxis, time));
       double aeff_val(aeff->value(energy, srcDir, zAxis, xAxis, time));
       if (m_useEdisp) {
-         irfInterface::IEdisp * edisp(irfs->edisp());
-         double edisp_val(edisp->value(appEnergy, energy, srcDir, 
-                                       zAxis, xAxis, time));
-         myResponse = psf_val*aeff_val*edisp_val;
+         throw std::runtime_error("Attempt to use energy dispersion "
+                                  "handling in unbinned analysis.");
+         // irfInterface::IEdisp * edisp(irfs->edisp());
+         // double edisp_val(edisp->value(appEnergy, energy, srcDir, 
+         //                               zAxis, xAxis, time));
+         // myResponse = psf_val*aeff_val*edisp_val;
       } else {
          myResponse = psf_val*aeff_val;
       }
@@ -80,10 +82,12 @@ double ResponseFunctions::totalResponse(double inclination, double phi,
       double psf_val(psf->value(separation, energy, inclination, phi, time));
       double aeff_val(aeff->value(energy, inclination, phi, time));
       if (m_useEdisp) {
-         irfInterface::IEdisp * edisp(irfs->edisp());
-         double edisp_val(edisp->value(appEnergy, energy, inclination, phi,
-                                       time));
-         myResponse = psf_val*aeff_val*edisp_val;
+         throw std::runtime_error("Attempt to use energy dispersion "
+                                  "handling in unbinned analysis.");
+         // irfInterface::IEdisp * edisp(irfs->edisp());
+         // double edisp_val(edisp->value(appEnergy, energy, inclination, phi,
+         //                               time));
+         // myResponse = psf_val*aeff_val*edisp_val;
       } else {
          myResponse = psf_val*aeff_val;
       }

@@ -1,7 +1,7 @@
 /** 
  * @file RoiCuts.cxx
- * @brief Implementation for RoiCuts, a Singleton class that contains
- * the Region-of-Interest cuts.
+ * @brief Implementation for RoiCuts, a class that contains the
+ * Region-of-Interest cuts.
  * @author J. Chiang
  * 
  * $Header$

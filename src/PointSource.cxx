@@ -84,19 +84,21 @@ double PointSource::fluxDensity(double energy, const astro::SkyDir & zAxis,
 // position.
    const ResponseFunctions & respFuncs = m_observation->respFuncs();
    if (respFuncs.useEdisp()) {
-      unsigned int npts(s_trueEnergies.size());
-      std::vector<double> my_integrand(npts);
-      for (unsigned int k = 0; k < npts; k++) {
-         optimizers::dArg energy_arg(s_trueEnergies[k]);
-         double spectrum = (*m_spectrum)(energy_arg);
-         my_integrand[k] = spectrum
-            *respFuncs.totalResponse(s_trueEnergies[k], energy,
-                                     zAxis, xAxis, m_dir.getDir(), 
-                                     dir, eventType, time);
-      }
-      bool useLog;
-      TrapQuad trapQuad(s_trueEnergies, my_integrand, useLog=true);
-      return trapQuad.integral();
+      throw std::runtime_error("Attempt to use energy dispersion "
+                               "handling in unbinned analysis.");
+      // unsigned int npts(s_trueEnergies.size());
+      // std::vector<double> my_integrand(npts);
+      // for (unsigned int k = 0; k < npts; k++) {
+      //    optimizers::dArg energy_arg(s_trueEnergies[k]);
+      //    double spectrum = (*m_spectrum)(energy_arg);
+      //    my_integrand[k] = spectrum
+      //       *respFuncs.totalResponse(s_trueEnergies[k], energy,
+      //                                zAxis, xAxis, m_dir.getDir(), 
+      //                                dir, eventType, time);
+      // }
+      // bool useLog;
+      // TrapQuad trapQuad(s_trueEnergies, my_integrand, useLog=true);
+      // return trapQuad.integral();
    } else {
       optimizers::dArg energy_arg(energy);
       double spectrum = (*m_spectrum)(energy_arg);
@@ -166,18 +168,20 @@ double PointSource::fluxDensityDeriv(double energy,
                          eventType, time, cResp)/prefactor;
    } else {
       if (respFuncs.useEdisp()) {
-         unsigned int npts(s_trueEnergies.size());
-         std::vector<double> my_integrand(npts);
-         for (unsigned int k = 0; k < npts; k++) {
-            optimizers::dArg energy_arg(s_trueEnergies[k]);
-            my_integrand[k] = m_spectrum->derivByParam(energy_arg, paramName)
-               *respFuncs.totalResponse(s_trueEnergies[k], energy,
-                                        zAxis, xAxis, m_dir.getDir(), 
-                                        dir, eventType, time);
-         }
-         bool useLog;
-         TrapQuad trapQuad(s_trueEnergies, my_integrand, useLog=true);
-         return trapQuad.integral();
+         throw std::runtime_error("Attempt to use energy dispersion "
+                                  "handling in unbinned analysis.");
+         // unsigned int npts(s_trueEnergies.size());
+         // std::vector<double> my_integrand(npts);
+         // for (unsigned int k = 0; k < npts; k++) {
+         //    optimizers::dArg energy_arg(s_trueEnergies[k]);
+         //    my_integrand[k] = m_spectrum->derivByParam(energy_arg, paramName)
+         //       *respFuncs.totalResponse(s_trueEnergies[k], energy,
+         //                                zAxis, xAxis, m_dir.getDir(), 
+         //                                dir, eventType, time);
+         // }
+         // bool useLog;
+         // TrapQuad trapQuad(s_trueEnergies, my_integrand, useLog=true);
+         // return trapQuad.integral();
       } else {
          optimizers::dArg energy_arg(energy);
 

@@ -70,6 +70,11 @@ DOMElement * SourceModelBuilder::spectralPart(Source & src) {
    xmlBase::Dom::addAttribute(specElt, "type",
                               srcFuncs["Spectrum"]->genericName());
 
+   if (!src.use_edisp()) {
+      // Explicitly set the apply_edisp attribute to "false".
+      xmlBase::Dom::addAttribute(specElt, "apply_edisp", "false");
+   }
+
    FileFunction * fileFunc(0);
    ScaleFactor * scaleFactor(dynamic_cast<ScaleFactor *>(srcFuncs["Spectrum"]));
    if (scaleFactor != 0) {

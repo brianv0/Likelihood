@@ -156,16 +156,18 @@ void EventContainer::getEvents(std::string event_file,
             std::string srcName = sourceName(*name);
             std::vector<double> gaussianParams;
             if (m_respFuncs.useEdisp()) {
-               try {
-                  event[*name].get(gaussianParams);
-                  m_events.back().setDiffuseResponse(srcName, gaussianParams);
-               } catch (tip::TipException & eObj) {
-                  std::string message(eObj.what());
-                  if (message.find("FitsColumn::getVector") ==
-                      std::string::npos) {
-                     throw;
-                  }
-               }
+               throw std::runtime_error("Attempt to use energy dispersion "
+                                        "handling in unbinned analysis.");
+               // try {
+               //    event[*name].get(gaussianParams);
+               //    m_events.back().setDiffuseResponse(srcName, gaussianParams);
+               // } catch (tip::TipException & eObj) {
+               //    std::string message(eObj.what());
+               //    if (message.find("FitsColumn::getVector") ==
+               //        std::string::npos) {
+               //       throw;
+               //    }
+               // }
             } else {
                std::string colname;
                if (haveOldDiffRespCols) {

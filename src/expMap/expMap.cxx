@@ -38,9 +38,6 @@ using namespace Likelihood;
  * @brief Class encapsulating methods for creating a Likelihood-specific
  * exposure map.
  *
- * @author J. Chiang
- *
- * $Header$
  */
 class ExpMap : public st_app::StApp {
 public:
