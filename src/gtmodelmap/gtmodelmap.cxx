@@ -138,6 +138,10 @@ void ModelMap::updateDssKeywords() {
 
    std::string outfile = m_pars["outfile"];
    tip::Image * my_image = tip::IFileSvc::instance().editImage(outfile, "");
+   std::string irfs = m_pars["irfs"];
+   if (irfs != "CALDB") {
+      m_helper->setBitMaskCuts(my_cuts);
+   }
    my_cuts.writeDssKeywords(my_image->getHeader());
    delete my_image;
 }

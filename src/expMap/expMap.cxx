@@ -187,6 +187,14 @@ void ExpMap::createExposureMap() {
       tip::IFileSvc::instance().editImage(exposureFile, "");
    // Ensure that irfs version name is written to DSS keywords.
    const_cast<RoiCuts &>(roiCuts).setIrfsVersion(m_helper->irfsName());
+
+   std::string irfs = m_pars["irfs"];
+   if (irfs != "CALDB") {
+      const dataSubselector::Cuts & respFuncCuts(m_helper->respFuncCuts());
+      const_cast<RoiCuts &>(roiCuts).setBitMaskCut(respFuncCuts.bitMaskCut("EVENT_CLASS"));
+      const_cast<RoiCuts &>(roiCuts).setBitMaskCut(respFuncCuts.bitMaskCut("EVENT_TYPE"));
+   }
+
    roiCuts.writeDssKeywords(image->getHeader());
    roiCuts.writeGtiExtension(exposureFile);
 

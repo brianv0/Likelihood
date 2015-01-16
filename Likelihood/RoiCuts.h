@@ -19,6 +19,7 @@
 
 #include "irfInterface/AcceptanceCone.h"
 
+#include "dataSubselector/BitMaskCut.h"
 #include "dataSubselector/Cuts.h"
 #include "dataSubselector/GtiCut.h"
 #include "dataSubselector/RangeCut.h"
@@ -135,6 +136,10 @@ public:
    }
 
    void setIrfsVersion(const std::string & irfsName);
+
+   void setBitMaskCut(dataSubselector::BitMaskCut * candidateCut) {
+      m_cuts->setBitMaskCut(candidateCut);
+   }
 
 private:
 
