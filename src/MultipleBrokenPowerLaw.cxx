@@ -71,6 +71,10 @@ double MultipleBrokenPowerLaw::value(optimizers::Arg & xarg) const {
 
 double MultipleBrokenPowerLaw::
 derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+   if (paramName.substr(0, 5) == "Break") {
+      throw std::runtime_error("MultipleBPL: Parameter " + paramName 
+                               + " must be fixed in the xml model definition.");
+   }
    double x(dynamic_cast<optimizers::dArg &>(xarg).getValue());
    double x0(m_breakEnergies[0]);
    if (paramName == "Normalization") {
