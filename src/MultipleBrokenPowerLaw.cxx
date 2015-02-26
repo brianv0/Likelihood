@@ -17,6 +17,10 @@ namespace Likelihood {
 
 MultipleBrokenPowerLaw::MultipleBrokenPowerLaw() {
    setMaxNumParams(100);
+   m_funcType = Addend;
+   m_argType = "dArg";
+   m_genericName = "MultipleBPL";
+   m_normParName = "Normalization";
 }
 
 void MultipleBrokenPowerLaw::
