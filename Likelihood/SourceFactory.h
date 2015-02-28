@@ -25,6 +25,7 @@ namespace st_stream {
 }
 
 namespace optimizers {
+   class Function;
    class FunctionFactory;
 }
 
@@ -42,10 +43,6 @@ using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
  *
  * The design of this class is based on the Factory template class
  * of Hippodraw.
- *
- * @author J. Chiang
- *    
- * $Header$
  *
  */
     
@@ -104,6 +101,14 @@ private:
    void checkRoiDist(double ra, double dec) const;
 
    std::string m_currentSrcName;
+
+   void addParamsToMultipleBPL(optimizers::Function * spec, 
+                               const std::vector<DOMElement *> & params,
+                               const Source * src) const;
+
+   void addParamsToPiecewisePL(optimizers::Function * spec, 
+                               const std::vector<DOMElement *> & params,
+                               const Source * src) const;
 
 };
 

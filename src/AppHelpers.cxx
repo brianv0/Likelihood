@@ -53,6 +53,7 @@
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/MultipleBrokenPowerLaw.h"
 #include "Likelihood/Observation.h"
+#include "Likelihood/PiecewisePowerLaw.h"
 #include "Likelihood/PowerLawSuperExpCutoff.h"
 #include "Likelihood/PowerLaw2.h"
 #include "Likelihood/RadialProfile.h"
@@ -204,6 +205,8 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
    funcFactory->addFunc("BrokenPowerLaw3", new BrokenPowerLaw3(), makeClone);
    funcFactory->addFunc("MultipleBPL", new MultipleBrokenPowerLaw(), makeClone);
+   funcFactory->addFunc("PiecewisePowerLaw", new PiecewisePowerLaw(),
+                        makeClone);
    funcFactory->addFunc("SmoothBrokenPowerLaw", new SmoothBrokenPowerLaw(), 
                         makeClone);
    funcFactory->addFunc("SmoothDoubleBrokenPowerLaw", 
