@@ -92,6 +92,14 @@ DOMElement * SourceModelBuilder::spectralPart(Source & src) {
       xmlBase::Dom::addAttribute(specElt, "file", dmFitFunc->filename());
    }
 
+   // If the source spectrum has a scaling function, add the filename
+   // as the scaling_file attribute.
+   const optimizers::Function * scalingFunc = srcFuncs["Spectrum"]->scalingFunction();
+   if (scalingFunc) {
+      xmlBase::Dom::addAttribute(specElt, "scaling_file", 
+                                 dynamic_cast<const FileFunction *>(scalingFunc)->filename());
+   }
+
    srcFuncs["Spectrum"]->appendParamDomElements(m_doc, specElt);
    return specElt;
 }
