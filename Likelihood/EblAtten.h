@@ -29,9 +29,6 @@ public:
 
    ~EblAtten() throw();
 
-   virtual double value(optimizers::Arg & x) const;
-   virtual double derivByParam(optimizers::Arg & x,
-                               const std::string & paramName) const;
    virtual Function * clone() const {
       return new EblAtten(*this);
    }
@@ -39,6 +36,13 @@ public:
    /// Set a Parameter using a Parameter object.  This version
    /// preserves the references to the m_spectrum parameters.
    virtual void setParam(const optimizers::Parameter &param);
+
+protected:
+
+   virtual double value(optimizers::Arg & x) const;
+
+   virtual double derivByParamImp(optimizers::Arg & x,
+                                  const std::string & paramName) const;
 
 private:
    

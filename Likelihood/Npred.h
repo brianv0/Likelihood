@@ -27,19 +27,17 @@ class Npred : public optimizers::Function {
     
 public:
 
-   Npred() {
-      m_genericName = "Npred";
-   }
+   Npred();
 
    virtual ~Npred() {}
 
-   double value(optimizers::Arg &) const;
-
-   double derivByParam(optimizers::Arg &, const std::string &) const;
-
 protected:
 
-   Npred * clone() const {
+   double value(optimizers::Arg &) const;
+
+   double derivByParamImp(optimizers::Arg &, const std::string &) const;
+
+   optimizers::Function * clone() const {
       return new Npred(*this);
    }
 

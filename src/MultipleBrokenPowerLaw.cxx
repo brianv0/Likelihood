@@ -15,12 +15,8 @@
 
 namespace Likelihood {
 
-MultipleBrokenPowerLaw::MultipleBrokenPowerLaw() {
-   setMaxNumParams(100);
-   m_funcType = Addend;
-   m_argType = "dArg";
-   m_genericName = "MultipleBPL";
-   m_normParName = "Normalization";
+MultipleBrokenPowerLaw::MultipleBrokenPowerLaw() 
+   : optimizers::Function("MultipleBrokenPowerLaw", 100, "Normalization") {
 }
 
 void MultipleBrokenPowerLaw::
@@ -70,7 +66,7 @@ double MultipleBrokenPowerLaw::value(optimizers::Arg & xarg) const {
 }
 
 double MultipleBrokenPowerLaw::
-derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
    if (paramName.substr(0, 5) == "Break") {
       throw std::runtime_error("MultipleBPL: Parameter " + paramName 
                                + " must be fixed in the xml model definition.");

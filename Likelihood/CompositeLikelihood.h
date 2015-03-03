@@ -50,9 +50,13 @@ public:
 
 protected:
 
-   double value(optimizers::Arg&) const {return value();}
+   double value(optimizers::Arg&) const {
+      return value();
+   }
 
-   double derivByParam(optimizers::Arg&, const std::string&) const {return 0;}
+   double derivByParamImp(optimizers::Arg&, const std::string&) const {
+      return 0;
+   }
 
    optimizers::Function * clone() const {return 0;}
 

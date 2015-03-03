@@ -26,16 +26,16 @@ public:
    LogNormal(double prefactor=1, double log10_mean=3,
              double log10_sigma=2);
 
-   double value(optimizers::Arg &) const;
-
-   double derivByParam(optimizers::Arg & x, 
-                       const std::string & paramName) const;
-
    virtual Function * clone() const {
       return new LogNormal(*this);
    }
 
 protected:
+
+   double value(optimizers::Arg &) const;
+
+   double derivByParamImp(optimizers::Arg & x, 
+                          const std::string & paramName) const;
 
    double integral(optimizers::Arg &, optimizers::Arg &) const {
       return 0;

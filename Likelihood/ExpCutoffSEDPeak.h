@@ -19,32 +19,26 @@ namespace Likelihood {
    *
    * @brief Power Law with Super Exponential Cutoff function
    *
-   * @author Rolf Buehler
-   *
    */
   
   class ExpCutoffSEDPeak : public optimizers::Function {
     
   public:
     
-    ExpCutoffSEDPeak(){ init( 10., -2.1, 1000.);}
-    ExpCutoffSEDPeak(
-			   double Fpeak,
-			   double Index, 
-			   double Epeak)
-      {init(Fpeak, Index, Epeak);}
+    ExpCutoffSEDPeak(double Fpeak=10.,
+                     double Index=-2.1, 
+                     double Epeak=1000.);
     
-    double value(optimizers::Arg&) const;
-    
-    double derivByParam(optimizers::Arg &x, const std::string &paramName) const;
-    
-    virtual optimizers::Function *clone() const {
+    virtual optimizers::Function * clone() const {
       return new ExpCutoffSEDPeak(*this);
     }
     
-  private:
+  protected:
+
+    double value(optimizers::Arg &) const;
     
-    void init(double Fpeak, double Index, double Epeak);
+    double derivByParamImp(optimizers::Arg & x,
+                           const std::string & paramName) const;
     
   };
   

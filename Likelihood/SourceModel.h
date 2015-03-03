@@ -187,10 +187,6 @@ protected:
 
    std::map<std::string, Source *> m_sources;
 
-   /// disable this since parameters may no longer have unique names
-   double derivByParam(optimizers::Arg &, const std::string &) 
-      const {return 0;}
-
    void fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs, 
                     bool getFree) const;
 
@@ -215,6 +211,10 @@ protected:
       derivs.clear();
    }
 
+   /// disable this since parameters may no longer have unique names
+   double derivByParamImp(optimizers::Arg &, const std::string &) const {
+      return 0;
+   }
 
 private:
 

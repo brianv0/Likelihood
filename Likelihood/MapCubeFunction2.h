@@ -44,14 +44,6 @@ public:
 
    virtual MapCubeFunction2 & operator=(const MapCubeFunction2 &);
 
-   virtual double value(optimizers::Arg &) const;
-
-   virtual double derivByParam(optimizers::Arg & dir,
-                               const std::string & paramName) const {
-// There is only the normalization, so the derivative is easy:
-      return value(dir)/getParamValue(paramName);
-   }
-
    virtual MapCubeFunction2 * clone() const {
       return new MapCubeFunction2(*this);
    }
@@ -66,10 +58,15 @@ public:
    virtual void integrateSpatialDist(const std::vector<double> & energies,
                                      const ExposureMap & expmap,
                                      std::vector<double> & exposure) const;
+protected:
 
-private:
+   virtual double value(optimizers::Arg &) const;
 
-   void init();
+   virtual double derivByParamImp(optimizers::Arg & dir,
+                                  const std::string & paramName) const {
+      // There is only the normalization, so the derivative is easy:
+      return value(dir)/getParamValue(paramName);
+   }
 
 };
 

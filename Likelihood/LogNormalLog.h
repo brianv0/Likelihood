@@ -30,18 +30,9 @@ public:
    LogNormalLog(double prefactor=1, double log10_mean=3,
 		double log10_sigma=2) {
      LogNormal(prefactor, log10_mean,log10_sigma);
-     m_genericName = "LogNormalLog";
+//     m_genericName = "LogNormalLog";
      //Note: I am not redefining the prefactor here....so it is now additive
      // instead of multiplicative
-   }
-
-   double value(optimizers::Arg & arg) const {
-     return std::log(LogNormal::value(arg));
-   }
-
-   double derivByParam(optimizers::Arg & x, 
-                       const std::string & paramName) const {
-     return LogNormal::derivByParam(x,paramName)/LogNormal::value(x);
    }
 
    virtual Function * clone() const {
@@ -55,7 +46,17 @@ public:
      double sigma = m_parameter[Sigma].getTrueValue();
      return -(1 + (std::log10(x)-mean)/std::log(10)/sigma/sigma)/x;
    }
+
 protected:
+
+   double value(optimizers::Arg & arg) const {
+     return std::log(LogNormal::value(arg));
+   }
+
+   double derivByParamImp(optimizers::Arg & x, 
+                          const std::string & paramName) const {
+     return LogNormal::derivByParam(x,paramName)/LogNormal::value(x);
+   }
 
    double integral(optimizers::Arg &, optimizers::Arg &) const {
       return 0;

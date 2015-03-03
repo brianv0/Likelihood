@@ -27,26 +27,22 @@ namespace Likelihood {
     
   public:
     
-    PowerLawSuperExpCutoff(){ init( 10., -2.1, 1000., 10000., 2. );}
-    PowerLawSuperExpCutoff(
-			   double Prefactor,
-			   double Index1, 
-			   double Scale,
-			   double Cutoff,
-			   double Index2)
-      {init(Prefactor, Index1, Scale, Cutoff, Index2);}
+    PowerLawSuperExpCutoff(double Prefactor=10.,
+			   double Index1=-2.1, 
+			   double Scale=1000.,
+			   double Cutoff=10000.,
+			   double Index2=2.);
     
-    double value(optimizers::Arg&) const;
-    
-    double derivByParam(optimizers::Arg &x, const std::string &paramName) const;
-    
-    virtual optimizers::Function *clone() const {
+    virtual optimizers::Function * clone() const {
       return new PowerLawSuperExpCutoff(*this);
     }
     
-  private:
+  protected:
+
+    double value(optimizers::Arg &) const;
     
-    void init(double Prefactor, double Index1, double Scale, double Cutoff, double Index2);
+    double derivByParamImp(optimizers::Arg & x,
+                           const std::string &paramName) const;
     
   };
   

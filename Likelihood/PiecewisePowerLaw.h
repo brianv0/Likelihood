@@ -25,11 +25,6 @@ public:
 
    PiecewisePowerLaw();
 
-   double value(optimizers::Arg & x) const;
-   
-   double derivByParam(optimizers::Arg & x,
-                       const std::string & paramName) const;
-
    double integral(optimizers::Arg & xmin, optimizers::Arg & xmax) const {
       return 0;
    }
@@ -41,6 +36,13 @@ public:
    void addParams(double indexL, double indexH, 
                   const std::vector<double> & dNdEs,
                   const std::vector<double> & energies);
+
+protected:
+
+   double value(optimizers::Arg & x) const;
+   
+   double derivByParamImp(optimizers::Arg & x,
+                          const std::string & paramName) const;
 
 private:
 

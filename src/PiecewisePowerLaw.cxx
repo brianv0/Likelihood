@@ -15,12 +15,8 @@
 
 namespace Likelihood {
 
-PiecewisePowerLaw::PiecewisePowerLaw() {
-   setMaxNumParams(100);
-   m_funcType = Addend;
-   m_argType = "dArg";
-   m_genericName = "PiecewisePowerLaw";
-   m_normParName = "dNdE0";
+PiecewisePowerLaw::PiecewisePowerLaw() 
+   : optimizers::Function("PiecewisePowerLaw", 100, "dNdE0") {
 }
 
 void PiecewisePowerLaw::
@@ -75,7 +71,7 @@ double PiecewisePowerLaw::value(optimizers::Arg & xarg) const {
 }
 
 double PiecewisePowerLaw::
-derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
    if (paramName.substr(0, 6) == "Energy") {
       throw std::runtime_error("MultipleBPL: Parameter " + paramName 
                                + " must be fixed in the xml model definition.");

@@ -23,14 +23,8 @@ namespace Likelihood {
 BrokenPowerLaw3::BrokenPowerLaw3(double Integral1, double Index1,
                                  double Integral2, double Index2, 
                                  double LowerLimit1, double UpperLimit1,
-                                 double LowerLimit2, double UpperLimit2) {
-
-// Implement BrokenPowerLaw3 class with eight parameters:
-// "Integral1", "Index1", "Integral2", "Index2", 
-// "LowerLimit1", "UpperLimit1", "LowerLimit2", "UpperLimit2"
-
-   setMaxNumParams(8);
-
+                                 double LowerLimit2, double UpperLimit2)
+   : optimizers::Function("BrokenPowerLaw3", 8, "Integral1") {
    addParam("Integral1", Integral1, true);
    addParam("Index1", Index1, true);
    addParam("Integral2", Integral2, true);
@@ -44,13 +38,6 @@ BrokenPowerLaw3::BrokenPowerLaw3(double Integral1, double Index1,
    setParamAlwaysFixed("UpperLimit1");
    setParamAlwaysFixed("LowerLimit2");
    setParamAlwaysFixed("UpperLimit2");
-
-// Set FuncType and ArgType for use with CompositeFunction hierarchy.
-   m_funcType = Addend;
-   m_argType = "dArg";
-
-   m_genericName = "BrokenPowerLaw3";
-   m_normParName = "Integral1";
 }
 
 double BrokenPowerLaw3::value(optimizers::Arg & xarg) const {
@@ -72,7 +59,7 @@ double BrokenPowerLaw3::value(optimizers::Arg & xarg) const {
 }
 
 double BrokenPowerLaw3::
-derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
    double x = dynamic_cast<optimizers::dArg &>(xarg).getValue();
 
    int iparam(-1);

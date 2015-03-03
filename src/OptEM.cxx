@@ -79,7 +79,7 @@ namespace Likelihood {
                             << " source " << i+1 << std::endl;
 	}
 
-	logL += f.value(arg);
+	logL += f(arg);
 //         formatter.info() << "Function value " << f.value(arg) << std::endl;
       }
       iteration++;

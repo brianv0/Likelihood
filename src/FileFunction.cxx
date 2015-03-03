@@ -25,17 +25,10 @@
 
 namespace Likelihood {
 
-FileFunction::FileFunction(double Normalization) : m_filename("") {
-   setMaxNumParams(1);
-
+FileFunction::FileFunction(double Normalization) 
+   : optimizers::Function("FileFunction", 1, "Normalization"),
+     m_filename("") {
    addParam("Normalization", Normalization, true);
-
-// Set FuncType and ArgType for use with CompositeFunction hierarchy.
-   m_funcType = Addend;
-   m_argType = "dArg";
-
-   m_genericName = "FileFunction";
-   m_normParName = "Normalization";
 }
 
 double FileFunction::value(optimizers::Arg & xarg) const {
@@ -45,7 +38,7 @@ double FileFunction::value(optimizers::Arg & xarg) const {
 }
 
 double FileFunction::
-derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
    if (paramName != "Normalization") {
       throw optimizers::ParameterNotFound(paramName, getName(),
                                           "FileFunction::derivByParam");

@@ -27,9 +27,6 @@ public:
 
    ~ScaleFactor() throw();
 
-   virtual double value(optimizers::Arg & x) const;
-   virtual double derivByParam(optimizers::Arg & x,
-                               const std::string & paramName) const;
    virtual Function * clone() const {
       return new ScaleFactor(*this);
    }
@@ -50,6 +47,12 @@ public:
    optimizers::Function * spectrum() {
       return m_spectrum;
    }
+
+protected:
+   virtual double value(optimizers::Arg & x) const;
+
+   virtual double derivByParamImp(optimizers::Arg & x,
+                                  const std::string & paramName) const;
 
 private:
    

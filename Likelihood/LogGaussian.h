@@ -21,9 +21,6 @@ namespace Likelihood {
  * as free parameters and upper and lower bounds of integration as 
  * fixed parameters.
  *
- * @author J. Chiang
- *    
- * $Header$
  */
     
 class LogGaussian : public optimizers::Function {
@@ -32,16 +29,18 @@ public:
 
    LogGaussian(double norm=1, double mean=0, double sigma=1);
 
-   double value(optimizers::Arg & arg) const;
-
-   double derivByParam(optimizers::Arg & x, 
-                       const std::string & paramName) const;
-
    double derivative(optimizers::Arg & x) const;
    
    virtual Function * clone() const {
       return new LogGaussian(*this);
    }
+
+protected:
+
+   double value(optimizers::Arg & arg) const;
+
+   double derivByParamImp(optimizers::Arg & x, 
+                          const std::string & paramName) const;
 
 private:
 

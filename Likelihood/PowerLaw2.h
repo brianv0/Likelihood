@@ -33,16 +33,17 @@ public:
    PowerLaw2(double Integral=1., double Index=-2., 
              double LowerLimit=100., double UpperLimit=2e5);
 
-   double value(optimizers::Arg & x) const;
-
-   double derivByParam(optimizers::Arg & x, 
-                       const std::string & paramName) const;
-
    double integral(optimizers::Arg & xmin, optimizers::Arg & xmax) const;
 
    virtual Function * clone() const {
       return new PowerLaw2(*this);
    }
+
+protected:
+   double value(optimizers::Arg & x) const;
+
+   double derivByParamImp(optimizers::Arg & x, 
+                          const std::string & paramName) const;
 
 private:
 

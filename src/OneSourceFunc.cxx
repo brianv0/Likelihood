@@ -19,13 +19,14 @@ namespace Likelihood {
   OneSourceFunc::OneSourceFunc(Source * src,
 			       const std::vector<Event>& evt,
 			       std::vector<double> * weights):
+    Statistic("OneSourceFunc", 0),
     m_src(src),
     m_events(evt),
     m_weights(weights),
     m_epsw(1.e-3),
     m_epsf(1.e-20)
   {
-    m_functionName = "OneSourceFunc";
+     setName("OneSourceFunc");
     syncParams();
   }
 
@@ -61,8 +62,8 @@ namespace Likelihood {
     return foo;
   }
 
-  double OneSourceFunc::derivByParam(optimizers::Arg& , 
-				     const std::string& paramName) const {
+  double OneSourceFunc::derivByParamImp(optimizers::Arg &, 
+                                        const std::string & paramName) const {
 
     double deriv = 0;
     //    double wtot = 0.;

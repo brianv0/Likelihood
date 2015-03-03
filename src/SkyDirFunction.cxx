@@ -14,30 +14,21 @@
 
 namespace Likelihood {
 
-SkyDirFunction::SkyDirFunction(const astro::SkyDir &dir) :
-   m_ra(dir.ra()), m_dec(dir.dec()), m_dir(dir) {
-   m_maxNumParams = 2;
-   m_genericName = "SkyDirFunction";
-   m_functionName = "SkyDirFunction";
-   addParam("RA", m_ra, false);
-   parameter("RA").setBounds(-360., 360.);
-   setParamAlwaysFixed("RA");
-   addParam("DEC", m_dec, false);
-   parameter("DEC").setBounds(-90., 90.);
-   setParamAlwaysFixed("DEC");
-}   
+SkyDirFunction::SkyDirFunction(double ra, double dec)
+   : optimizers::Function("SkyDirFunction", 2, ""),
+     m_ra(ra), m_dec(dec), m_dir(astro::SkyDir(ra, dec)) {
+   init();
+}
+   
+SkyDirFunction::SkyDirFunction(const astro::SkyDir & dir) 
+   : optimizers::Function("SkyDirFunction", 2, ""),
+     m_ra(dir.ra()), m_dec(dir.dec()), m_dir(dir) {
+   init();
+}
 
-void SkyDirFunction::m_init(double ra, double dec) {
-   m_ra = ra; 
-   m_dec = dec; 
-   m_maxNumParams = 2;
-   m_genericName = "SkyDirFunction";
-   m_functionName = "SkyDirFunction";
-
-   m_dir = astro::SkyDir(ra, dec);
-
-   // add these as fixed parameters 
-   // NB: as usual, the specific ordering of Parameters is assumed throughout
+void SkyDirFunction::init() {
+   setName("SkyDirFunction");
+   // Add RA, DEC as fixed parameters 
    addParam("RA", m_ra, false);
    parameter("RA").setBounds(-360., 360.);
    setParamAlwaysFixed("RA");

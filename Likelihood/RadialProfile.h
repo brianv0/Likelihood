@@ -39,11 +39,6 @@ public:
 
    virtual RadialProfile & operator=(const RadialProfile & rhs);
 
-   double value(optimizers::Arg & dir) const;
-
-   double derivByParam(optimizers::Arg & dir,
-                       const std::string & parName) const;
-
    void readTemplateFile(const std::string & template_file);
 
    const std::string & templateFile() const;
@@ -56,6 +51,13 @@ public:
 
    double angularIntegral() const;
    
+protected:
+
+   virtual double value(optimizers::Arg & dir) const;
+
+   virtual double derivByParamImp(optimizers::Arg & dir,
+                                  const std::string & parName) const;
+
 private:
 
    // disable this

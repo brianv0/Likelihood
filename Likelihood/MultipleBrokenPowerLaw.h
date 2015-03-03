@@ -24,22 +24,19 @@ public:
 
    MultipleBrokenPowerLaw();
 
-   double value(optimizers::Arg & x) const;
-   
-   double derivByParam(optimizers::Arg & x,
-                       const std::string & paramName) const;
-
-   double integral(optimizers::Arg & xmin, optimizers::Arg & xmax) const {
-      // Temporary
-      return 0;
-   }
-
    virtual Function * clone() const {
       return new MultipleBrokenPowerLaw(*this);
    }
 
    void addParams(double norm, const std::vector<double> & photonIndexes,
                   const std::vector<double> & breakEnergies);
+
+protected:
+
+   double value(optimizers::Arg & x) const;
+   
+   double derivByParamImp(optimizers::Arg & x,
+                          const std::string & paramName) const;
 
 private:
 

@@ -20,21 +20,12 @@
 
 namespace Likelihood {
 
-LogGaussian::LogGaussian(double norm, double mean, double sigma) {
-   setMaxNumParams(3);
-
+LogGaussian::LogGaussian(double norm, double mean, double sigma) 
+   : optimizers::Function("LogGaussian", 3, "Norm"),
+     m_log_term(std::log(std::sqrt(2.*M_PI)*sigma)) {
    addParam("Norm", norm, true);
    addParam("Mean", mean, true);
    addParam("Sigma", sigma, true);
-
-// Set FuncType and ArgType for use with CompositeFunction hierarchy.
-   m_funcType = Addend;
-   m_argType = "dArg";
-
-   m_genericName = "LogGaussian";
-   m_normParName = "Norm";
-
-   m_log_term = std::log(std::sqrt(2.*M_PI)*sigma);
 }
 
 double LogGaussian::value(optimizers::Arg & xarg) const {
@@ -47,7 +38,7 @@ double LogGaussian::value(optimizers::Arg & xarg) const {
 }
 
 double LogGaussian::
-derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
    double x = dynamic_cast<optimizers::dArg &>(xarg).getValue();
 
    int iparam(-1);
