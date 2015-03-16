@@ -48,9 +48,15 @@ private:
 
    std::vector<std::string> m_dNdENames;
    std::vector<double> m_energies;
+   
+   bool m_decoupledNormPar;
 
    double plIndex(size_t k) const;
    double norm(size_t k) const;
+
+   double derivByParam_decoupledNormPar(optimizers::Arg & xarg,
+                                        const std::string & paramName) const;
+
 };
 
 } // namespace Likelihood 
