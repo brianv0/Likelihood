@@ -16,7 +16,7 @@
 namespace Likelihood {
 
 MultipleBrokenPowerLaw::MultipleBrokenPowerLaw() 
-   : optimizers::Function("MultipleBrokenPowerLaw", 100, "Normalization") {
+   : optimizers::Function("MultipleBPL", 100, "Normalization") {
 }
 
 void MultipleBrokenPowerLaw::
