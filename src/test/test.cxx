@@ -1827,13 +1827,13 @@ int main(int iargc, char * argv[]) {
       // testObj.test_MultipleBrokenPowerLaw();
       // testObj.tearDown();
 
-      // testObj.setUp();
-      // testObj.test_PiecewisePowerLaw();
-      // testObj.tearDown();
-
       testObj.setUp();
-      testObj.test_EnergyBand();
+      testObj.test_PiecewisePowerLaw();
       testObj.tearDown();
+
+      // testObj.setUp();
+      // testObj.test_EnergyBand();
+      // testObj.tearDown();
    } else {
       CppUnit::TextTestRunner runner;
       runner.addTest(LikelihoodTests::suite());
