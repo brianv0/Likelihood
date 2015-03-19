@@ -30,7 +30,7 @@ public:
    LogNormalLog(double prefactor=1, double log10_mean=3,
 		double log10_sigma=2) {
      LogNormal(prefactor, log10_mean,log10_sigma);
-//     m_genericName = "LogNormalLog";
+     setGenericName("LogNormalLog");
      //Note: I am not redefining the prefactor here....so it is now additive
      // instead of multiplicative
    }
