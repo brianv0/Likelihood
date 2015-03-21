@@ -276,7 +276,7 @@ void SourceModel::getSrcNames(std::vector<std::string> &names) const {
    }
 }
 
-double SourceModel::value(optimizers::Arg &x) const {
+double SourceModel::value(const optimizers::Arg &x) const {
    double my_val = 0.;
    std::map<std::string, Source *>::const_iterator srcIt = m_sources.begin();
    for ( ; srcIt != m_sources.end(); ++srcIt) {
@@ -315,8 +315,8 @@ void SourceModel::syncParams() { // remake parameter vector from scratch
    }
 }
 
-void SourceModel::fetchDerivs(optimizers::Arg &x,
-                              std::vector<double> &derivs, 
+void SourceModel::fetchDerivs(const optimizers::Arg & x,
+                              std::vector<double> & derivs, 
                               bool getFree) const {
    derivs.clear();
 

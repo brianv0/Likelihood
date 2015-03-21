@@ -38,7 +38,7 @@ namespace Likelihood {
     m_epsf = e;
   }
 
-  double OneSourceFunc::value(optimizers::Arg& ) const {
+  double OneSourceFunc::value(const optimizers::Arg& ) const {
 
     double val = 0.;
     //    double wtot = 0.;
@@ -62,7 +62,7 @@ namespace Likelihood {
     return foo;
   }
 
-  double OneSourceFunc::derivByParamImp(optimizers::Arg &, 
+  double OneSourceFunc::derivByParamImp(const optimizers::Arg &, 
                                         const std::string & paramName) const {
 
     double deriv = 0;

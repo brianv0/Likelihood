@@ -39,8 +39,8 @@ public:
       return new LogNormalLog(*this);
    }
 
-   double derivative(optimizers::Arg & xarg) const {
-     double x = dynamic_cast<optimizers::dArg &>(xarg).getValue();
+   double derivative(const optimizers::Arg & xarg) const {
+     double x = dynamic_cast<const optimizers::dArg &>(xarg).getValue();
      enum ParamTypes {Norm, Mean, Sigma};
      double mean = m_parameter[Mean].getTrueValue();
      double sigma = m_parameter[Sigma].getTrueValue();
@@ -49,18 +49,15 @@ public:
 
 protected:
 
-   double value(optimizers::Arg & arg) const {
+   double value(const optimizers::Arg & arg) const {
      return std::log(LogNormal::value(arg));
    }
 
-   double derivByParamImp(optimizers::Arg & x, 
+   double derivByParamImp(const optimizers::Arg & x, 
                           const std::string & paramName) const {
      return LogNormal::derivByParam(x,paramName)/LogNormal::value(x);
    }
 
-   double integral(optimizers::Arg &, optimizers::Arg &) const {
-      return 0;
-   }
 };
 
 } // namespace Likelihood

@@ -41,7 +41,7 @@ public:
 
    virtual ~LogLike() {}
 
-   virtual double value(optimizers::Arg&) const;
+   virtual double value(const optimizers::Arg&) const;
 
    virtual double value() const {
       optimizers::Arg dummy;
@@ -50,10 +50,10 @@ public:
 
    /// Return the derivatives wrt the free parameters, overloading
    /// the Function method
-   virtual void getFreeDerivs(optimizers::Arg&, 
-                              std::vector<double> &freeDerivs) const;
+   virtual void getFreeDerivs(const optimizers::Arg &,
+                              std::vector<double> & freeDerivs) const;
 
-   virtual void getFreeDerivs(std::vector<double> &freeDerivs) const {
+   virtual void getFreeDerivs(std::vector<double> & freeDerivs) const {
       optimizers::Arg dummy;
       getFreeDerivs(dummy, freeDerivs);
    }

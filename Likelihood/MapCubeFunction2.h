@@ -60,9 +60,9 @@ public:
                                      std::vector<double> & exposure) const;
 protected:
 
-   virtual double value(optimizers::Arg &) const;
+   virtual double value(const optimizers::Arg &) const;
 
-   virtual double derivByParamImp(optimizers::Arg & dir,
+   virtual double derivByParamImp(const optimizers::Arg & dir,
                                   const std::string & paramName) const {
       // There is only the normalization, so the derivative is easy:
       return value(dir)/getParamValue(paramName);

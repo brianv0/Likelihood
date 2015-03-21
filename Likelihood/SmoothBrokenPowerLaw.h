@@ -40,9 +40,9 @@ namespace Likelihood {
     
   protected:
 
-     virtual double value(optimizers::Arg&) const;
+     virtual double value(const optimizers::Arg&) const;
     
-     virtual double derivByParamImp(optimizers::Arg & x,
+     virtual double derivByParamImp(const optimizers::Arg & x,
                                     const std::string & paramName) const;
 
   };

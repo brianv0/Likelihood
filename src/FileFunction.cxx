@@ -31,19 +31,20 @@ FileFunction::FileFunction(double Normalization)
    addParam("Normalization", Normalization, true);
 }
 
-double FileFunction::value(optimizers::Arg & xarg) const {
-   double x(std::log(dynamic_cast<optimizers::dArg &>(xarg).getValue()));
+double FileFunction::value(const optimizers::Arg & xarg) const {
+   double x(std::log(dynamic_cast<const optimizers::dArg &>(xarg).getValue()));
    double norm(m_parameter[0].getTrueValue());
    return norm*interpolateFlux(x);
 }
 
 double FileFunction::
-derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(const optimizers::Arg & xarg,
+                const std::string & paramName) const {
    if (paramName != "Normalization") {
       throw optimizers::ParameterNotFound(paramName, getName(),
                                           "FileFunction::derivByParam");
    }
-   double x(std::log(dynamic_cast<optimizers::dArg &>(xarg).getValue()));
+   double x(std::log(dynamic_cast<const optimizers::dArg &>(xarg).getValue()));
    double scale(m_parameter[0].getScale());
    return scale*interpolateFlux(x);
 }
@@ -101,11 +102,6 @@ const std::vector<double> & FileFunction::log_energy() const {
 
 const std::vector<double> & FileFunction::log_dnde() const {
    return m_y;
-}
-
-double FileFunction::
-integral(optimizers::Arg &, optimizers::Arg &) const {
-   throw std::runtime_error("FileFunction::integral is disabled.");
 }
 
 } // namespace Likelihood

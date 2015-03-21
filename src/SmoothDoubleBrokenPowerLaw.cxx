@@ -43,8 +43,8 @@ SmoothDoubleBrokenPowerLaw(double Prefactor,
    addParam(std::string("Beta23"), Beta23, true);
 } 
   
-double SmoothDoubleBrokenPowerLaw::value(optimizers::Arg &xarg) const {
-   double x = dynamic_cast<optimizers::dArg &>(xarg).getValue();
+double SmoothDoubleBrokenPowerLaw::value(const optimizers::Arg &xarg) const {
+   double x = dynamic_cast<const optimizers::dArg &>(xarg).getValue();
    
    // assume a standard ordering for the parameters
    enum ParamTypes {Prefactor, Index1, Scale, Index2, BreakValue12,
@@ -69,9 +69,9 @@ double SmoothDoubleBrokenPowerLaw::value(optimizers::Arg &xarg) const {
 }
   
 double SmoothDoubleBrokenPowerLaw::
-derivByParamImp(optimizers::Arg &xarg,
+derivByParamImp(const optimizers::Arg &xarg,
                 const std::string &paramName) const {
-   double x = dynamic_cast<optimizers::dArg &>(xarg).getValue();
+   double x = dynamic_cast<const optimizers::dArg &>(xarg).getValue();
    
    enum ParamTypes {Prefactor, Index1, Scale, Index2, BreakValue12,
                     Beta12, Index3, BreakValue23, Beta23};

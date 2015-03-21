@@ -33,9 +33,9 @@ public:
 
 protected:
 
-   double value(optimizers::Arg &) const;
+   double value(const optimizers::Arg &) const;
 
-   double derivByParamImp(optimizers::Arg &, const std::string &) const;
+   double derivByParamImp(const optimizers::Arg &, const std::string &) const;
 
    optimizers::Function * clone() const {
       return new Npred(*this);
@@ -43,9 +43,9 @@ protected:
 
 private:
 
-   void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 
+   void fetchDerivs(const optimizers::Arg &, std::vector<double> &derivs, 
                     bool getFree) const;
-   void buildParameterVector(optimizers::Arg &);
+   void buildParameterVector(const optimizers::Arg &);
 
 };
 

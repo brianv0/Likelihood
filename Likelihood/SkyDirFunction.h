@@ -48,11 +48,11 @@ public:
 
 protected:
 
-   virtual double value(optimizers::Arg &) const {
+   virtual double value(const optimizers::Arg &) const {
       return 0;
    }
 
-   virtual double derivByParamImp(optimizers::Arg &,
+   virtual double derivByParamImp(const optimizers::Arg &,
                                   const std::string &) const {
       return 0;
    }

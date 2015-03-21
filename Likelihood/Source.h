@@ -251,10 +251,10 @@ protected:
          : optimizers::Function("FuncDeriv", func.getNumParams(), ""),
            m_func(func), m_parName(parName) {}
    protected:
-      virtual double value(optimizers::Arg & x) const {
+      virtual double value(const optimizers::Arg & x) const {
          return m_func.derivByParam(x, m_parName);
       }
-      virtual double derivByParamImp(optimizers::Arg &,
+      virtual double derivByParamImp(const optimizers::Arg &,
                                      const std::string &) const {
          throw std::runtime_error("FluxDeriv::deriveByParam not implemented");
       }
@@ -277,13 +277,13 @@ protected:
          : optimizers::Function("EnergyFlux", func.getNumParams(), ""),
            m_func(func) {}
    protected:
-      virtual double value(optimizers::Arg & x) const {
-         double energy(dynamic_cast<optimizers::dArg &>(x).getValue());
+      virtual double value(const optimizers::Arg & x) const {
+         double energy(dynamic_cast<const optimizers::dArg &>(x).getValue());
          return energy*m_func(x);
       }
-      virtual double derivByParamImp(optimizers::Arg & x,
+      virtual double derivByParamImp(const optimizers::Arg & x,
                                      const std::string & parname) const {
-         double energy(dynamic_cast<optimizers::dArg &>(x).getValue());
+         double energy(dynamic_cast<const optimizers::dArg &>(x).getValue());
          return energy*m_func.derivByParam(x, parname);
       }
       virtual Function * clone() const {
@@ -305,11 +305,11 @@ protected:
          : optimizers::Function("EnergyFluxDeriv", func.getNumParams(), ""),
            m_func(func), m_parName(parName) {}
    protected:
-      virtual double value(optimizers::Arg & x) const {
-         double energy(dynamic_cast<optimizers::dArg &>(x).getValue());
+      virtual double value(const optimizers::Arg & x) const {
+         double energy(dynamic_cast<const optimizers::dArg &>(x).getValue());
          return energy*m_func.derivByParam(x, m_parName);
       }
-      virtual double derivByParamImp(optimizers::Arg &,
+      virtual double derivByParamImp(const optimizers::Arg &,
                                      const std::string &) const {
          throw std::runtime_error("EnergyFluxDeriv::derivByParam: "
                                   "not implemented");

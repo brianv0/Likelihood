@@ -56,9 +56,9 @@ SpatialMap & SpatialMap::operator=(const SpatialMap & rhs) {
 SpatialMap::~SpatialMap() {
 }
 
-double SpatialMap::value(optimizers::Arg & arg) const {
+double SpatialMap::value(const optimizers::Arg & arg) const {
    astro::SkyDir dir;
-   dynamic_cast<SkyDirArg &>(arg).fetchValue(dir);
+   dynamic_cast<const SkyDirArg &>(arg).fetchValue(dir);
    return value(dir);
 }
 

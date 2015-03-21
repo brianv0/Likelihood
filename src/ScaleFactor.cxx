@@ -107,14 +107,14 @@ ScaleFactor::~ScaleFactor() throw() {
    }
 }
    
-double ScaleFactor::value(optimizers::Arg & xarg) const {
-   double energy = dynamic_cast<optimizers::dArg &>(xarg).getValue();
+double ScaleFactor::value(const optimizers::Arg & xarg) const {
+   double energy = dynamic_cast<const optimizers::dArg &>(xarg).getValue();
    return prefactor()*m_spectrum->operator()(xarg);
 }
    
-double ScaleFactor::derivByParamImp(optimizers::Arg & xarg,
+double ScaleFactor::derivByParamImp(const optimizers::Arg & xarg,
                                     const std::string & paramName) const {
-   double energy(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+   double energy(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
    int iparam(-1);
    for (unsigned int i = 0; i < m_parameter.size(); i++) {
       if (paramName == m_parameter[i].getName()) {

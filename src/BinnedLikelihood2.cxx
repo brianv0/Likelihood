@@ -99,7 +99,7 @@ BinnedLikelihood2::BinnedLikelihood2(const BinnedLikelihood2 & other)
    }
 }
 
-double BinnedLikelihood2::value(optimizers::Arg & dummy) const {
+double BinnedLikelihood2::value(const optimizers::Arg & dummy) const {
    (void)(dummy);
 
    double npred(computeModelMap());

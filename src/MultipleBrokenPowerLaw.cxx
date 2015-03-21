@@ -48,8 +48,8 @@ addParams(double normalization, const std::vector<double> & photonIndexes,
    }
 }
 
-double MultipleBrokenPowerLaw::value(optimizers::Arg & xarg) const {
-   double x(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+double MultipleBrokenPowerLaw::value(const optimizers::Arg & xarg) const {
+   double x(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
 
    // Set the scale to be the first break energy.
    double x0(m_breakEnergies[0]);
@@ -66,12 +66,13 @@ double MultipleBrokenPowerLaw::value(optimizers::Arg & xarg) const {
 }
 
 double MultipleBrokenPowerLaw::
-derivByParamImp(optimizers::Arg & xarg, const std::string & paramName) const {
+derivByParamImp(const optimizers::Arg & xarg,
+                const std::string & paramName) const {
    if (paramName.substr(0, 5) == "Break") {
       throw std::runtime_error("MultipleBPL: Parameter " + paramName 
                                + " must be fixed in the xml model definition.");
    }
-   double x(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+   double x(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
    double x0(m_breakEnergies[0]);
    if (paramName == "Normalization") {
       double normalization(m_parameter[0].getValue());

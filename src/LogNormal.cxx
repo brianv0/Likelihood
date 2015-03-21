@@ -23,8 +23,8 @@ LogNormal::LogNormal(double prefactor, double log10_mean,
    addParam("Log10_Sigma", log10_sigma, true);
 }
 
-double LogNormal::value(optimizers::Arg & xarg) const {
-   double x(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+double LogNormal::value(const optimizers::Arg & xarg) const {
+   double x(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
    double log10x(std::log10(x));
 
    enum ParamTypes {Prefactor, Log10_Mean, Log10_Sigma};
@@ -39,9 +39,9 @@ double LogNormal::value(optimizers::Arg & xarg) const {
       /pars[Log10_Sigma].getTrueValue()*std::exp(-foo*foo/2.);
 }
 
-double LogNormal::derivByParamImp(optimizers::Arg & xarg,
+double LogNormal::derivByParamImp(const optimizers::Arg & xarg,
                                   const std::string & parName) const {
-   double x(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+   double x(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
    double log10x(std::log10(x));
 
    enum ParamTypes {Prefactor, Log10_Mean, Log10_Sigma};

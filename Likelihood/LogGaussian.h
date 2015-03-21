@@ -29,7 +29,7 @@ public:
 
    LogGaussian(double norm=1, double mean=0, double sigma=1);
 
-   double derivative(optimizers::Arg & x) const;
+   double derivative(const optimizers::Arg & x) const;
    
    virtual Function * clone() const {
       return new LogGaussian(*this);
@@ -37,9 +37,9 @@ public:
 
 protected:
 
-   double value(optimizers::Arg & arg) const;
+   double value(const optimizers::Arg & arg) const;
 
-   double derivByParamImp(optimizers::Arg & x, 
+   double derivByParamImp(const optimizers::Arg & x, 
                           const std::string & paramName) const;
 
 private:

@@ -50,12 +50,13 @@ public:
 
 protected:
 
-   virtual double value(optimizers::Arg&) const;
+   virtual double value(const optimizers::Arg&) const;
 
-   virtual double derivByParamImp(optimizers::Arg & x, 
+   virtual double derivByParamImp(const optimizers::Arg & x, 
                                   const std::string & paramName) const;
 
-   virtual double integral(optimizers::Arg &, optimizers::Arg &) const {
+   virtual double integral(const optimizers::Arg &,
+                           const optimizers::Arg &) const {
       return 0;
    }
 

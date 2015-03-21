@@ -73,11 +73,11 @@ public:
 
 protected:
 
-   double value(optimizers::Arg&) const {
+   double value(const optimizers::Arg &) const {
       return value();
    }
 
-   double derivByParamImp(optimizers::Arg&, const std::string&) const {
+   double derivByParamImp(const optimizers::Arg &, const std::string&) const {
       return 0;
    }
 

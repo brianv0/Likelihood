@@ -53,9 +53,9 @@ public:
    
 protected:
 
-   virtual double value(optimizers::Arg & dir) const;
+   virtual double value(const optimizers::Arg & dir) const;
 
-   virtual double derivByParamImp(optimizers::Arg & dir,
+   virtual double derivByParamImp(const optimizers::Arg & dir,
                                   const std::string & parName) const;
 
 private:

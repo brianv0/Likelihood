@@ -129,7 +129,7 @@ BinnedLikelihood::~BinnedLikelihood() throw() {
    delete m_drm;
 }
 
-double BinnedLikelihood::value(optimizers::Arg & dummy) const {
+double BinnedLikelihood::value(const optimizers::Arg & dummy) const {
    (void)(dummy);
 
    double npred(computeModelMap());

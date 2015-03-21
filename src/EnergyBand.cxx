@@ -74,8 +74,8 @@ EnergyBand::~EnergyBand() throw() {
    }
 }
    
-double EnergyBand::value(optimizers::Arg & xarg) const {
-   double energy = dynamic_cast<optimizers::dArg &>(xarg).getValue();
+double EnergyBand::value(const optimizers::Arg & xarg) const {
+   double energy = dynamic_cast<const optimizers::dArg &>(xarg).getValue();
    int emin(m_spectrum->getNumParams());
    int emax(m_spectrum->getNumParams() + 1);
    
@@ -86,9 +86,9 @@ double EnergyBand::value(optimizers::Arg & xarg) const {
    return m_spectrum->operator()(xarg);
 }
    
-double EnergyBand::derivByParamImp(optimizers::Arg & xarg,
+double EnergyBand::derivByParamImp(const optimizers::Arg & xarg,
                                    const std::string & paramName) const {
-   double energy(dynamic_cast<optimizers::dArg &>(xarg).getValue());
+   double energy(dynamic_cast<const optimizers::dArg &>(xarg).getValue());
    int iparam(-1);
    for (unsigned int i = 0; i < m_parameter.size(); i++) {
       if (paramName == m_parameter[i].getName()) {

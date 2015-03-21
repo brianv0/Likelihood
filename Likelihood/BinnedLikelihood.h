@@ -50,7 +50,7 @@ public:
 
    virtual ~BinnedLikelihood() throw();
 
-   virtual double value(optimizers::Arg &) const;
+   virtual double value(const optimizers::Arg &) const;
 
    virtual double value() const {
       optimizers::dArg dummy(0);

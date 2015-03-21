@@ -31,7 +31,8 @@ public:
                    double Index2=-3., double BreakValue=1000.,
                    double LowerLimit=20., double UpperLimit=2e5);
 
-   double integral(optimizers::Arg & xmin, optimizers::Arg & xmax) const;
+   double integral(const optimizers::Arg & xmin,
+                   const optimizers::Arg & xmax) const;
 
    virtual Function * clone() const {
       return new BrokenPowerLaw2(*this);
@@ -39,9 +40,9 @@ public:
 
 protected:
 
-   double value(optimizers::Arg & x) const;
+   double value(const optimizers::Arg & x) const;
 
-   double derivByParamImp(optimizers::Arg & x, 
+   double derivByParamImp(const optimizers::Arg & x, 
                           const std::string & paramName) const;
 
 private:
