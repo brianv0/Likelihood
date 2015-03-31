@@ -668,6 +668,7 @@ WcsMap2::minMaxDistPixels(const astro::SkyDir & dir) const {
          farthest = current;
       }
    }
+   i = m_naxis1;
    for (j = 2 ; j < m_naxis2 + 1; j++) { // i = m_naxis1; j = 2, m_naxis2
       astro::SkyDir current(skyDir(i, j));
       double dist(dir.difference(current));
@@ -680,6 +681,7 @@ WcsMap2::minMaxDistPixels(const astro::SkyDir & dir) const {
          farthest = current;
       }
    }
+   j = m_naxis2;
    for (i = 1; i < m_naxis1; i++) { // i = 1, m_naxis1-1; j = m_naxis2
       astro::SkyDir current(skyDir(i, j));
       double dist(dir.difference(current));
