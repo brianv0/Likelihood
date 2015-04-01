@@ -75,11 +75,17 @@ void meanPsf::banner() const {
 void meanPsf::run() {
    m_pars.Prompt();
    m_pars.Save();
-   m_helper = new AppHelpers(&m_pars, "none");
    std::string expcube_file = m_pars["expcube"];
    if (expcube_file == "none") {
       throw std::runtime_error("Please specify an exposure cube file.");
    }
+   std::string irfs = m_pars["irfs"];
+   if (irfs == "CALDB") {
+      throw std::runtime_error("\nThe IRFs and event type selection cannot be "
+                               "inferred from the expcube file.\nPlease "
+                               "select the irfs and evtype explicitly.");
+   }
+   m_helper = new AppHelpers(&m_pars, "none");
    ExposureCube & expCube = 
       const_cast<ExposureCube &>(m_helper->observation().expCube());
    expCube.readExposureCube(expcube_file);
