@@ -92,9 +92,6 @@ double LogLike::value(const optimizers::Arg&) const {
                     << NpredSum << "  "
                     << std::clock() - start << std::endl;
    m_nevals++;
-//    if (::getenv("BYPASS_ACCUMULATOR")) {
-//       return my_value;
-//    }
 
 /// Add in contribution from priors.
    std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
@@ -103,6 +100,9 @@ double LogLike::value(const optimizers::Arg&) const {
    }
 
    saveBestFit(my_total);
+   if (my_total != my_total) {
+      throw std::runtime_error("LogLike::value: Nan encountered.");
+   }
    return my_total;
 }
 
