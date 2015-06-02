@@ -105,6 +105,15 @@ void SummedLikelihood::syncParams() {
    }
 }
 
+double SummedLikelihood::NpredValue(const std::string & srcname) const {
+   double Npred(0);
+   for (ComponentConstIterator_t it(m_components.begin());
+        it != m_components.end(); ++it) {
+      Npred += (*it)->NpredValue(srcname);
+   }
+   return Npred;
+}
+
 unsigned int SummedLikelihood::getNumFreeParams() const {
    unsigned int npars(0);
    const std::vector<optimizers::Parameter> & 
