@@ -524,6 +524,7 @@ void LikelihoodTests::test_PiecewisePowerLaw() {
       std::ostringstream name;
       name << "dNdE" << k;
       pars.push_back(optimizers::Parameter(name.str(), dNdEs[k]));
+      pars.back().setScale(1e-12);
    }
    
    std::vector<optimizers::Arg *> args;

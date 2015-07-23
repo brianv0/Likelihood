@@ -53,6 +53,7 @@ private:
 
    double plIndex(size_t k) const;
    double norm(size_t k) const;
+   double norm_scaled(size_t k) const;
 
    double derivByParam_decoupledNormPar(const optimizers::Arg & xarg,
                                         const std::string & paramName) const;
