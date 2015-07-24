@@ -7,7 +7,7 @@
  *  This file contains a number of functions useful for likelihood scans.
  *
  *  These are basically utility function to do very specific things with the
- *  BinnedLikelihood interface.
+ *  BinnedLikelihood and SummedLikelihood interfaces
  *
  *
  * $Header$
@@ -28,8 +28,7 @@ namespace Likelihood {
 
   class Source;
   class SourceModel;
-  class LogLike;
-  class BinnedLikelihood;
+  class FitScanModelWrapper;
   
   namespace ScanUtils {
     
@@ -70,7 +69,7 @@ namespace Likelihood {
 
     /* Scan the likelihood as a function of the normalization of the test source
      */
-    void scan_norm_binned(BinnedLikelihood& logLike,
+    void scan_norm_binned(FitScanModelWrapper& modelWrapper,
 			  const std::string& signal_name,			  
 			  optimizers::Optimizer& optimizer,
 			  double tol, int tolType,
@@ -83,7 +82,7 @@ namespace Likelihood {
   
     /* Scan the likelihood as a function of the normalization of the test source
      */
-    void sed_binned(BinnedLikelihood& logLike,
+    void sed_binned(FitScanModelWrapper& modelWrapper,
 		    const std::string& signal_name,			  		    
 		    optimizers::Optimizer& optimizer,
 		    double tol,int tolType,
