@@ -213,7 +213,7 @@ void TsCube::setGrid() {
   m_proj = skyProj;
 
   int status = testSourceName.empty() ? 
-    m_scanner->setPowerlawPointTestSource(*m_helper) : 
+    m_scanner->setPowerlawPointTestSource(m_helper->funcFactory()) : 
     m_scanner->setTestSourceByName(testSourceName);
   if ( status ) {
     throw std::runtime_error("Failed to make a powerlaw point test source");
