@@ -38,6 +38,18 @@ public:
 
    void addComponent(LogLike & component);
 
+   inline size_t numComponents() const {
+     return m_components.size();
+   }
+
+   inline LogLike* getComponent(size_t comp_index) {
+     return m_components[comp_index];
+   }
+
+   inline const LogLike* getComponent(size_t comp_index) const {
+     return m_components[comp_index];
+   }
+
    virtual double value() const;
    virtual void getFreeParams(std::vector<optimizers::Parameter> &params) const;
    virtual void setFreeParamValues(const std::vector<double> & values);
