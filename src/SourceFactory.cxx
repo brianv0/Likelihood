@@ -308,6 +308,8 @@ makeDiffuseSource(const DOMElement * spectrum,
    } else if (type == "RadialProfile") {
       std::string tpl_file(xmlBase::Dom::getAttribute(spatialModel, "file"));
       dynamic_cast<RadialProfile *>(spatialDist)->readTemplateFile(tpl_file);
+   } else if (type == "SpatialGaussian" || type == "SpatialDisk") {
+     spatialDist->setParams(spatialModel);
    }
    Source * src;
    try {

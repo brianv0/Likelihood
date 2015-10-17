@@ -35,6 +35,7 @@ namespace Likelihood {
    class RoiCuts;
    class ScData;
    class WcsMap2;
+   class CountsMap;
 
 /**
  * @class AppHelpers
@@ -159,6 +160,9 @@ public:
    /// if the exposure map does not cover the counts map.
    static void checkExposureMap(const std::string & cmapfile,
                                 const std::string & emapfile);
+
+   // EAC -> Open a fits file and read in the correct type of CountsMap
+   static CountsMap* readCountsMap(const std::string& filename);
 
 protected:
 
