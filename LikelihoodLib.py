@@ -18,6 +18,7 @@ def generate(env, **kw):
     env.Tool('eblAttenLib')
     env.Tool('addLibrary', library=env['cfitsioLibs'])
     env.Tool('addLibrary', library=env['fftwLibs'])
+    env.Tool('addLibrary', library=env['gsllibs'])
     
 def exists(env):
     return 1
