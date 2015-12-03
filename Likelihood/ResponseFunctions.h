@@ -117,6 +117,10 @@ public:
 
    irfInterface::IEdisp & edisp(int type) const;
 
+   irfInterface::IPsf & psf(int type) const;
+
+   irfInterface::IAeff & aeff(int type) const;
+
    double edisp(double emeas, double etrue, 
                 const astro::SkyDir & srcDir,
                 const astro::SkyDir & zAxis,

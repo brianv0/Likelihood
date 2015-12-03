@@ -77,6 +77,21 @@ SpatialFunction::operator=(const SpatialFunction & rhs) {
 SpatialFunction::~SpatialFunction() {
 }
 
+double SpatialFunction::diffuseResponse(const Event & evt,
+					const ResponseFunctions & respFuncs) const {
+
+  astro::SkyDir yhat(evt.zAxis().cross(evt.xAxis()));
+  double phi = 180./M_PI*std::atan2(yhat.dot(this->dir()), 
+				    evt.xAxis().dot(this->dir()));
+  
+  // Incidence angle
+  double theta = evt.zAxis().difference(this->dir())*180./M_PI;
+  double dtheta = evt.getDir().difference(this->dir())*180./M_PI;
+  UnbinnedResponseFunctor fn(respFuncs,theta,phi,evt.getType());
+
+  return diffuseResponse(fn,evt.getEnergy(),dtheta);
+}
+
 const astro::SkyDir& SpatialFunction::dir() const {
   return m_dir;
 }

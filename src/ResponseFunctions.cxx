@@ -169,6 +169,30 @@ irfInterface::IEdisp & ResponseFunctions::edisp(int type) const {
    return *irfs->edisp();
 }
 
+irfInterface::IPsf & ResponseFunctions::psf(int type) const {
+   irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
+   if (!irfs) {
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
+   }
+   return *irfs->psf();
+}
+
+irfInterface::IAeff & ResponseFunctions::aeff(int type) const {
+   irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
+   if (!irfs) {
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
+   }
+   return *irfs->aeff();
+}
+
 double ResponseFunctions::edisp(double emeas, double etrue, 
                                 const astro::SkyDir & appDir,
                                 const astro::SkyDir & zAxis,
