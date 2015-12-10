@@ -1,7 +1,7 @@
 /**
  * @file WcsMapLibrary.h
  * @brief Singleton class that contains the only copies of FITS
- * images.  It stores the FITS data in WcsMap2 objects and provides
+ * images.  It stores the FITS data in ProjMap objects and provides
  * access to these objects via pointers in an internal map keyed by
  * the full path to the FITS file.
  * @author J. Chiang 
@@ -18,13 +18,14 @@
 namespace Likelihood {
 
 class MapBase;
-class WcsMap2;
+// EAC, switch to using base class
+class ProjMap;
 
 class WcsMapLibrary {
 
 public:
 
-   WcsMap2 * wcsmap(const std::string & filename,
+   ProjMap * wcsmap(const std::string & filename,
                     const std::string & extname);
    
    void delete_map(const std::string & filename,
@@ -59,7 +60,7 @@ protected:
 
 private:
 
-   typedef std::map<std::string, WcsMap2 *> MapLibrary_t;
+   typedef std::map<std::string, ProjMap *> MapLibrary_t;
    MapLibrary_t m_library;
 
    std::map<MapBase *, int> m_observers;

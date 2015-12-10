@@ -16,11 +16,14 @@
 
 #include "astro/SkyDir.h"
 
-#include "Likelihood/WcsMap2.h"
+#include "Likelihood/ProjMap.h"
 
 namespace Likelihood {
 
-class ExposureMap;
+class ExposureMap;   
+// EAC, add projection specific methods 
+class WcsMap2;
+class HealpixProjMap;
 
 /**
  * @class MapBase
@@ -55,18 +58,31 @@ public:
                                   double & mumin, double & mumax,
                                   double & phimin, double & phimax) const;
 
+   void getDiffRespLimits_wcs(const astro::SkyDir & dir,
+			      const WcsMap2& wcsmap,
+			      double & mumin, double & mumax,
+			      double & phimin, double & phimax) const;
+   
+   void getDiffRespLimits_healpix(const astro::SkyDir & dir,
+				  const HealpixProjMap& healmap,
+				  double & mumin, double & mumax,
+				  double & phimin, double & phimax) const;
+
+
    virtual const std::string & fitsFile() const {
       return m_fitsFile;
    }
 
-   const WcsMap2 & wcsmap() const {
-      if (!m_wcsmap) {
+   // EAC, switch to using ProjMap base class
+   const ProjMap & projmap() const {
+      if (!m_projmap) {
          const_cast<MapBase *>(this)->readFitsFile();
       }
-      return *m_wcsmap;
+      return *m_projmap;
    }
 
-   virtual WcsMap2 & wcsmap();
+   // EAC, switch to using ProjMap base class
+   virtual ProjMap & projmap();
 
    virtual void deleteMap();
 
@@ -91,7 +107,8 @@ protected:
 
 private:
 
-   WcsMap2 * m_wcsmap;
+   // EAC, switch to using ProjMap base class
+   ProjMap * m_projmap;
    
    void getMinMaxDistPixels(const astro::SkyDir &,
                             astro::SkyDir & closestPixel, 

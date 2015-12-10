@@ -16,6 +16,9 @@
 namespace Likelihood {
 
 class BinnedLikelihood;
+// EAC, add projection specific methods
+class CountsMap;
+class CountsMapHealpix;
 
 /**
  * @class ModelMap
@@ -33,14 +36,30 @@ public:
    void writeOutputMap(const std::string & outfile,
                        std::string outtype="CMAP");
 
+protected:
+
+   void writeOutputMap_wcs(const std::string & outfile,
+			   const CountsMap& cmap,
+			   std::string outtype="CMAP");
+
+   void writeOutputMap_healpix(const std::string & outfile,
+			       const CountsMapHealpix& cmap,
+			       std::string outtype="CMAP");
+  
+   void trimExtensions_wcs(const std::string & outfile,
+			   const std::string & outtype="CMAP");
+
+   void trimExtensions_healpix(const std::string & outfile,
+			       const std::string & outtype="CMAP");
+
+
+
 private:
 
    BinnedLikelihood & m_logLike;
 
    std::vector<float> m_outmap;
 
-   void trimExtensions(const std::string & outfile,
-                       const std::string & outtype);
 };
 
 } // namespace Likelihood

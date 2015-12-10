@@ -118,7 +118,7 @@ private:
    LogLike * m_logLike;
    optimizers::Optimizer * m_opt;
    std::vector<std::string> m_eventFiles;
-   CountsMap * m_dataMap;
+   CountsMapBase * m_dataMap;
 
    st_stream::StreamFormatter * m_formatter;
 
@@ -263,6 +263,7 @@ void likelihood::run() {
    bool queryLoop = m_pars["refit"];
    do {
       readSourceModel();
+
 // Do the fit.
 /// @todo Allow the optimizer to be re-selected here by the user.    
       selectOptimizer();
@@ -354,7 +355,8 @@ void likelihood::createStatistic() {
       }
       std::string countsMapFile = m_pars["cmap"];
       st_facilities::Util::file_ok(countsMapFile);
-      m_dataMap = new CountsMap(countsMapFile);
+      m_dataMap = AppHelpers::readCountsMap(countsMapFile);
+
       bool apply_psf_corrections(false);
       bool computePointSources(true);
       try {
@@ -363,7 +365,11 @@ void likelihood::createStatistic() {
          // assume parameter does not exist, so use default value.
       }
       if (::getenv("USE_BINNED_LIKELIHOOD2")) {
-         m_logLike = new BinnedLikelihood2(*m_dataMap, m_helper->observation(),
+         CountsMap* countsMap = dynamic_cast<CountsMap*>(m_dataMap);
+	 if ( countsMap == 0 ) { 
+            throw std::runtime_error("BinnedLikelihood2 only works with a WCS-based counts map file, but this file is HEALPIX-based " + countsMapFile); 
+	 }
+         m_logLike = new BinnedLikelihood2(*countsMap, m_helper->observation(),
                                            countsMapFile, 
                                            computePointSources,
                                            apply_psf_corrections);

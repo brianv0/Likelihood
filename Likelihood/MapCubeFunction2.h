@@ -13,13 +13,15 @@
 
 #include "Likelihood/MapBase.h"
 
-namespace astro {
-   class SkyProj;
-}
+//namespace astro {
+//   class SkyProj;
+//}
 
 namespace Likelihood {
 
+   // EAC, add projection specific methods 
    class WcsMap2;
+   class HealpixProjMap;
 
 /**
  * @class MapCubeFunction2
@@ -44,6 +46,14 @@ public:
 
    virtual MapCubeFunction2 & operator=(const MapCubeFunction2 &);
 
+   virtual double value(const optimizers::Arg &) const;
+
+   virtual double derivByParamImp(const optimizers::Arg & dir,
+				  const std::string & paramName) const {
+// There is only the normalization, so the derivative is easy:
+      return value(dir)/getParamValue(paramName);
+   }
+
    virtual MapCubeFunction2 * clone() const {
       return new MapCubeFunction2(*this);
    }
@@ -58,15 +68,17 @@ public:
    virtual void integrateSpatialDist(const std::vector<double> & energies,
                                      const ExposureMap & expmap,
                                      std::vector<double> & exposure) const;
-protected:
 
-   virtual double value(const optimizers::Arg &) const;
+   void integrateSpatialDist_wcs(const std::vector<double> & energies,
+				 const ExposureMap & expmap,
+				 const WcsMap2& wcsmap,
+				 std::vector<double> & exposure) const;
+   
+   void integrateSpatialDist_healpix(const std::vector<double> & energies,
+				     const ExposureMap & expmap,
+				     const HealpixProjMap& healmap,
+				     std::vector<double> & exposure) const;
 
-   virtual double derivByParamImp(const optimizers::Arg & dir,
-                                  const std::string & paramName) const {
-      // There is only the normalization, so the derivative is easy:
-      return value(dir)/getParamValue(paramName);
-   }
 
 };
 

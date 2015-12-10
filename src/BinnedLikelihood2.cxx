@@ -52,7 +52,7 @@ BinnedLikelihood2::BinnedLikelihood2(const CountsMap & cmap,
      m_modelIsCurrent(false),
      m_npix(cmap.imageDimension(0)*cmap.imageDimension(1)),
      m_nee(cmap.imageDimension(2)) {
-   cmap.getAxisVector(2, m_energies);
+   cmap.getEnergies(m_energies);
    m_model.resize(m_npix);
    m_fixedModelWts.resize(m_npix);
    for (size_t ipix(0); ipix < m_npix; ipix++) {

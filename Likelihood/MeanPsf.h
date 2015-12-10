@@ -95,6 +95,18 @@ public:
                  const std::vector<double> lats,
                  std::vector< std::vector<double> > & image) const;
 
+   /// @brief Compute the an image for a set of directions                          
+   ///        grid, assuming the psf center is at (lon0, lat0)                                  
+   /// @param energy True energy at which the psf is evaluated (MeV)                            
+   /// @param lon0 Reference longitude (degrees)
+   /// @param lat0 Reference latitude (degrees)                                                 
+   /// @param dirs Input directions
+   /// @param image The output psf image (sr^-1)                                                
+   void getImage(double energy, double lon0, double lat0,
+                 const std::vector<std::pair<double,double> >& dirs,
+                 std::vector<double> & image) const;
+
+
 private:
 
    static std::vector<double> s_separations;

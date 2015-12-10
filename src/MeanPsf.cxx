@@ -249,6 +249,22 @@ void MeanPsf::getImage(double energy, double lon0, double lat0,
    }
 }
 
+void MeanPsf::getImage(double energy, double lon0, double lat0,
+		       const std::vector<std::pair<double,double> >& dirs,
+		       std::vector<double> & image) const {
+    astro::SkyDir center(lon0, lat0);
+    image.clear();
+    image.reserve(dirs.size());
+    for (unsigned int i = 0; i < dirs.size(); i++) {
+        const std::pair<double,double>& thePair = dirs[i];
+        astro::SkyDir my_dir(thePair.first,thePair.second);
+	double dist = my_dir.difference(center)*180./M_PI;
+	image.push_back(this->operator()(energy, dist, 0));
+    }
+}
+
+
+
 void MeanPsf::createLogArray(double xmin, double xmax, unsigned int npts,
                              std::vector<double> &xx) const {
    xx.clear();

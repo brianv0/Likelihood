@@ -265,4 +265,5 @@ Convolve::convolve2d(const std::vector< std::vector<float> > & signal,
    return my_result;
 }
 
+
 } // namespace Likelihood

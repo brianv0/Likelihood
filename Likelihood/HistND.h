@@ -76,16 +76,6 @@ public:
    void setSlice(unsigned int idim,
 		 const std::vector<unsigned int>& ivalues,
 		 const std::vector<float>& data);
- 
-   /// set the data along a slice of the histogram
-   /// 
-   /// @param idim is the dimension to step along
-   /// @param ivalues are index values for each dimemsion of the slice (ivalues[idim] is ignored)
-   /// @param data is the input data    
-   void setSlice(unsigned int idim,
-		 const std::vector<unsigned int>& ivalues,
-		 const std::vector<double>& data);
-
 
    /// get the data along a slice of the histogram
    /// 
@@ -96,20 +86,13 @@ public:
                  const std::vector<unsigned int>& ivalues,
                  std::vector<float>& data);
 
-   /// get the data along a slice of the histogram
-   /// 
-   /// @param idim is the dimension to step along
-   /// @param ivalues are index values for each dimemsion of the slice (ivalues[idim] is ignored)
-   /// @param data is filled with the data from that slice
-   void getSlice(unsigned int idim,
-                 const std::vector<unsigned int>& ivalues,
-                 std::vector<double>& data);
    
    /// Sum the values in a dimension of the histogram
    /// 
    /// @param idim is the dimension to sum over
    /// The sum runs from [firstBin,lastBin)
    HistND * sumRange(unsigned int idim, unsigned int firstBin, unsigned int lastBin) const;
+
 
    HistND * clone() const {return new HistND(*this);}
 

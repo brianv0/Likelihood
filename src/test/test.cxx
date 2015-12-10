@@ -1144,7 +1144,7 @@ void LikelihoodTests::test_BinnedLikelihood() {
 //    }
 //    std::cout << std::endl;
 
-      CountsMap * modelMap = binnedLogLike.createCountsMap();
+      CountsMapBase * modelMap = binnedLogLike.createCountsMap();
 
       dataMap.writeOutput("test_Likelihood", "dataMap.fits");
       modelMap->writeOutput("test_Likelihood", "modelMap.fits");
@@ -1500,7 +1500,7 @@ void LikelihoodTests::test_WcsMap2() {
                                 interpolate=true,
                                 enforceEnergyRange=false);
    
-   Likelihood::WcsMap2 * rebinned_mapcube(0);
+   Likelihood::ProjMap * rebinned_mapcube(0);
 
    for (size_t i(1); i < 11; i++) {
       rebinned_mapcube = mapcube0.rebin(i, true);

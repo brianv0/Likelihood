@@ -24,6 +24,9 @@ namespace Likelihood {
 
 class Event;
 class ResponseFunctions;
+// EAC, switch to projection-specific methods
+class WcsMap2;
+class HealpixProjMap;
 
 /** 
  * @class SpatialMap
@@ -47,8 +50,13 @@ public:
 
    virtual ~SpatialMap();
 
+   double value(const optimizers::Arg &) const;
 
    double value(const astro::SkyDir &) const;
+
+   double derivByParamImp(const optimizers::Arg &, const std::string &) const {
+      return 0;
+   }
 
    virtual optimizers::Function * clone() const {
       return new SpatialMap(*this);
@@ -60,20 +68,28 @@ public:
 
    virtual double mapIntegral(double energy) const {
       (void)(energy);
-      return wcsmap().mapIntegral();
+      return projmap().mapIntegral();
    }
 
    virtual void integrateSpatialDist(const std::vector<double> & energies,
                                      const ExposureMap & expmap,
                                      std::vector<double> & exposure) const;
 
-protected:
+   void integrateSpatialDist_wcs(const std::vector<double> & energies,
+                                 const ExposureMap & expmap,
+                                 const WcsMap2& wcsmap,
+                                 std::vector<double> & exposure) const;
+   
+   void integrateSpatialDist_healpix(const std::vector<double> & energies,
+				     const ExposureMap & expmap,
+				     const HealpixProjMap& healmap,
+				     std::vector<double> & exposure) const;
 
-   double value(const optimizers::Arg &) const;
 
-   double derivByParamImp(const optimizers::Arg &, const std::string &) const {
-      return 0;
-   }
+private:
+
+   // disable this
+   double integral(optimizers::Arg &, optimizers::Arg &) const {return 0;}
 
 };
 

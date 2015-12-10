@@ -21,7 +21,8 @@ namespace astro {
 namespace Likelihood {
 
    class Observation;
-   class WcsMap2;
+   // EAC, switch to using ProjMap base class
+   class ProjMap;
 
 /**
  * @class ExposureMap 
@@ -44,7 +45,7 @@ class ExposureMap {
 
 public:
 
-   ExposureMap() : m_wcsmap(0), m_haveExposureMap(false) {}
+   ExposureMap() : m_projmap(0), m_haveExposureMap(false) {}
 
    ~ExposureMap();
 
@@ -132,7 +133,7 @@ public:
 
 private:
 
-   WcsMap2 * m_wcsmap;
+   ProjMap * m_projmap;
 
    bool m_haveExposureMap;
 

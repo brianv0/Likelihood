@@ -29,6 +29,9 @@ namespace Likelihood {
    class Event;
    class MapBase;
    class Observation;
+   // EAC, add projection specific methods 
+   class WcsMap2;
+   class HealpixProjMap;
 
 /** 
  * @class DiffuseSource
@@ -178,6 +181,10 @@ public:
    double angularIntegral(double energy) const;
 
    double diffuseResponse(const Event & evt) const;
+
+   double diffuseResponse_wcs(const Event & evt, const WcsMap2& wcsmap) const;
+   
+   double diffuseResponse_healpix(const Event & evt, const HealpixProjMap& healmap) const;
 
    bool mapBasedIntegral() const;
 

@@ -22,7 +22,7 @@
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
-#include "Likelihood/CountsMap.h"
+#include "Likelihood/CountsMapBase.h"  // EAC: switch to new base class
 #include "Likelihood/ModelMap.h"
 
 /**
@@ -61,7 +61,7 @@ private:
    st_app::AppParGroup & m_pars;
 
    Likelihood::AppHelpers * m_helper;
-   Likelihood::CountsMap * m_dataMap;
+   Likelihood::CountsMapBase * m_dataMap;  // EAC: switch to new base class
    Likelihood::BinnedLikelihood * m_logLike;
 
    void computeModelMap();
@@ -93,7 +93,7 @@ void ModelMap::computeModelMap() {
    m_helper->observation().expCube().readExposureCube(m_pars["expcube"]);
    m_helper->setRoi(m_pars["srcmaps"], "", false);
    std::string cmapfile = m_pars["srcmaps"];
-   m_dataMap = new Likelihood::CountsMap(cmapfile);
+   m_dataMap = Likelihood::AppHelpers::readCountsMap(cmapfile);  // EAC: use AppHelpers to read the right type of map
    bool computePointSources;
    bool apply_psf_corrections = Likelihood::AppHelpers::param(m_pars, 
                                                               "psfcorr", true);
