@@ -245,6 +245,10 @@ void TsCube::computeMap() {
   double normSigma = m_pars["nsigma"];
   double covScale = m_pars["covscale"]; 
 
+  //m_scanner->set_verbose_null(3);
+  //m_scanner->set_verbose_bb(3);
+  //m_scanner->set_verbose_scan(3);
+
   int status = m_scanner->run_tscube(doSED,nnorm,normSigma,covScale,
 				     tol,maxiter,tolType,remakeTestSource,ST_scan_level);
   
