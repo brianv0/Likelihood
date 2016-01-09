@@ -206,7 +206,9 @@ void AppHelpers::
 addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    bool makeClone(false);
    funcFactory->addFunc("SkyDirFunction", new SkyDirFunction(), makeClone);
+   funcFactory->addFunc("SpatialDisk", new SpatialDisk(), makeClone);
    funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
+   funcFactory->addFunc("SpatialGaussian", new SpatialGaussian(), makeClone);
    funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
    funcFactory->addFunc("LogParabola", new LogParabola(), makeClone);
    funcFactory->addFunc("LogGaussian", new LogGaussian(), makeClone);

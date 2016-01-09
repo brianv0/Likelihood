@@ -85,6 +85,8 @@ public:
 
 //   void addMap(const std::vector<float> & other_model);
    
+   void setImage(const std::vector<float>& model);
+
    double maxPsfRadius(PointSource * src) const;
 
    const std::string & srcType() const {
