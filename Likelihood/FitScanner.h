@@ -895,7 +895,7 @@ namespace Likelihood {
     /* Write the stored data to a FITS file */
     int writeFitsFile(const std::string& fitsFile,
 		      const std::string& creator,
-		      const std::string& fits_template,
+		      std::string fits_template = "",
 		      bool copyGTIs=false) const;
       
 
@@ -1057,6 +1057,9 @@ namespace Likelihood {
 
     // The test source 
     Source* m_testSource;
+
+    // Do we own the test source
+    bool m_testSourceOwned;
 
     // The name of the test source (useful for bookkeeping)
     std::string m_testSourceName;
