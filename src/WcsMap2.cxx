@@ -487,7 +487,7 @@ ProjMap* WcsMap2::convolve(double energy, const MeanPsf & psf,
       psf_image.at(j).resize(npix, 0);
       for (int i(0); i < npix; i++) {
          if (my_proj.testpix2sph(i+1, j+1) == 0) {
-            std::pair<double, double> coord = getProj()->pix2sph(i+1, j+1);
+	    std::pair<double, double> coord = my_proj.pix2sph(i+1, j+1);
             astro::SkyDir dir(coord.first, coord.second, 
                               astro::SkyDir::EQUATORIAL);
             double theta = getRefDir().difference(dir)*180./M_PI;
@@ -501,7 +501,7 @@ ProjMap* WcsMap2::convolve(double energy, const MeanPsf & psf,
    check_negative_pixels(counts);
    check_negative_pixels(psf_image);
    my_image->m_image.push_back(Convolve::convolve2d(counts, psf_image));
-  
+
    return my_image;
 }
 
