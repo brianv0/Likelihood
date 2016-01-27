@@ -31,7 +31,12 @@ class ResponseFunctions;
  * @class SpatialDisk
  *
  * @brief A Function object that is an analytic representation of a 2D
- * spatial disk at a SkyDir location.
+ * spatial disk at a SkyDir location with functional form:
+ *
+ * f(r,R) = 1/(pi * R^2) * H(1-r/R)
+ *
+ * where r is the angular distance from the SkyDir location and H(x)
+ * is the Heaviside step function.
  *
  */
     
@@ -41,7 +46,7 @@ public:
 
    SpatialDisk();
 
-   SpatialDisk(double ra, double dec, double width);
+   SpatialDisk(double ra, double dec, double radius);
                          
    SpatialDisk(const SpatialDisk &);
 
@@ -50,7 +55,7 @@ public:
    virtual ~SpatialDisk();
 
    double value(const astro::SkyDir &) const;
-   double value(double delta, double width) const;
+   double value(double delta, double radius) const;
 
    double spatialResponse(const astro::SkyDir &, double energy, const MeanPsf& psf) const;
    double spatialResponse(double delta, double energy, const MeanPsf& psf) const;
@@ -103,7 +108,7 @@ protected:
 
 private:
 
-   double         m_width;
+   double         m_radius;
 };
 
 } // namespace Likelihood
