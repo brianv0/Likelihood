@@ -573,6 +573,17 @@ namespace Likelihood {
       return;
     }
 
+    void extractNPreds(const Source& source,
+		       const std::vector<double>& energies,
+		       std::vector<double>& nPreds) {
+      size_t nE = energies.size();
+      for ( size_t iE(0); iE < nE-1; iE++ ) {
+	nPreds.push_back(  source.Npred(energies[iE],energies[iE+1]) );
+      }
+      return;
+    }
+
+
     void extractModelFromSource(const Source& source,
 				const BinnedLikelihood& logLike,
 				std::vector<float>& model,
