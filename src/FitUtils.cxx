@@ -529,6 +529,17 @@ namespace Likelihood {
 	// update the parameter values
 	norms -= delta;
 
+	// catch fits that are diverging
+	for ( size_t iCheck(0); iCheck < norms.num_row(); iCheck++ ) {
+	  if ( norms[iCheck] > 1e6 ) {
+	    if ( verbose > 0 ) {
+	      std::cout << "A fit using Newton's method seems to have diverged." << std::endl;
+	      printVector("Norms:",norms);
+	    }
+	    return -4;
+	  }
+	}
+
 	if ( verbose > 1 ) {
 	  std::cout << iter << ' ' << std::endl;
 	  printVector("Delta:",delta);
@@ -694,7 +705,7 @@ namespace Likelihood {
 
 	// Get the spectral values at the energy bin edges
 	std::vector<double> specVals;
-	const Source* aSrc = logLike.getSource(*itr);
+	Source* aSrc = logLike.getSource(*itr);
 	extractSpectralVals(*aSrc,energies,specVals);
 
 	// We are actually fitting a scale factor w.r.t. the baseline fit
