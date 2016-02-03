@@ -35,6 +35,18 @@ namespace Likelihood {
 	stl[i] = hep[i];
       }
     }
+
+    void Matrix_Hep_to_Stl(const CLHEP::HepSymMatrix& hep,
+			   std::vector<float>& stl) {
+      stl.resize(hep.num_row()*hep.num_col());
+      size_t idx(0);
+      for ( size_t i(0); i < hep.num_row(); i++ ) {
+	for ( size_t j(0); j < hep.num_col(); j++ ) {
+	  stl[idx] = hep[i][j];
+	  idx += 1;
+	}
+      }
+    }
     
     void Vector_Stl_to_Hep(const std::vector<float>& stl,
 			   CLHEP::HepVector& hep) {
@@ -528,7 +540,9 @@ namespace Likelihood {
       }
       // check to see if we reach the max iterations
       if ( iter >= maxIter ) {
-	std::cout << "Reached max iterations." << std::endl;
+	if ( verbose > 0 ) {
+	  std::cout << "Reached max iterations." << std::endl;
+	}
 	return -2;
       }
       

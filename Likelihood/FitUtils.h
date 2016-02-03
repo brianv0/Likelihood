@@ -46,6 +46,10 @@ namespace Likelihood {
     /* Fill an STL vector with values from a CLHEP vector */
     void Vector_Hep_to_Stl(const CLHEP::HepVector& hep,
 			   std::vector<float>& stl);
+
+    /* Fill an STL vector with values from a CLHEP Matrix */
+    void Matrix_Hep_to_Stl(const CLHEP::HepSymMatrix& hep,
+			   std::vector<float>& stl);
     
     /* Fill a CLHEP vector with values from an STL vector */
     void Vector_Stl_to_Hep(const std::vector<float>& stl,
