@@ -1117,6 +1117,7 @@ namespace Likelihood {
 			  std::vector<double>& pos_errs,
 			  std::vector<double>& neg_errs,
 			  std::vector<double>& logLike_mles,
+			  std::vector<int>& sed_fit_status,
 			  std::vector<std::vector<double> >& norms,
 			  std::vector<std::vector<double> >& logLikes);
 
