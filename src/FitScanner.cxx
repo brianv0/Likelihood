@@ -1548,7 +1548,7 @@ namespace Likelihood {
 	  ts_map_ok->setBinDirect(ipix,status);
 	  int idx_sed_err = ipix;
 	  for ( int iE_err(0); iE_err < nEBins(); iE_err++, idx_sed_err += npix ) {
-	    ts_cube_ok->setBinDirect(iE_err,status);
+	    ts_cube_ok->setBinDirect(idx_sed_err,double(status));
 	  }
 	  nfailed_bb_newton++;
 	  continue;
