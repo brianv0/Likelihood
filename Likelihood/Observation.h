@@ -19,7 +19,6 @@
 
 namespace Likelihood {
 
-   // EAC, switch to using base classes 
    class BinnedExposureBase;
    class ProjMap;
    class MeanPsf;
@@ -103,24 +102,24 @@ public:
       return *m_eventCont;
    }
 
-   // EAC, switch to using base classes 
    const BinnedExposureBase & bexpmap() const {
       return *m_bexpmap;
    }
 
-   // EAC, switch to using base classes 
    BinnedExposureBase & bexpmap() {
       return *m_bexpmap;
    }
 
-   // EAC, switch to using base classes 
    const ProjMap & phased_expmap() const {
       return *m_phased_expmap;
    }
 
-   // EAC, switch to using base classes 
    ProjMap & phased_expmap() {
       return *m_phased_expmap;
+   }
+
+   bool have_phased_expmap() const {
+      return m_phased_expmap != 0;
    }
 
    void setMeanPsf(MeanPsf * meanpsf) {
@@ -137,7 +136,6 @@ public:
 
 private:
 
-   // EAC, switch to using base classes 
    ResponseFunctions * m_respFuncs;
    ScData * m_scData;
    RoiCuts * m_roiCuts;
