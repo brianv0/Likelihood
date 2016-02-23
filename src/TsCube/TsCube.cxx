@@ -244,13 +244,14 @@ void TsCube::computeMap() {
   int ST_scan_level = m_pars["stlevel"];
   bool remakeTestSource = m_pars["remakesrc"];
   double normSigma = m_pars["nsigma"];
+  double covScale_bb = m_pars["covscale_bb"]; 
   double covScale = m_pars["covscale"]; 
 
   //m_scanner->set_verbose_null(3);
   //m_scanner->set_verbose_bb(3);
   //m_scanner->set_verbose_scan(3);
 
-  int status = m_scanner->run_tscube(doTsMap,doSED,nnorm,normSigma,covScale,
+  int status = m_scanner->run_tscube(doTsMap,doSED,nnorm,normSigma,covScale_bb,covScale,
 				     tol,maxiter,tolType,remakeTestSource,ST_scan_level);
   
   if ( status != 0 ) {
