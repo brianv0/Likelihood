@@ -185,6 +185,9 @@ double DiffuseSource::angularIntegral(double energy) const {
    if (spatialDist()->genericName() == "ConstantValue") { 
 // Here we have an isotropic source
       return 4*M_PI;
+   } else if (spatialDist()->genericName() == "SpatialGaussian" ||
+	      spatialDist()->genericName() == "SpatialDisk") { 
+     return 1.0;
    } else if (spatialDist()->genericName() == "RadialProfile") {
       optimizers::Function * foo = 
          const_cast<optimizers::Function *>(this->spatialDist());
