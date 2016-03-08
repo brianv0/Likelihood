@@ -920,7 +920,7 @@ void BinnedLikelihood::saveSourceMaps(const std::string & filename,
       if (m_srcMaps.count(srcNames.at(i))) {
          if (fileHasSourceMap(srcNames.at(i), m_srcMapsFile) && replace) {
 	   replaceSourceMap(srcNames.at(i), m_srcMapsFile);
-         } else {
+         } else if(!fileHasSourceMap(srcNames.at(i), m_srcMapsFile)) {
             formatter.info() << "appending map for " 
                              << srcNames.at(i) << std::endl;
             appendSourceMap(srcNames.at(i), m_srcMapsFile);
