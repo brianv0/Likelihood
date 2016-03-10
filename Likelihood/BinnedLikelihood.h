@@ -180,6 +180,7 @@ public:
 
    void addFixedSource(const std::string & srcName);
    void deleteFixedSource(const std::string & srcName);
+   void setUpdateFixedWeights(bool update);
 
    const std::vector<double> & 
    modelCountsSpectrum(const std::string &srcname) const;
@@ -245,6 +246,8 @@ private:
    double m_minbinsz;
 
    bool m_verbose;
+
+   bool m_updateFixedWeights;
 
    std::vector<std::string> m_fixedSources;
 
