@@ -14,6 +14,47 @@
 
 namespace Likelihood {
 
+class Kahan_Accumulator {
+
+public:
+  Kahan_Accumulator()
+    :m_sum(0.),
+     m_c(0.){
+  }
+
+  ~Kahan_Accumulator(){;}
+
+  // Add a value to the running sum
+  void add(double value) {
+    // The next line pick up the rounding error 
+    double y = value - m_c;
+    // This adds the value and the rounding error to a temp variable
+    double t = m_sum + y; 
+    // This next line caluclates the rounding error
+    // Note that the parentheses are there to force the evalutation order
+    m_c = (t - m_sum) - y;
+    // This line moves the temp to the running sum
+    m_sum = t;
+  }
+  
+  // Get the total and reset the running sum
+  double total() {
+    double t = m_sum;
+    m_sum = 0.;
+    m_c = 0.;
+    return t;
+  }
+
+private:
+
+  double m_sum; // This is the running sum
+  double m_c;   // This tracks the rounding error
+
+};
+
+
+
+
 class Accumulator {
 
 public:
