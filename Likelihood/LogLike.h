@@ -100,7 +100,7 @@ protected:
 
 protected:   
 
-   mutable Accumulator m_accumulator;
+   mutable Kahan_Accumulator m_accumulator;
 
 private:
 
