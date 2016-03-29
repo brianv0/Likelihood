@@ -47,7 +47,7 @@ ProjMap * WcsMapLibrary::wcsmap(const std::string & filename,
      theMap = new WcsMap2(filename, extname);
      break;
    case astro::ProjBase::HEALPIX:
-     theMap = new HealpixProjMap(filename, extname);     
+     theMap = new HealpixProjMap(filename, extname.empty() ? "SKYMAP" : extname); 
      break;
    default:
      break;

@@ -962,6 +962,10 @@ AppHelpers::checkProjectionMethod(const std::string& filename,
     // This is some kind of image
     return astro::ProjBase::WCS;
   }
+
+  // Default behavior for HEALPix projections is to put map in the SKYMAP HDU
+  const std::string ext_name = hpx_ext.empty() ? "SKYMAP" : hpx_ext;
+
   // Try the extension header
   std::auto_ptr<const tip::Extension> ext(tip::IFileSvc::instance().readExtension(filename,hpx_ext));
   const tip::Header& header_ext = ext->getHeader();

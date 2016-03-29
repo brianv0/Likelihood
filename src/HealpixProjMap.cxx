@@ -67,7 +67,7 @@ HealpixProjMap::HealpixProjMap(const std::string & filename,
     m_healpixProj( new astro::HealpixProj(filename, extension) ) {
 
   const tip::Table* table = 
-      tip::IFileSvc::instance().readTable(filename, extension);
+      tip::IFileSvc::instance().readTable(filename, extension.empty() ?  "SKYMAP" : extension);
   const tip::Header & header = table->getHeader();
   
   double refdir1(0.);
@@ -287,6 +287,12 @@ double HealpixProjMap::operator()(const astro::SkyDir & dir, double energy) cons
     return y1;
   }
   double y2 = operator()(dir, k+1);
+  // EAC, FIXME, HEALPix can very slightly overshoot interpolation
+  // this is a problem if the map has zeros in it, as you 
+  // will get negative numbers and crash in interpolatePowerLaw
+  static const double almost_zero(-1e-16);
+  if ( y1 < 0 && y1 > almost_zero ) y1 = 0.;
+  if ( y2 < 0 && y2 > almost_zero ) y2 = 0.;  
   
   double value = interpolatePowerLaw(energy, energies()[k],
 				     energies()[k+1], y1, y2);
@@ -324,9 +330,6 @@ ProjMap* HealpixProjMap::convolve(double energy, const MeanPsf & psf,
    bool upgrade(false);
 
    if ( pixelSize_image > 2*pixelSize_psfMin ) {
-     nside_used *= 4;
-     upgrade = true;
-   } else if ( pixelSize_image > pixelSize_psfMin ) {
      nside_used *= 2;
      upgrade = true;
    } 
