@@ -226,7 +226,7 @@ private:
 				   bool performConvolution,
 				   bool verbose);
 
-   void makeProjectedMap(const ProjMap& weight_map);
+   void makeProjectedMap(const ProjMap& weight_map, bool& extrapolated);
 
    void applyPhasedExposureMap();
 
