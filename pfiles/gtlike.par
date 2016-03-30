@@ -34,6 +34,7 @@ plot,b,h,no,,,"Plot unbinned counts spectra?"
 #
 cmap,f,a,"none",,,"Counts map file"
 bexpmap,f,a,"none",,,"Binned exposure map"
+wmap,fr,h,"none",,,"Likelihood weights map"
 psfcorr,b,h,yes,,,"apply psf integral corrections"
 phased_expmap,f,h,"none",,,"Exposure map with phase-dependent corrections"
 
