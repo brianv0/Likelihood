@@ -70,7 +70,7 @@ public:
 
    virtual void syncSrcParams(const std::string & srcName);
 
-   virtual double NpredValue(const std::string & srcName) const;
+   virtual double NpredValue(const std::string & srcName, bool weighted=false) const;
 
    void restoreBestFit();
 

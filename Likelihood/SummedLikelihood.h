@@ -58,7 +58,7 @@ public:
 
    void syncParams();
 
-   double NpredValue(const std::string & srcname) const;
+   double NpredValue(const std::string & srcname, bool weighted = false) const;
 
    /// Member functions to support tying of parameters.
 

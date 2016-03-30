@@ -66,7 +66,7 @@ public:
 
    void syncParams();
 
-   double NpredValue(const std::string &) const {return 0;}
+   double NpredValue(const std::string &, bool weighted=false) const {return 0;}
 
    TiedParameter & getTiedParam(const LogLike & like, size_t i);
    void setTiedParamValue(const LogLike & like, size_t i, double value);

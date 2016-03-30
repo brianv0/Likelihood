@@ -46,7 +46,7 @@ public:
                                  bool getFree) const;
    void syncParams();
 
-   double NpredValue(const std::string &) const {return 0;}
+   double NpredValue(const std::string &, bool /* weighted */) const {return 0;}
 
 protected:
 

@@ -287,7 +287,7 @@ void BinnedLikelihood2::syncSrcParams(const std::string & srcName) {
    m_modelIsCurrent = false;
 }
 
-double BinnedLikelihood2::NpredValue(const std::string & srcName) const {
+double BinnedLikelihood2::NpredValue(const std::string & srcName, bool /* weighted */) const {
    std::map<std::string, double>::const_iterator npredIt 
       = m_fixedModelNpreds.find(srcName);
    if (npredIt != m_fixedModelNpreds.end()) {

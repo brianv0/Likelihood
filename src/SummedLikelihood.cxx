@@ -105,11 +105,11 @@ void SummedLikelihood::syncParams() {
    }
 }
 
-double SummedLikelihood::NpredValue(const std::string & srcname) const {
+double SummedLikelihood::NpredValue(const std::string & srcname, bool weighted) const {
    double Npred(0);
    for (ComponentConstIterator_t it(m_components.begin());
         it != m_components.end(); ++it) {
-      Npred += (*it)->NpredValue(srcname);
+      Npred += (*it)->NpredValue(srcname,weighted);
    }
    return Npred;
 }
