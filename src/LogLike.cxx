@@ -385,7 +385,7 @@ void LogLike::update_npreds() {
    }
 }
 
-  double LogLike::NpredValue(const std::string & srcName, bool /* weighted */) const {
+double LogLike::NpredValue(const std::string & srcName, bool /* weighted */) const {
    return const_cast<Source &>(source(srcName)).Npred();
 }
 
