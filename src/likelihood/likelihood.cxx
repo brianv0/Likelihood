@@ -979,7 +979,6 @@ void likelihood::npredValues(double & freeNpred, double & totalNpred) const {
    totalNpred = 0;
    for (std::vector<std::string>::const_iterator srcName = srcNames.begin();
         srcName != srcNames.end(); ++srcName) {
-      std::cout << *srcName << "::npredValue" << std::endl;
       Source * src = m_logLike->getSource(*srcName);
       double npred(m_logLike->NpredValue(*srcName));
       totalNpred += npred;
