@@ -86,7 +86,7 @@ public:
 
    virtual CountsMapBase * createCountsMap() const;
 
-   double npred();
+   double npred(bool weighted=false);
 
    const SourceMap & sourceMap(const std::string & name) const;
 
