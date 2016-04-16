@@ -332,13 +332,16 @@ private:
 				 const std::string & fitsFile) const;
 
    void appendSourceMap(const std::string & srcName, 
-			const std::string & fitsFile) const;
+			const std::string & fitsFile,
+			bool isWeights = false) const;
 
    void appendSourceMap_wcs(const SourceMap& srcMap,
-			    const std::string & fitsFile) const;
+			    const std::string & fitsFile,
+			    bool isWeights = false) const;
 
    void appendSourceMap_healpix(const SourceMap& srcMap, 
-				const std::string & fitsFile) const;
+				const std::string & fitsFile,
+				bool isWeights = false) const;
 
    void computeCountsSpectrum();
 
