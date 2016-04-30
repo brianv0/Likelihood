@@ -1,14 +1,14 @@
 /** 
- * @file SpatialDisk.h
- * @brief Declaration for the SpatialDisk Function class
+ * @file RadialDisk.h
+ * @brief Declaration for the RadialDisk Function class
  * @author M. Wood
  *
  * $Header$
  *
  */
 
-#ifndef Likelihood_SpatialDisk_h
-#define Likelihood_SpatialDisk_h
+#ifndef Likelihood_RadialDisk_h
+#define Likelihood_RadialDisk_h
 
 #include <utility>
 
@@ -28,7 +28,7 @@ class Event;
 class ResponseFunctions;
 
 /** 
- * @class SpatialDisk
+ * @class RadialDisk
  *
  * @brief A Function object that is an analytic representation of a 2D
  * spatial disk at a SkyDir location with functional form:
@@ -40,19 +40,19 @@ class ResponseFunctions;
  *
  */
     
-class SpatialDisk : public SpatialFunction {
+class RadialDisk : public SpatialFunction {
 
 public:
 
-   SpatialDisk();
+   RadialDisk();
 
-   SpatialDisk(double ra, double dec, double radius);
+   RadialDisk(double ra, double dec, double radius);
                          
-   SpatialDisk(const SpatialDisk &);
+   RadialDisk(const RadialDisk &);
 
-   SpatialDisk & operator=(const SpatialDisk &);
+   RadialDisk & operator=(const RadialDisk &);
 
-   virtual ~SpatialDisk();
+   virtual ~RadialDisk();
 
    double value(const astro::SkyDir &) const;
    double value(double delta, double radius) const;
@@ -67,8 +67,8 @@ public:
 				    double & mumin, double & mumax,
 				    double & phimin, double & phimax) const;
 
-   virtual SpatialDisk * clone() const {
-      return new SpatialDisk(*this);
+   virtual RadialDisk * clone() const {
+      return new RadialDisk(*this);
    }
 
    virtual void update();
@@ -113,4 +113,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Likelihood_SpatialDisk_h
+#endif // Likelihood_RadialDisk_h

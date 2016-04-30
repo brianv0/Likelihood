@@ -1,14 +1,14 @@
 /** 
- * @file SpatialGaussian.h
- * @brief Declaration for the SpatialGaussian Function class
+ * @file RadialGaussian.h
+ * @brief Declaration for the RadialGaussian Function class
  * @author M. Wood
  *
  * $Header$
  *
  */
 
-#ifndef Likelihood_SpatialGaussian_h
-#define Likelihood_SpatialGaussian_h
+#ifndef Likelihood_RadialGaussian_h
+#define Likelihood_RadialGaussian_h
 
 #include <utility>
 
@@ -29,7 +29,7 @@ class Event;
 class ResponseFunctions;
 
 /** 
- * @class SpatialGaussian
+ * @class RadialGaussian
  *
  * @brief A Function object that is an analytic representation of a 2D
  * spatial gaussian at a SkyDir location with functional form:
@@ -40,19 +40,19 @@ class ResponseFunctions;
  *
  */
     
-class SpatialGaussian : public SpatialFunction {
+class RadialGaussian : public SpatialFunction {
 
 public:
 
-   SpatialGaussian();
+   RadialGaussian();
 
-   SpatialGaussian(double ra, double dec, double sigma);
+   RadialGaussian(double ra, double dec, double sigma);
                          
-   SpatialGaussian(const SpatialGaussian &);
+   RadialGaussian(const RadialGaussian &);
 
-   SpatialGaussian & operator=(const SpatialGaussian &);
+   RadialGaussian & operator=(const RadialGaussian &);
 
-   virtual ~SpatialGaussian();
+   virtual ~RadialGaussian();
 
    double value(const astro::SkyDir &) const;
    double value(double delta, double sigma) const;
@@ -67,8 +67,8 @@ public:
 				    double & mumin, double & mumax,
 				    double & phimin, double & phimax) const;
 
-   virtual SpatialGaussian * clone() const {
-      return new SpatialGaussian(*this);
+   virtual RadialGaussian * clone() const {
+      return new RadialGaussian(*this);
    }
 
    virtual void update();
@@ -114,4 +114,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Likelihood_SpatialGaussian_h
+#endif // Likelihood_RadialGaussian_h

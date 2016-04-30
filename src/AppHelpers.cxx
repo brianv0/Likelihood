@@ -72,8 +72,8 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SmoothBrokenPowerLaw.h"
 #include "Likelihood/SmoothDoubleBrokenPowerLaw.h"
-#include "Likelihood/SpatialDisk.h"
-#include "Likelihood/SpatialGaussian.h"
+#include "Likelihood/RadialDisk.h"
+#include "Likelihood/RadialGaussian.h"
 #include "Likelihood/SpatialMap.h"
 // EAC, use WcsLibrary to open the right type of ProjMap
 #include "Likelihood/WcsMapLibrary.h"
@@ -208,9 +208,9 @@ void AppHelpers::
 addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    bool makeClone(false);
    funcFactory->addFunc("SkyDirFunction", new SkyDirFunction(), makeClone);
-   funcFactory->addFunc("SpatialDisk", new SpatialDisk(), makeClone);
+   funcFactory->addFunc("RadialDisk", new RadialDisk(), makeClone);
    funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
-   funcFactory->addFunc("SpatialGaussian", new SpatialGaussian(), makeClone);
+   funcFactory->addFunc("RadialGaussian", new RadialGaussian(), makeClone);
    funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
    funcFactory->addFunc("LogParabola", new LogParabola(), makeClone);
    funcFactory->addFunc("LogGaussian", new LogGaussian(), makeClone);
