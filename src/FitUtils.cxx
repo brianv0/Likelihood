@@ -285,6 +285,10 @@ namespace Likelihood {
       }
     }
 
+    double symmetricError(double pos_err, double neg_err) {
+      return neg_err < 0 ? pos_err : (pos_err + neg_err) / 2.;
+    }
+
     void sumModel(const CLHEP::HepVector& norms,
 		  const std::vector<const std::vector<float>* >& templates,
 		  const std::vector<float>& fixed,

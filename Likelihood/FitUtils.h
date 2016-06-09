@@ -197,6 +197,9 @@ namespace Likelihood {
 		       size_t n_i, size_t n_j,
 		       std::vector<std::vector<float> >& outvect);
 
+
+    /* Get the symetric error from the positive and negative errors */
+    double symmetricError(double pos_err, double neg_err);
     
     /* Sum the model components * normalization to get the total model counts per bin
        
