@@ -256,6 +256,13 @@ void BinnedLikelihood::setSourceMapImage(const std::string & name,
   m_srcMaps[name]->setImage(image);
 }
 
+bool BinnedLikelihood::hasSourceMap(const std::string & name) const {
+  if (m_srcMaps.find(name) == m_srcMaps.end())
+    return false;
+  else
+    return true;
+}
+
 SourceMap & BinnedLikelihood::sourceMap(const std::string & name) {
   std::vector<std::string> srcNames;
   getSrcNames(srcNames);

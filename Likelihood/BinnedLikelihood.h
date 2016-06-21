@@ -88,6 +88,8 @@ public:
 
    double npred(bool weighted=false);
 
+   bool hasSourceMap(const std::string & name) const;
+
    const SourceMap & sourceMap(const std::string & name) const;
 
    SourceMap & sourceMap(const std::string & name);
