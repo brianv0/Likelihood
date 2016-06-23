@@ -1306,7 +1306,7 @@ namespace Likelihood {
 	}
       }
       // This is just for debugging
-      if ( true ) {
+      if ( false ) {
 	float fullSum(0.);
 	float redSum(0.);
 	sumVector(weights.begin(),weights.end(),fullSum);
