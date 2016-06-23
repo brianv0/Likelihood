@@ -55,7 +55,7 @@ public:
 		    bool performConvolution=true,
 		    bool resample=true,
 		    double resamp_factor=2,
-                     double minbinsz=0.1);
+		    double minbinsz=0.1);
    
    BinnedLikelihood(const BinnedLikelihood & other);
 
