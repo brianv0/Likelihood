@@ -236,7 +236,7 @@ namespace Likelihood {
     }
 
     if ( false ) {
-      FitUtils::printSymMatrix("Prior: ",m_hessian);
+      FitUtils::printMatrix("Prior: ",m_hessian);
     }
 
     return 0;
