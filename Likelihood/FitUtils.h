@@ -311,8 +311,8 @@ namespace Likelihood {
 			    const CLHEP::HepVector& norms,
 			    const std::vector<const std::vector<float>* >& templates,
 			    const std::vector<float>& fixed,
-			    const FitScanMVPrior* prior,
-			    const std::vector<float>* weights,		       
+			    const FitScanMVPrior* prior,			       
+			    const std::vector<float>* weights,    
 			    std::vector<float>& model,
 			    size_t firstBin = 0,
 			    size_t lastBin = 0,
@@ -582,6 +582,7 @@ namespace Likelihood {
      */ 
     void extractModels(const BinnedLikelihood& logLike,
 		       const std::string& test_name,
+		       std::vector<std::string>& freeSrcNames,
 		       std::vector<std::vector<float> >& templates,		       
 		       std::vector<float>& fixed,
 		       std::vector<float>& test_source_model,

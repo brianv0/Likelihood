@@ -1223,7 +1223,8 @@ namespace Likelihood {
     }  
 
     void extractModels(const BinnedLikelihood& logLike,
-		       const std::string& test_name,		       
+		       const std::string& test_name,	
+		       std::vector<std::string>& freeSrcNames,	       
 		       std::vector<std::vector<float> >& templates,		       
 		       std::vector<float>& fixed,
 		       std::vector<float>& test_source_model,
@@ -1301,6 +1302,7 @@ namespace Likelihood {
 	} else if ( aSrc->spectrum().normPar().isFree() ) {
 	  // The source is free, put it on the vector of templates
 	  // and latch the reference value
+	  freeSrcNames.push_back(aSrc->getName());
 	  templates.push_back(modelCounts);
 	  refPars.push_back(refValue);
 	} else {	  
@@ -1601,11 +1603,12 @@ namespace Likelihood {
 
       
       std::vector<std::vector<float> > template_master;
+      std::vector<std::string> template_names;
       std::vector<float> fixed_master;
       std::vector<float> test_source_master;
       std::vector<float> refPars_master;      
 
-      extractModels(logLike,test_name,
+      extractModels(logLike,test_name,template_names,
 		    template_master,fixed_master,
 		    test_source_master,refPars_master);
       size_t nPar = template_master.size();
