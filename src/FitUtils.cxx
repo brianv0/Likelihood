@@ -1165,22 +1165,30 @@ namespace Likelihood {
 				std::vector<float>& model,
 				bool rescaleToNormOne) {
 
-      SourceMap* theMap(0);
-      // The source might not be in the model yet.
-      if ( logLike.hasSrcNamed(source.getName() ) ) {
-	// If it is, just get the source map
-	theMap = logLike.getSourceMap(source.getName());
-      } else {
+      if(logLike.hasSrcNamed(source.getName())) {
+
+	bool hasSourceMap = logLike.hasSourceMap(source.getName());
+	logLike.computeModelMap(source.getName(),model);
+	if ( !hasSourceMap ) {
+	  logLike.eraseSourceMap(source.getName());
+	}
+
+      } else {	
+
+	SourceMap* theMap(0);
+	
 	// Otherwise, build a map ourselves
 	Source* nc_source = const_cast<Source*>(&source);
 	theMap = new SourceMap(nc_source,
 			       &logLike.countsMap(),
 			       logLike.observation());			       
-      }    
-      std::vector<double> specVals;
-      FitUtils::extractSpectralVals(source,logLike.energies(),specVals);
-      FitUtils::extractModelCounts(*theMap,logLike.energies(),specVals,model);
-      delete theMap;
+
+	std::vector<double> specVals;
+	FitUtils::extractSpectralVals(source,logLike.energies(),specVals);
+	FitUtils::extractModelCounts(*theMap,logLike.energies(),specVals,model);
+	delete theMap;
+      }
+
       if ( rescaleToNormOne ) {
 	double refValue = source.spectrum().normPar().getValue();
 	double scaleFactor = 1. / refValue;
