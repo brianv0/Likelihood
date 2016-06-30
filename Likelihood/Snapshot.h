@@ -166,6 +166,11 @@ namespace Likelihood {
 
   public:
 
+    Snapshot_Source():
+      m_owned(false),
+      m_norm_param(0){
+    }
+
     Snapshot_Source(const Source& src, bool owned=false):
       m_owned(false),
       m_norm_param(0){      
@@ -193,11 +198,6 @@ namespace Likelihood {
 
 
   class Snapshot {
-
-  public:
-    
-    static const Source* getSource(const SourceModel& model,
-				   std::string srcName);				  
 
   public:
 
