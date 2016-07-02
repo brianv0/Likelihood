@@ -1483,7 +1483,7 @@ namespace Likelihood {
 	  prior_constraints[i] = false;
 	} else {
 	  prior_centralVals[i] /= m_refValues[i];
-	  prior_uncertainties[i] /= m_refValues[i];\
+	  prior_uncertainties[i] /= m_refValues[i];
 	}
       }
 
