@@ -39,6 +39,7 @@ namespace Likelihood {
 				       const optimizers::Parameter& p2){
 
     if ( p1.has_prior() != p2.has_prior() ) return true;
+    if ( ! ( p1.has_prior() || p1.has_prior() ) ) return false;
     if ( p1.log_prior().getNumParams() != p1.log_prior().getNumParams() ) return true;
     std::vector<std::string> n1;
     std::vector<std::string> n2;
