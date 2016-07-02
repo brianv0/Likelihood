@@ -835,10 +835,12 @@ namespace Likelihood {
     }
     if ( (action & Update_Fixed ) != 0 ) update_fixed_from_model();
     if ( (action & Update_Free ) != 0 ) update_free_from_model(changed_sources);
-    if ( (action & Refactor ) != 0 ) refactor_from_model();
     if ( (action & (Update_Fixed | Update_Free) != 0 ) ) {
+      setCache();
       m_snapshot->latch_model(m_modelWrapper.getMasterComponent(),true);
+      return;
     }
+    if ( (action & Refactor ) != 0 ) refactor_from_model();
   }
 
   unsigned FitScanCache::find_action_needed(std::vector<std::string>& changed_sources) const {
