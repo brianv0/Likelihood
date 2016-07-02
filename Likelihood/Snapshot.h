@@ -144,6 +144,7 @@ namespace Likelihood {
     inline bool norm_changed() const { return (m_val & Norm_Mask) != 0; }
     inline bool norm_value_changed() const { return (m_val & Norm_Value_Changed) != 0; }
     inline bool norm_status_changed() const { return (m_val & Norm_Status_Changed) != 0; }
+    inline bool norm_prior_changed() const { return (m_val & Norm_Prior_Changed) != 0; }
     inline bool norm_fixed_changed() const { return (m_val & Norm_Fixed_Changed) != 0; }
     inline bool norm_free_changed() const { return (m_val & Norm_Free_Changed) != 0; }
 
