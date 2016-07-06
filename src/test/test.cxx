@@ -555,7 +555,7 @@ void LikelihoodTests::test_EblAtten() {
    params.push_back(optimizers::Parameter("UpperLimit", 2e5));
    params.push_back(optimizers::Parameter("tau_norm", 1));
    params.push_back(optimizers::Parameter("redshift", 0.5));
-   params.push_back(optimizers::Parameter("ebl_model", 4));
+   params.push_back(optimizers::Parameter("ebl_model", 0));
 
    std::vector<optimizers::Arg *> args;
    args.push_back(new optimizers::dArg(100));
