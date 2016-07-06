@@ -136,7 +136,8 @@ double EblAtten::attenuation(double energy) const {
    int ebl_model(redshift + 1);
    
    IRB::EblModel new_model = static_cast<IRB::EblModel>(static_cast<int>(m_parameter[ebl_model].getTrueValue()));
-   if (new_model != m_tau->model()) {
+   if (new_model !=  m_tau->model()) {
+      std::cout << "Building new attenuation model " <<  m_parameter[ebl_model].getTrueValue() << std::endl;
       delete m_tau;
       m_tau = new IRB::EblAtten(new_model);
    }
@@ -144,6 +145,7 @@ double EblAtten::attenuation(double energy) const {
    double zz(m_parameter[redshift].getTrueValue());
    double atten(std::exp(-m_parameter[tau_norm].getTrueValue()
                          *m_tau->operator()(energy, zz)));
+
    return atten;
 }
 

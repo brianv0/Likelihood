@@ -598,12 +598,14 @@ namespace Likelihood {
        BinnedLikelihood object
 
        logLike:     The BinnedLikelihood object
+       test_name:   The name of the test source ( not added to model)
        fixed:       Summed model for all of the fixed sources
+       latched:     An option vector of latched source ( not added to model )
      */ 
     void extractFixedModel(const BinnedLikelihood& logLike,
 			   const std::string& test_name,
-			   std::vector<float>& fixed);
-    
+			   std::vector<float>& fixed,
+			   const std::vector<std::string>* latched=0);
     
 
     /* Extract the prior on a parameter

@@ -64,7 +64,7 @@ private:
             m_cGXFact = one_p_gamma/(m_cPowXHi - m_cPowXLo);
          }
 	 m_cX      = x + 1.0; // force recalculation of m_cPowX below
-       }
+       } 
 
      if(s_cX != x)
        {

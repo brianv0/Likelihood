@@ -359,6 +359,14 @@ namespace Likelihood {
 			       CLHEP::HepVector& uncertainties,
 			       std::vector<bool>& constrainPars) const;   
 
+    
+    
+    /* Check to see if the fixed / free status of sources has changed
+       w.r.t. the wrapped BinnedLikelihood or SummedLikelihood 
+    */    
+    bool fixed_changed(const std::vector<std::string>& srcNames,
+		       const std::vector<bool>& currentFreeSources) const;
+
     /* Get the likelihood value */
     virtual double value() const = 0;
 
@@ -757,7 +765,7 @@ namespace Likelihood {
        w.r.t. the wrapped BinnedLikelihood or SummedLikelihood 
     */
     unsigned find_action_needed(std::vector<std::string>& changed_sources) const;    
-
+    
     /* Reset everything to the initial master state */
     void setCache();
 

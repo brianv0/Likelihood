@@ -333,7 +333,7 @@ namespace Likelihood {
        
        if owned is true this will clone the Parameters out of the source
     */
-    void latch_source(const Source& src, bool owned=false);
+    void latch_source(const Source& src, bool owned=false, bool update_status=true);
 
     /* Deep copy all of the Parameters */
     void deep_copy();
@@ -392,7 +392,7 @@ namespace Likelihood {
        
        If owned is true this will clone the Parameters
     */
-    void latch_model(const SourceModel& model, bool owned = false);
+    void latch_model(const SourceModel& model, bool owned = false, bool update_status = true);
 
     /* Print the entire model */
     void print() const;
