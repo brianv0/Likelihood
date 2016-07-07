@@ -850,6 +850,14 @@ namespace Likelihood {
       // There are new free sources, just rebuild
       action |= Rebuild;
     }
+    if ( unlatched_status.source_freed() ) {
+      // An unlatched source has been freed, just rebuild
+      action |= Rebuild;      
+    }
+    if ( (action & Rebuild ) != 0 ) {
+      // If we need to rebuild the model, don't worry about the other flags
+      return action;
+    }
     if ( (new_fixed.size() > 0) || unlatched_status.changed() ) {
       // Either there is a new fixed source, 
       // Or one of the unlatched sources has changed.

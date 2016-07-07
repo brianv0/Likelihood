@@ -1369,13 +1369,14 @@ namespace Likelihood {
 	    }
 	  }
 	}
+	if ( is_latched ) break;
 
 	// We are actually fitting a scale factor w.r.t. the baseline fit
 	// so we want to latch the normalization parameter values
 	// from the baseline fit
 	Source* aSrc = nc_logLike.getSource(*itr);
 	if ( aSrc->spectrum().normPar().isFree() ) continue;
-\
+
 	bool hasSourceMap = logLike.hasSourceMap(*itr);
 
 	// Here we extract the model counts
