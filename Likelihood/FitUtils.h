@@ -162,9 +162,9 @@ namespace Likelihood {
     /* Multiply in place vector by a        
 	v = scalar * v       
     */  
-    void multipyByScalar(std::vector<float>::iterator vstart,
-			 std::vector<float>::iterator vstop,
-			 double scalar);
+    void multiplyByScalar(std::vector<float>::iterator vstart,
+			  std::vector<float>::iterator vstop,
+			  double scalar);
     
     /* Subtract a vector from another vector.
        
@@ -583,6 +583,7 @@ namespace Likelihood {
        test_source_model: Model for all the test source
        refPars:     Values of the normalizations of the free sources.       
        weights:     Likelihood weights (optional)
+       useUnitRefVals: Set the reference normalizations to one. 
      */ 
     void extractModels(const BinnedLikelihood& logLike,
 		       const std::string& test_name,
@@ -591,7 +592,8 @@ namespace Likelihood {
 		       std::vector<float>& fixed,
 		       std::vector<float>& test_source_model,
 		       std::vector<float>& refPars,
-		       std::vector<float>* weights = 0);
+		       std::vector<float>* weights = 0,
+		       bool useUnitRefVals = false);
 
     
     /* Extract all of the predicted counts for all of the fixed sources
