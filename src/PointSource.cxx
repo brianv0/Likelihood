@@ -531,7 +531,7 @@ double PointSource::Aeff::value(double cos_theta, double phi) const {
       // compatible with Pass 5 style IRFs where there is only one
       // event class.
       //
-      int id(respIt->second->irfID() % 2);
+      int id(respIt->second->irfID());
 
       double psf_val(0);
       std::map<int, double>::const_iterator psf_it(psf_vals.find(id));
