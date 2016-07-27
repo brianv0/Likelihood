@@ -311,8 +311,11 @@ void BinnedExposure::writeOutput(const std::string & filename) const {
    header["CTYPE3"].set("log_Energy");
 
    if (!m_isGalactic) {
+      header["COORDSYS"].set("CEL");
       header["EQUINOX"].set(2000.0);
       header["RADECSYS"].set("FK5");
+   } else {
+      header["COORDSYS"].set("GAL");
    }
 
    delete image;
