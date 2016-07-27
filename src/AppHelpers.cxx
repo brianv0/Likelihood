@@ -967,7 +967,7 @@ AppHelpers::checkProjectionMethod(const std::string& filename,
   const std::string ext_name = hpx_ext.empty() ? "SKYMAP" : hpx_ext;
 
   // Try the extension header
-  std::auto_ptr<const tip::Extension> ext(tip::IFileSvc::instance().readExtension(filename,hpx_ext));
+  std::auto_ptr<const tip::Extension> ext(tip::IFileSvc::instance().readExtension(filename,ext_name));
   const tip::Header& header_ext = ext->getHeader();
   if ( ext->isTable() ) {
     std::string pixtype;
