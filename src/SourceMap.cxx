@@ -1178,7 +1178,7 @@ void SourceMap::makeProjectedMap(const ProjMap& weight_map, bool& extrapolated) 
 	   extrapolated = true;
 	 }	 
        } else {
-	 // Outsdie of map, set weight to 1.0 (FIXME, agree on convention)
+	 // Outside of map, set weight to 1.0 (FIXME, agree on convention)
 	 m_model.at(indx) = 1.0;
 	 extrapolated = true;
        }
