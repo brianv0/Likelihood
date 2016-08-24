@@ -956,6 +956,8 @@ namespace Likelihood {
 
     void reduceModels();
 
+    int update_template_for_source(const std::string& srcName);
+
     void build_from_model();
     
     void update_fixed_from_model();

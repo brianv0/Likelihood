@@ -1445,12 +1445,20 @@ namespace Likelihood {
     }
     return -1;
   }
- 
+
 
   int FitScanCache::updateTemplateForSource(const std::string& srcName) {
+    int srcIdx = update_template_for_source(srcName);
+    setCache();
+    refactor_from_model();
+    return srcIdx;
+  }
+
+
+  int FitScanCache::update_template_for_source(const std::string& srcName) {
     int srcIdx = getTemplateIndex(srcName);
     if ( srcIdx < 0 ) {
-      throw std::runtime_error("FitScanCache::updateTemplateForSource called for source that does not have a template.");
+      throw std::runtime_error("FitScanCache::update_template_for_source called for source that does not have a template.");
       return srcIdx;
     }
     m_modelWrapper.extractModelFromSource(srcName,m_allModels[srcIdx],false);
@@ -1462,10 +1470,9 @@ namespace Likelihood {
       FitUtils::multiplyByScalar(model.begin(),model.end(),m_refValues[srcIdx]/value);
     }
 
-    setCache();
-
     return srcIdx;
   }
+
 
   const FitScanMVPrior* FitScanCache::getPrior(Prior_Version whichPrior, 
 					       bool include_test_source) const {
@@ -1562,7 +1569,7 @@ namespace Likelihood {
   void FitScanCache::update_free_from_model(const std::vector<std::string>& changed_sources) {
     for ( std::vector<std::string>::const_iterator itr = changed_sources.begin();
 	  itr != changed_sources.end(); itr++ ){
-      updateTemplateForSource(*itr);
+      update_template_for_source(*itr);
     }
   }
   
