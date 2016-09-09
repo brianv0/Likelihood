@@ -16,13 +16,13 @@ namespace Likelihood {
 				  double& estimatorPeakTh) {
          
     if(::getenv("USE_ADAPTIVE_PSF_ESTIMATOR")) {
-      estimatorMethod = adaptive;
+      estimatorMethod = PsfIntegConfig::adaptive;
     } else if(::getenv("USE_ANNULAR_PSF_ESTIMATOR")) {
-      estimatorMethod = annular;
+      estimatorMethod = PsfIntegConfig::annular;
     } else if(::getenv("USE_OLD_PSF_ESTIMATOR")) {
-      estimatorMethod = pixel_center;
+      estimatorMethod = PsfIntegConfig::pixel_center;
     } else {
-      estimatorMethod = adaptive;
+      estimatorMethod = PsfIntegConfig::adaptive;
     }
     
     if (::getenv("PSF_ADAPTIVE_ESTIMATOR_FTOL"))

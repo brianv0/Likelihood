@@ -39,7 +39,7 @@ namespace Likelihood {
 		   bool resample = true,
 		   double resamp_factor = 2,
 		   double minbinsz = 0.1,
-		   PSFIntegType integ_type = adaptive,
+		   PSFIntegType integ_type = PsfIntegConfig::adaptive,
 		   double psfEstimatorFtol = 1e-3,
 		   double psfEstimatorPeakTh = 1e-6,
 		   bool verbose = true)
@@ -126,7 +126,7 @@ namespace Likelihood {
 		     bool resample = true,
 		     double resamp_factor = 2,
 		     double minbinsz = 0.1,
-		     PsfIntegConfig::PSFIntegType integ_type = adaptive,
+		     PsfIntegConfig::PSFIntegType integ_type = PsfIntegConfig::adaptive,
 		     double psfEstimatorFtol = 1e-3,
 		     double psfEstimatorPeakTh = 1e-6,
 		     bool verbose = true,
