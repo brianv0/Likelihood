@@ -37,6 +37,17 @@ namespace Likelihood {
 class Source {
 
 public:
+
+   typedef enum { 
+     //! Point Source
+     Point = 0,
+     //! Diffuse sources
+     Diffuse = 1,
+     //! Unknown
+     Unknown = 2 } SourceType;      
+
+   static const std::string& sourceTypeName(SourceType t);
+   
    typedef std::pair<bool, double> CachedResponse;
     
    Source(const Observation * observation=0);
@@ -128,9 +139,15 @@ public:
    }
 
    /// The Source type (e.g., Diffuse vs Point)
-   virtual const std::string & getType() const {
-      return m_srcType;
+   inline SourceType srcType() const { 
+     return m_srcType; 
    }
+
+   /// This is for backwards compatibility
+   inline const std::string & getType() const {
+     return sourceTypeName(m_srcType);
+   }
+
 
    /// Integrate the product of the source spectrum with the given
    /// SourceMap pixel values.
@@ -206,7 +223,7 @@ protected:
    std::string m_name;
 
    /// Source type --- "Diffuse" or "Point".
-   std::string m_srcType;
+   SourceType m_srcType;
 
    /// Flag to indicate if energy dispersion is to be used.
    bool m_useEdisp;

@@ -21,8 +21,25 @@
 
 namespace Likelihood {
 
+
+const std::string&
+Source::sourceTypeName(SourceType t) {
+  static const std::string point_name("Point");
+  static const std::string diffuse_name("Diffuse");
+  static const std::string unk_name("");
+  switch ( t ) { 
+  case Point: 
+    return point_name;
+  case Diffuse:
+    return diffuse_name;
+  default:
+    break;
+  }
+  return unk_name; 
+}
+
 Source::Source(const Observation * observation) 
-   : m_name(""), m_srcType(""), m_useEdisp(false), m_spectrum(0), 
+   : m_name(""), m_srcType(Unknown), m_useEdisp(false), m_spectrum(0), 
      m_observation(observation) {}
 
 Source::Source(const Source & rhs)

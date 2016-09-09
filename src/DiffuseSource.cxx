@@ -41,7 +41,7 @@ DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
    if (requireExposure) {
       integrateSpatialDist();
    }
-   m_srcType = "Diffuse";
+   m_srcType = Source::Diffuse;
 }
 
 void DiffuseSource::integrateSpatialDist() {

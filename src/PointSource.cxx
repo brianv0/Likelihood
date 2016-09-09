@@ -38,7 +38,7 @@ std::vector<double> PointSource::s_trueEnergies(0);
 PointSource::PointSource(const Observation * observation) 
    : Source(observation) {
    setDir(0., 0., false);
-   m_srcType = "Point";
+   m_srcType = Source::Point;
    if (s_trueEnergies.empty()) {
       makeEnergyVector();
    }
@@ -48,7 +48,7 @@ PointSource::PointSource(double ra, double dec,
                          const Observation & observation, bool verbose) 
    : Source(&observation) {
    setDir(ra, dec, true, verbose);
-   m_srcType = "Point";
+   m_srcType = Source::Point;
    if (s_trueEnergies.empty()) {
       makeEnergyVector();
    }
