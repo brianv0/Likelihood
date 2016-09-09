@@ -103,6 +103,8 @@ public:
 
    virtual double pixelSize() const;
 
+   virtual double mapRadius() const { return 0.7071067811865476 * std::max( -1. * m_naxes[0] * m_cdelt[0],  m_naxes[1] * m_cdelt[1] ); }
+
    double cdelt1() const {return m_cdelt[0];}
    double cdelt2() const {return m_cdelt[1];}
    double crpix1() const {return m_crpix[0];}

@@ -78,6 +78,7 @@ public:
    virtual void setKeywords(tip::Header & header) const = 0;
    virtual void getBoundaryPixelDirs(std::vector<astro::SkyDir> & pixelDirs) const = 0;
    virtual double pixelSize() const = 0;
+   virtual double mapRadius() const = 0;
 
    void setImage(const std::vector<float> & image);
    void setImage(const std::vector<double> & image);
