@@ -1184,7 +1184,8 @@ namespace Likelihood {
 	Source* nc_source = const_cast<Source*>(&source);
 	theMap = new SourceMap(nc_source,
 			       &logLike.countsMap(),
-			       logLike.observation());			       
+			       logLike.observation(),
+			       logLike.config().psf_integ_config());
 
 	std::vector<double> specVals;
 	FitUtils::extractSpectralVals(source,logLike.energies(),specVals);
