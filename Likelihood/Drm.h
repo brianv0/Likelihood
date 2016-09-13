@@ -56,22 +56,17 @@ private:
 class Drm_Cache {
 public:
 
-  Drm_Cache(const Drm& drm,
-	    const SourceMap & sourceMap,
-	    const Source& src,
-	    const std::vector<double>& energies,
-	    bool use_edisp);
+  Drm_Cache(const Drm* drm,
+	    SourceMap & sourceMap,
+	    const std::vector<double>& energies);
   
   Drm_Cache(const Drm_Cache& other);
 
   virtual ~Drm_Cache(){;}
 
-
-  void update(const Drm& drm,
-	      const SourceMap & sourceMap,
-	      const Source& src,
-	      const std::vector<double>& energies,
-	      bool use_edisp);
+  void update(const Drm* drm,
+	      SourceMap & sourceMap,
+	      const std::vector<double>& energies);
 
   inline double get_correction(size_t k, int& kref) const {
     kref = m_kref[k];

@@ -11,9 +11,11 @@
 
 namespace Likelihood {
 
-  void PsfIntegConfig::get_envars(PSFIntegType& estimatorMethod,
-				  double& estimatorFtol,
-				  double& estimatorPeakTh) {
+  void BinnedLikeConfig::get_envars(PsfIntegConfig::PSFIntegType& estimatorMethod,
+				    double& estimatorFtol,
+				    double& estimatorPeakTh,
+				    bool& use_edisp,
+				    bool& use_linear_quadrature) {
          
     if(::getenv("USE_ADAPTIVE_PSF_ESTIMATOR")) {
       estimatorMethod = PsfIntegConfig::adaptive;
@@ -21,15 +23,21 @@ namespace Likelihood {
       estimatorMethod = PsfIntegConfig::annular;
     } else if(::getenv("USE_OLD_PSF_ESTIMATOR")) {
       estimatorMethod = PsfIntegConfig::pixel_center;
-    } else {
-      estimatorMethod = PsfIntegConfig::adaptive;
-    }
+    } 
     
     if (::getenv("PSF_ADAPTIVE_ESTIMATOR_FTOL"))
       estimatorFtol = atof(::getenv("PSF_ADAPTIVE_ESTIMATOR_FTOL"));
     
     if (::getenv("PSF_ADAPTIVE_ESTIMATOR_PEAK_TH"))
       estimatorPeakTh  = atof(::getenv("PSF_ADAPTIVE_ESTIMATOR_PEAK_TH"));    
+
+    if (::getenv("USE_BL_EDISP") ) {
+      use_edisp = true;
+    } 
+
+    if (::getenv("USE_LINEAR_QUADRATURE") ) {
+      use_linear_quadrature = true;
+    }
   }
  
 } // namespace Likelihood
