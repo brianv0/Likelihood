@@ -15,7 +15,8 @@ namespace Likelihood {
 				    double& estimatorFtol,
 				    double& estimatorPeakTh,
 				    bool& use_edisp,
-				    bool& use_linear_quadrature) {
+				    bool& use_linear_quadrature,
+				    bool& save_all_srcmaps) {
          
     if(::getenv("USE_ADAPTIVE_PSF_ESTIMATOR")) {
       estimatorMethod = PsfIntegConfig::adaptive;
@@ -38,6 +39,11 @@ namespace Likelihood {
     if (::getenv("USE_LINEAR_QUADRATURE") ) {
       use_linear_quadrature = true;
     }
+
+    if (::getenv("SAVE_ALL_SRCMAPS") ) {
+      save_all_srcmaps = true;
+    }
+
   }
  
 } // namespace Likelihood
