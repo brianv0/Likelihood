@@ -52,7 +52,7 @@ public:
 
    virtual ~WcsMap2();
 
-   WcsMap2(const WcsMap2 &);
+   WcsMap2(const WcsMap2 &, bool copy_image = true);
 
    WcsMap2(const WcsMap2 &, const double & energy,
 	   const std::vector< std::vector<float> >& image);
