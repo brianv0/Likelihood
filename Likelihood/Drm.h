@@ -73,10 +73,21 @@ public:
     return m_xi[k];   
   }
 
+  inline double get_correction_wt(size_t k, int& kref) const {
+    kref = m_kref_wt[k];
+    return m_xi_wt[k];   
+  }
+
   inline const std::vector<double>& true_counts() const { return m_true_counts; }  
   inline const std::vector<double>& meas_counts() const { return m_meas_counts; }  
   inline const std::vector<double>& xi() const { return m_xi; }  
+
+  inline const std::vector<double>& true_counts_wt() const { return m_true_counts_wt; }  
+  inline const std::vector<double>& meas_counts_wt() const { return m_meas_counts_wt; }  
+  inline const std::vector<double>& xi_wt() const { return m_xi_wt; }  
+
   inline const std::vector<int> kref() const { return m_kref; }
+
   inline bool use_edisp() const { return m_use_edisp; }
 
 private:
@@ -85,6 +96,12 @@ private:
   std::vector<double> m_meas_counts;  
   std::vector<double> m_xi;  
   std::vector<int> m_kref;
+
+  std::vector<double> m_true_counts_wt;
+  std::vector<double> m_meas_counts_wt;
+  std::vector<double> m_xi_wt;  
+  std::vector<int> m_kref_wt;
+
   bool m_use_edisp;
 
 };

@@ -10,7 +10,7 @@
  */
 
 #ifndef Likelihood_PSFUtils_h
-#define Likelihood_PSFutils_h
+#define Likelihood_PSFUtils_h
 
 #include <vector>
 #include "healpix_map.h"

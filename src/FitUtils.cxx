@@ -23,6 +23,7 @@
 // #include "Likelihood/CountsMapBase.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/FitScanner.h"
+#include "Likelihood/WeightMap.h"
 
 #include <vector>
 #include "CLHEP/Matrix/Vector.h"
@@ -1297,12 +1298,12 @@ namespace Likelihood {
 
       // Get the weights, if requested
       if ( weights != 0 ) {
-	const SourceMap* wts_map = logLike.weightSrcMap();
+	const WeightMap* wts_map = logLike.weightMap();
 	if ( wts_map == 0 ) {
 	  throw std::runtime_error("Requested to use likelihood weights, but no weights are present in BinnedLikelihood");
 	}
-	weights->resize( wts_map->cached_model().size() );
-	std::copy(wts_map->cached_model().begin(),wts_map->cached_model().end(),weights->begin());
+	weights->resize( wts_map->model().size() );
+	std::copy(wts_map->model().begin(),wts_map->model().end(),weights->begin());
 	float sumW(0.);
 	sumVector(weights->begin(),weights->end(),sumW);
 	std::cout << "Sum of weights " << sumW << " for " << weights->size() << std::endl;
