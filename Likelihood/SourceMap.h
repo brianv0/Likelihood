@@ -133,6 +133,10 @@ public:
      }
    }      
 
+   /* Set the source associated with this source map, this is useful for
+      functions that add & remove source from the source model */
+   void setSource(const Source& src);
+
    /* Extract a vector of spectral normalization values from a Source object
       and latch it in this class.
       

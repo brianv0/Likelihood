@@ -193,6 +193,17 @@ void SourceMap::applyPhasedExposureMap() {
    }
 }
 
+void SourceMap::setSource(const Source& src) {
+  if ( m_src == &src ) {
+    return;
+  }
+  m_src = &src;
+  m_specVals.clear();
+  m_modelPars.clear();
+  m_derivs.clear();
+  m_npreds.clear();
+  m_npred_weights.clear();  
+}
 
 void SourceMap::setSpectralValues(const std::vector<double>& energies) {
   if ( m_src == 0 ) return;
