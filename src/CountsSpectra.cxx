@@ -17,7 +17,6 @@
 #include "Likelihood/CountsSpectra.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/Source.h"
-#include "Likelihood/SourceMap.h"
 
 namespace Likelihood {
 
