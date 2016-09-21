@@ -305,10 +305,9 @@ void CountsMapHealpix::latchCacheData() {
   // Total number of pixels
   int nPix = m_healpixProj->healpix().Npix();
   // Solid angle in SR = 4pi/npix
-  double solidAngle_sr = ASTRO_4PI / float(nPix);
-  // Do we want it in deg^2 or sr?
-  m_solidAngle = astro::radToDeg( astro::radToDeg( solidAngle_sr ) );
-  m_pixelSize = sqrt(m_solidAngle);
+  // B/c of inconsisent interfaces,  we want the solid angle in SR, but the pixel size in deg.    
+  m_solidAngle = ASTRO_4PI / float(nPix);
+  m_pixelSize = astro::radToDeg(sqrt(m_solidAngle));
 
   double c1(0.);
   double c2(0.);  
