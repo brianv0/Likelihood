@@ -40,6 +40,7 @@
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
+#include "Likelihood/BinnedExposureBase.h"
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/SourceMap.h"
 #include "Likelihood/ProjMap.h"
