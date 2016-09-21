@@ -153,6 +153,10 @@ public:
    virtual void setParams(const DOMElement * elt);
 #endif // SWIG
 
+
+   virtual double mapRadius() const = 0;
+
+
 protected:
 
    virtual double value(const optimizers::Arg & dir) const = 0;

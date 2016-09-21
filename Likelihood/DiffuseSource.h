@@ -188,12 +188,24 @@ public:
 
    bool mapBasedIntegral() const;
 
+   double mapRadius() const;
+
+
+
+protected:
+
+   double computeMapRadius() const;
+ 
+
 private:
 
    /// spatial model
    optimizers::Function * m_spatialDist;
 
    bool m_mapBasedIntegral;
+
+   /// Cache the value of the map radius, as it is kinda a pain to compute
+   mutable double m_mapRadius;
 
    template<typename Functor>
    double computeEnergyIntegral(const Functor & func, 

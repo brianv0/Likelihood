@@ -76,6 +76,12 @@ public:
    static double convolve(const ResponseFunctor& fn, double energy, double separation,
 			  double sigma, double tol = 0.0001);
 
+
+   virtual double mapRadius() const {
+     return m_radius;
+   }
+
+
 #ifndef SWIG
    /**
     * @class RadialIntegrand

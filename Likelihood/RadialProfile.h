@@ -50,6 +50,10 @@ public:
    }
 
    double angularIntegral() const;
+
+   virtual double mapRadius() const {
+     return m_theta.back();
+   }
    
 protected:
 
