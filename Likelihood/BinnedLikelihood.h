@@ -446,6 +446,10 @@ namespace Likelihood {
 	This will also return true if the list of fixed sources has chagned. */
      bool fixedModelUpdated() const;
 
+     /* Compute the full model for all the fixed source.
+	
+     */
+     void addFullFixedModel(std::vector<float>& model);
    
      /* Compute the model for all the fixed source.
 

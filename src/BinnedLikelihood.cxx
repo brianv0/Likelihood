@@ -854,6 +854,19 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
   }
 
 
+  void BinnedLikelihood::addFullFixedModel(std::vector<float>& model) {
+    std::map<std::string, Source *>::const_iterator srcIt(m_sources.begin());
+    for ( ; srcIt != m_sources.end(); ++srcIt) {
+      const std::string & srcName(srcIt->first);
+      if ( ! srcIt->second->fixedSpectrum() ) {
+	continue;
+      }
+      SourceMap* srcMap = getSourceMap(srcName, false);
+      srcMap->addToVector(model,true);
+    }
+  }
+
+
   void BinnedLikelihood::addFixedSource(const std::string & srcName) {
     // Add a source to the fixed source data, under the assumption that it
     // is not already there.

@@ -152,7 +152,7 @@ void gtsrcmaps::run() {
    ProjMap* wmap(0);
    std::string wmap_file = m_pars["wmap"];
    if ( wmap_file != "none" ) {
-     wmap = WcsMapLibrary::instance()->wcsmap(wmap_file,"SKYMAP");
+     wmap = WcsMapLibrary::instance()->wcsmap(wmap_file,std::string());
      wmap->setInterpolation(false);
      wmap->setExtrapolation(true);
    }
