@@ -16,7 +16,8 @@ namespace Likelihood {
 				    double& estimatorPeakTh,
 				    bool& use_edisp,
 				    bool& use_linear_quadrature,
-				    bool& save_all_srcmaps) {
+				    bool& save_all_srcmaps,
+				    bool& use_single_psf) {
          
     if(::getenv("USE_ADAPTIVE_PSF_ESTIMATOR")) {
       estimatorMethod = PsfIntegConfig::adaptive;
@@ -42,6 +43,10 @@ namespace Likelihood {
 
     if (::getenv("SAVE_ALL_SRCMAPS") ) {
       save_all_srcmaps = true;
+    }
+
+    if (::getenv("USE_SINGLE_PSF") ) {
+      use_single_psf = true;
     }
 
   }
