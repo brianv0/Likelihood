@@ -398,7 +398,7 @@ void SourceFactory::checkRoiDist(double ra, double dec) const {
       m_formatter->warn() << "WARNING: Point source " << m_currentSrcName
                           << " lies " << sep 
                           << " degrees from the ROI center at RA, Dec = " 
-                          << roiPars.at(0) << ", " << roiPars.at(1)
+                          << roiPars.at(0) << ", " << roiPars.at(1) << ' ' << radius
                           << std::endl;
    }
 }

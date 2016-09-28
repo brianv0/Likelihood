@@ -264,4 +264,19 @@ void Drm_Cache::update(const Drm* drm,
   }
 }
 
+
+size_t Drm_Cache::memory_size() const {
+  size_t retVal(0);
+  retVal += sizeof(*this);
+  retVal += sizeof(double)*m_true_counts.capacity();
+  retVal += sizeof(double)*m_meas_counts.capacity();
+  retVal += sizeof(double)*m_xi.capacity();
+  retVal += sizeof(int)*m_kref.capacity();
+  retVal += sizeof(double)*m_true_counts_wt.capacity();
+  retVal += sizeof(double)*m_meas_counts_wt.capacity();
+  retVal += sizeof(double)*m_xi_wt.capacity();
+  retVal += sizeof(int)*m_kref_wt.capacity();
+
+}
+
 } // namespace Likelihood

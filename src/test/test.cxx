@@ -1617,7 +1617,7 @@ void LikelihoodTests::test_PointSourceMap_hpx_allsky() {
    // Values as of ST-11-03-01
    CPPUNIT_ASSERT(srcMap.mapType()==FileUtils::HPX_Sparse);
    CPPUNIT_ASSERT(srcMap.cached_model().size()==0);
-   CPPUNIT_ASSERT(srcMap.cached_sparse_model().size()==678);
+   CPPUNIT_ASSERT(srcMap.cached_sparse_model().non_null().size()==678);
    
    const std::vector<double>& energies = cmap.energies();
    const std::vector<double>& npreds = srcMap.npreds();

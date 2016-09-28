@@ -90,6 +90,9 @@ public:
 
   inline bool use_edisp() const { return m_use_edisp; }
 
+  /* --------------------- Debugging -------------------- */
+  size_t memory_size() const;
+
 private:
   
   std::vector<double> m_true_counts;
