@@ -14,6 +14,7 @@
 #include <map>
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 
 namespace Likelihood {
   
@@ -358,10 +359,12 @@ namespace Likelihood {
   template <typename T>
   void SparseVector<T>::fill_key_and_value(std::vector<size_t>& keys,
 					   std::vector<T>& values) const {
-    keys.resize(m_data.size(),m_null);
+    keys.resize(m_data.size());
     values.resize(m_data.size(),m_null);
-    for ( const_iterator itr = begin(); itr != end(); itr++ ) {
-      values[itr->first] = itr->second;
+    size_t idx(0);   
+    for ( const_iterator itr = begin(); itr != end(); itr++, idx++ ) {
+      keys[idx] = itr->first;
+      values[idx] = itr->second;
     }
   }
   
