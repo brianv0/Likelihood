@@ -430,23 +430,6 @@ namespace Likelihood {
 			      const std::vector< std::vector< double > >& pixelOffsets,
 			      double ref_pixel_size,
 			      size_t npts);
-    
-    /* Solve of the angle giving a particular PSF containment 
-
-       meanpsf     : The average PSF at the src direction
-       energy      : The energy in question
-       init_val    : The initial guess
-       remain      : 1 - desired containment
-       tol         : Tolerance for convergence
-
-       returns the angle in degrees
-    */
-    double solve_for_containment(const MeanPsf & meanPsf, 
-				 double energy, 
-				 double init_val=10,
-				 double remain=1e-3,
-				 double tol=1e-4);
-
 
   } // namespace PSFUtils
 
