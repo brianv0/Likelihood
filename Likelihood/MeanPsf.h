@@ -74,11 +74,13 @@ public:
    /// @param energy Energy at which to evaluate the integral (MeV).
    double integral(double angle, double energy) const;
    
-   // /// @return The acceptance cone radius for the specified containment
-   // ///         fraction (degrees)
-   // /// @param energy Photon energy (MeV)
-   // /// @param frac Desired containment fraction (0.68 default)
-   // double containmentRadius(double energy, double frac=0.68) const;
+   /// @return The acceptance cone radius for the specified containment
+   ///         fraction (degrees)
+   /// @param energy Photon energy (MeV)
+   /// @param frac Desired containment fraction (0.68 default)
+   /// @param rtol Relative precision
+   double containmentRadius(double energy, double frac=0.68, 
+			    double rtol=1E-3) const;
 
    /// @return Estimate of the derivative of the psf wrt acceptance
    ///         cone angle (1/sr/degree)
@@ -146,6 +148,18 @@ private:
       virtual double value(double cosTheta, double phi=0) const;
    private:
       double m_separation;
+   };
+
+   class IntegralFunctor {
+   public:
+   IntegralFunctor(const MeanPsf& mean_psf, double energy):
+     m_mean_psf(mean_psf), m_energy(energy) { }
+
+     double operator()(double angle) const;
+
+   private:
+     const MeanPsf& m_mean_psf;
+     double m_energy;
    };
 
 };
