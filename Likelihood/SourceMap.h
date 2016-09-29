@@ -261,6 +261,8 @@ public:
    /* --------------------- Debugging -------------------- */
    size_t memory_size() const;
    
+   void test_sparse(const std::string& prefix) const;
+
 
 protected:
 
