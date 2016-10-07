@@ -1,7 +1,7 @@
 # -*- python -*-
 # $Id$
 # Authors: James Chiang <jchiang@slac.stanford.edu>, Eric Charles <echarles@slac.stanford.edu>, Matthew Wood <mdwood@slac.stanford.edu> 
-# Version: Likelihood-20-08-07
+# Version: Likelihood-20-08-08
 
 import sys
 Import('baseEnv', 'listFiles')
