@@ -170,10 +170,13 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
 
    irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respFuncs.respPtr(getType())));
 
+   /// Upper bound on incidence angle to ensure that the integration
+   /// region encompasses the LAT FoV
+   const double thetamax = 72.5;
    /// Compute the 2-sigma PSF containment radius
    double psf2s = irfs->psf()->angularContainment(getEnergy(),theta,0.0,0.954499);
    /// Max separation for PSF convolution
-   double psfmax = std::min(180.,4.0*psf2s);
+   double psfmax = std::min(180.,std::max(4.0*psf2s,theta-thetamax));
 
    double mu_psf2s = std::cos(psf2s*M_PI/180.);
    double mu_psfmax = std::cos(psfmax*M_PI/180.);
