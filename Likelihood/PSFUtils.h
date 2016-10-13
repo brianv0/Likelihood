@@ -30,11 +30,15 @@ namespace astro {
 namespace Likelihood {
 
   class Source;
+  class CompositeSource;
   class DiffuseSource;
   class PointSource;
+  class BinnedCountsCache;
+  class BinnedLikeConfig;
   class CountsMapBase;
   class CountsMap;
   class CountsMapHealpix;
+  class Drm;
   class ProjMap;
   class WcsMap2;
   class MeanPsf;
@@ -315,6 +319,27 @@ namespace Likelihood {
 				   st_stream::StreamFormatter& formatter,
 				   std::vector<float>& modelmap,
 				   FileUtils::SrcMapType& mapType);
+
+
+    /* Compute the SourceMap model values for a Composite source.  
+ 
+       compSrc     : The source in question
+       dataCache   : Cache with the CountsMap to use as template
+       srcMapsFile : The file with the source maps for the Composite source
+       drm         : For energy dispersion, NULL -> no energy dispersion
+       formatter   : Stream for writting progress messages
+       modelmap    : Filled with the model values
+       mapType     : Enum that specifies how to store the map
+       
+       return 0 for success, error code otherwise 
+    */
+    int makeCompositeMap(const CompositeSource& compSrc, 
+			 const BinnedCountsCache& dataCache,
+			 const std::string & srcMapsFile,
+			 const Drm* drm,
+			 st_stream::StreamFormatter& formatter,
+			 std::vector<float>& modelmap,
+			 FileUtils::SrcMapType& mapType);
 
     /* Get the PSF value for a point source at a particular pixel and energy 
 
