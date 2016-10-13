@@ -13,7 +13,6 @@
 #include <vector>
 
 #include "Likelihood/BinnedLikelihood.h"
-#include "Likelihood/BinnedLikelihood2.h"
 #include "Likelihood/LogLike.h"
 
 namespace Likelihood {
@@ -35,17 +34,12 @@ public:
 
    CountsSpectra(const LogLike & logLike) 
       : m_logLike(logLike), m_observation(logLike.observation()), 
-        m_binnedLike(0), m_binnedLike2(0) {
+        m_binnedLike(0) {
       m_binnedLike = 
          dynamic_cast<BinnedLikelihood *>(const_cast<LogLike *>(&m_logLike));
       if (m_binnedLike) {
          m_ebounds = m_binnedLike->energies();
          return;
-      }
-      m_binnedLike2 = 
-         dynamic_cast<BinnedLikelihood2 *>(const_cast<LogLike *>(&m_logLike));
-      if (m_binnedLike2) {
-         m_ebounds = m_binnedLike2->energies();
       }
    }
 
@@ -72,7 +66,6 @@ private:
    const LogLike & m_logLike;
    const Observation & m_observation;
    const BinnedLikelihood * m_binnedLike;
-   const BinnedLikelihood2 * m_binnedLike2;
    std::vector<double> m_ebounds;
 
    void check_ebounds() const;
