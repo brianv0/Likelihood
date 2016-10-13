@@ -48,6 +48,10 @@ public:
       return m_spectrum;
    }
 
+   const optimizers::Function * spectrum() const {
+      return m_spectrum;
+   }
+
 protected:
    virtual double value(const optimizers::Arg & x) const;
 
