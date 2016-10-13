@@ -52,7 +52,15 @@ namespace Likelihood {
       //! HEALPix, partial sky
       HPX_Partial = 3 } SrcMapType;
 
-   
+
+    /* Test if a FITS file as an extension
+
+       filename  : The FITS file
+       extension : The FITS HDU extension name
+    */
+    bool fileHasExtension(const std::string& filename, 
+			  const std::string& extension);
+
     /* Read a FITS image from a file to a vector 
 
        filename  : The FITS file

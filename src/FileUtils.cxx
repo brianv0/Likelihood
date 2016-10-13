@@ -34,6 +34,16 @@ namespace Likelihood {
 
   namespace FileUtils {
 
+    bool fileHasExtension(const std::string& filename, 
+			  const std::string& extension) {
+      try {
+	std::auto_ptr<const tip::Extension> ext(tip::IFileSvc::instance().readExtension(filename,extension));
+      } catch (tip::TipException &) {
+	return false;
+      }
+      return true;
+    }
+
     int read_fits_image_to_float_vector(const std::string& filename, 
 					const std::string& extension ,
 					std::vector<float>& vect) {
