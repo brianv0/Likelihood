@@ -109,6 +109,10 @@ public:
 
    const std::vector<Pixel> & pixels() const;
 
+   inline size_t num_energies() const { return m_energies.size(); }
+
+   inline size_t num_ebins() const { return m_energies.size() -1; }
+   
 protected:
 
    HistND * m_hist;
