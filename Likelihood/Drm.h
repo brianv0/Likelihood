@@ -62,6 +62,10 @@ public:
   
   Drm_Cache(const Drm_Cache& other);
 
+  Drm_Cache* clone() const {
+    return new Drm_Cache(*this);
+  }
+
   virtual ~Drm_Cache(){;}
 
   void update(const Drm* drm,
