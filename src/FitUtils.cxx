@@ -1216,7 +1216,7 @@ namespace Likelihood {
 	// Otherwise, build a map ourselves
 	Source* nc_source = const_cast<Source*>(&source);
 	theMap = new SourceMap(*nc_source,
-			       &logLike.countsMap(),
+			       &logLike.dataCache(),
 			       logLike.observation(),
 			       logLike.config().psf_integ_config());
 
