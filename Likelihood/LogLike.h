@@ -58,7 +58,7 @@ public:
       getFreeDerivs(dummy, freeDerivs);
    }
 
-   virtual void addSource(Source * src, bool fromClone=true);
+   virtual void addSource(Source * src, bool fromClone=true, SourceMap* srcMap = 0);
 
    virtual Source * deleteSource(const std::string & srcName);
 
