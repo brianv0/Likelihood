@@ -27,28 +27,41 @@ namespace Likelihood {
  * $Header$
  */
 
+
+#ifndef SWIG
+typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMElement DomElement;
+typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument DOMDocument;
+#endif //SWIG
+
+
 class SourceModelBuilder : public XmlBuilder {
 
 public:
 
    SourceModelBuilder(const std::string &functionLibrary,
                       const std::string &srcLibTitle);
-   
+
    virtual ~SourceModelBuilder();
 
-   virtual void addSource(Source &src);
+   virtual void addSourceModel(const SourceModel& srcModel);
+
+   virtual void addSource(const Source &src);
 
    virtual void write(std::string xmlFile);
 
-private:
+protected:
 
-   typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMElement DomElement;
+
+private:
 
    DomElement * m_srcLib;
 
-   DomElement * likelihoodSource(Source & src);
-   DomElement * spectralPart(Source & src);
-   void addSpatialPart(DomElement * srcElt, Source & src);
+   DomElement * likelihoodSource(const Source & src);
+   DomElement * spectralPart(const Source & src);
+   void addSpatialPart(DomElement * srcElt, const Source & src);
+   void addComposite(DomElement * srcElt, const Source & src);
+   void append_source(DomElement * parent, const Source &src);   
+   void append_source_model(DomElement * parent, const SourceModel& srcModel);   
 
 };
 

@@ -16,11 +16,12 @@
 
 namespace Likelihood {
 
-XmlBuilder::XmlBuilder() {
+XmlBuilder::XmlBuilder()  {
 //   m_parser = XmlParser::instance();
    m_parser = XmlParser_instance();
    m_doc = optimizers::Dom::createDocument();
 }
+
 
 XmlBuilder::~XmlBuilder() {
    m_doc->release();

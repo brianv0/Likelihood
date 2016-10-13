@@ -21,6 +21,7 @@ namespace xmlBase {
 namespace Likelihood {
 
    class Source;
+   class SourceModel;
 
 /**
  * @class XmlBuilder
@@ -35,15 +36,23 @@ namespace Likelihood {
  * $Header$
  */
 
+#ifndef SWIG
+typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMElement DOMElement;
+typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument DOMDocument;
+#endif // SWIG
+
 class XmlBuilder {
 
 public:
 
    virtual ~XmlBuilder();
 
-   virtual void addSource(Source &) {}
+   virtual void addSourceModel(const SourceModel& srcModel) {}
+
+   virtual void addSource(const Source &) {}
 
    virtual void write(std::string) {}
+
 
 protected:
 
@@ -51,7 +60,7 @@ protected:
 
    xmlBase::XmlParser * m_parser;
 
-   XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument * m_doc;
+   DOMDocument * m_doc;
 
 };
 
