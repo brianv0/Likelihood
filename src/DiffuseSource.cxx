@@ -26,6 +26,7 @@
 
 namespace Likelihood {
 
+
 DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
                              const Observation & observation,
                              bool requireExposure,
@@ -161,6 +162,25 @@ double DiffuseSource::fluxDensityDeriv(const Event &evt,
    }
    return my_fluxDensityDeriv;
 }
+
+
+double DiffuseSource::fluxDensity(double /* inclination */, double /* phi */, double /* energy */,
+				  const astro::SkyDir & /* appDir */, int /* evtType */,
+				  double /* time */, CachedResponse* /* cResp = 0 */) const {
+  throw std::runtime_error("This version of DiffuseSource::fluxDensity is diabled");
+  return 0.;
+}
+
+     
+double DiffuseSource::fluxDensityDeriv(double /* inclination */, double /* phi */, double /* energy */,
+				       const astro::SkyDir & /* appDir */, int /* evtType */,
+				       double /* time */,
+				       const std::string & /* paramName */,
+				       CachedResponse* /* cResp = 0 */) const {
+  throw std::runtime_error("This version of DiffuseSource::fluxDensityDeriv is diabled");
+  return 0.;
+}
+
 
 const MapBase * DiffuseSource::mapBaseObject() const {
    optimizers::Function * foo = 
@@ -306,18 +326,6 @@ double DiffuseSource::diffuseResponse_wcs(const Event & evt, const WcsMap2& wcsm
 }
 
 
-
-bool DiffuseSource::mapBasedIntegral() const {
-   return m_mapBasedIntegral;
-}
-
-
-double DiffuseSource::mapRadius() const {
-  if ( m_mapRadius < 0. ) {
-    m_mapRadius = computeMapRadius();
-  }
-  return m_mapRadius;
-}
 
 
 double DiffuseSource::computeMapRadius() const {

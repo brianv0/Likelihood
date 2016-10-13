@@ -26,12 +26,15 @@ const std::string&
 Source::sourceTypeName(SourceType t) {
   static const std::string point_name("Point");
   static const std::string diffuse_name("Diffuse");
+  static const std::string composite_name("Composite");
   static const std::string unk_name("");
   switch ( t ) { 
   case Point: 
     return point_name;
   case Diffuse:
     return diffuse_name;
+  case Composite:
+    return composite_name;
   default:
     break;
   }
