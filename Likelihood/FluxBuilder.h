@@ -38,6 +38,8 @@ public:
 
    virtual ~FluxBuilder();
 
+   virtual void addSourceModel(SourceModel& srcModel);
+
    virtual void addSource(Source &src);
    
    virtual void write(std::string xmlFile);

@@ -25,6 +25,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Source.h"
+#include "Likelihood/SourceModel.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/TrapQuad.h"
 
@@ -44,6 +45,14 @@ FluxBuilder::FluxBuilder(double emin, double emax) : XmlBuilder() {
 }
 
 FluxBuilder::~FluxBuilder() {}
+
+
+void FluxBuilder::addSourceModel(SourceModel& srcModel) {
+   std::map<std::string, Source *>::const_iterator srcIt = srcModel.sources().begin();
+   for ( ; srcIt != srcModel.sources().end(); srcIt++) {
+      addSource(*(srcIt->second));
+   }
+}
 
 void FluxBuilder::addSource(Source & src) {
    DOMElement * srcElt = fluxSource(src);
