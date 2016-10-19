@@ -90,7 +90,7 @@ public:
       weights       : A weights map, for weighted likelihood analysis.  Null -> no weighting.
       drm           : The detector response matrix, NULL if energy dispersion is off for this source.
       save_model    : Flag to indicate that we should save the model (e.g., when the source is fixed)
-                      This avoid reload the model map if the source is subsequently freed.
+                      This avoids reload the model map if the source is subsequently freed.
    */
    SourceMap(const std::string & sourceMapsFile,
              const Source & src,
