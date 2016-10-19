@@ -95,8 +95,21 @@ namespace Likelihood {
 		      double resamp_factor=2,
 		      double minbinsz=0.1);
      
+     /*  C'tor for weighted likelihood
+	
+	dataMap      : Observed data.  Defines the binning used for the analysis.
+	observation  : Wrapper containing information about the observation
+	config       : Configuration object
+	weightMap    : Map with weights to use for analysis.
+	srcMapsFile  : Name of file containing Source Maps (i.e., the output of gtsrcmaps)
+     */	
+     BinnedLikelihood(CountsMapBase & dataMap, 
+		      const Observation & observation,	
+		      const BinnedLikeConfig& config,
+		      const std::string & srcMapsFile = "",
+		      const ProjMap* weightMap = 0);
      
-     ///
+     /* D'tor */
      virtual ~BinnedLikelihood() throw();
 
      /* --------------- Simple Access functions ----------------------*/
@@ -240,9 +253,14 @@ namespace Likelihood {
 			  bool addPointSources=true,
 			  bool loadMaps=true);
   
-     /// Add a source to the source model
-     virtual void addSource(Source * src, bool fromClone=true, SourceMap* srcMap = 0);
+     /// Add a source to the source model 
+     /// This is the version inherited from SourceModel
+     virtual void addSource(Source * src, bool fromClone=true, SourceMap* srcMap=0);
 
+     /// Add a source to the soruce model
+     /// This version is particular to this class
+     virtual void addSource(Source * src, BinnedLikeConfig* config, bool fromClone=true);
+ 
      /// Remove a source from the source model and return it
      virtual Source * deleteSource(const std::string & srcName);
 
