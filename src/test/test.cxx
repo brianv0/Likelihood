@@ -1701,7 +1701,7 @@ void LikelihoodTests::test_PointSourceMap_hpx_allsky() {
    // Values as of ST-11-03-01
    CPPUNIT_ASSERT(srcMap.mapType()==FileUtils::HPX_Sparse);
    CPPUNIT_ASSERT(srcMap.cached_model().size()==0);
-   CPPUNIT_ASSERT(srcMap.cached_sparse_model().non_null().size()==678);
+   CPPUNIT_ASSERT(srcMap.cached_sparse_model().non_null().size()==1320);
    
    const std::vector<double>& energies = cmap.energies();
    const std::vector<double>& npreds = srcMap.npreds();
@@ -1717,7 +1717,7 @@ void LikelihoodTests::test_PointSourceMap_hpx_allsky() {
      ASSERT_EQUALS(m_counts,drm_cache->true_counts()[i]);
      sum += m_counts;
    }
-   ASSERT_EQUALS(sum,248.9);
+   ASSERT_EQUALS(sum,256.086);
 }
 
 void LikelihoodTests::test_PointSourceMap_hpx_region() {
@@ -1755,7 +1755,7 @@ void LikelihoodTests::test_PointSourceMap_hpx_region() {
      ASSERT_EQUALS(m_counts,drm_cache->true_counts()[i]);
      sum += m_counts;
    }
-   ASSERT_EQUALS(sum,224.917);
+   ASSERT_EQUALS(sum,227.624);
 }
 
 void LikelihoodTests::test_rescaling() {
