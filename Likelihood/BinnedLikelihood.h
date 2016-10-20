@@ -192,17 +192,19 @@ namespace Likelihood {
      
      /// Turn on verbose mode
      void setVerbose(bool verbose) {
-       m_config.psf_integ_config().verbose() = verbose;
+       m_config.psf_integ_config().set_verbose(verbose);
+       m_srcMapCache.setVerbose(verbose);
      }
 
      /// Turn on energy dispersion
-     void set_edisp_flag(bool use_edisp) { 
-       m_config.use_edisp() = use_edisp;
+     void set_edisp_flag(bool use_edisp) {
+       m_config.set_use_edisp(use_edisp);
+       m_srcMapCache.set_edisp_flag(use_edisp);
      }
 
      /// Set flag to use a single map for all the fixed sources
      void set_use_single_fixed_map(bool use_sfm) {
-       m_config.use_single_fixed_map() = use_sfm;
+       m_config.set_use_single_fixed_map(use_sfm);
      }
 
      /// Directly set the data in the counts map

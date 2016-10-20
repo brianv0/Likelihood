@@ -108,12 +108,12 @@ namespace Likelihood {
       
      /// Turn on verbose mode
      void setVerbose(bool verbose) {
-       m_config.psf_integ_config().verbose() = verbose;
+       m_config.psf_integ_config().set_verbose(verbose);
      }
      
      /// Turn on energy dispersion
      void set_edisp_flag(bool use_edisp) { 
-       m_config.use_edisp() = use_edisp;
+       m_config.set_use_edisp(use_edisp);
      }
 
 
