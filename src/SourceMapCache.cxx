@@ -296,7 +296,7 @@ namespace Likelihood {
   
   void SourceMapCache::computeModelMap(const Source & src, 
 				       std::vector<float> & modelMap) const {
-    modelMap.clear();
+    modelMap.resize(m_dataCache.data_map_size(), 0);      
     bool hasMap = hasSourceMap(src.getName());
     SourceMap* srcMap = getSourceMap(src);
     updateCorrectionFactors(src,*srcMap);
