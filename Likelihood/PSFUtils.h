@@ -146,12 +146,19 @@ namespace Likelihood {
     /* Test to see if a diffuse source has a MapCubeFuction */
     bool haveMapCubeFunction(DiffuseSource& src);
     
+    /* Rebins the map associated with a diffuse source.
+     */
+    void rebinDiffuseMap(const DiffuseSource & src,
+			 const CountsMapBase & dataMap,
+			 const PsfIntegConfig& config);
+
     /* Compute the resampling factor for a diffuse source 
 
        This compares the diffuse source map pixel size with the counts map pixel size.
      */
     double computeResampFactor(const DiffuseSource & src,
-			       const CountsMapBase & dataMap);
+			       const CountsMapBase & dataMap,
+			       const PsfIntegConfig& config);
     
     /* Compute the non-cartesian corrections angular separation between the pixels in a 
        counts map and a point source and put them on a vector
