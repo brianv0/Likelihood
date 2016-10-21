@@ -442,7 +442,7 @@ namespace Likelihood {
     inline const std::vector<double>& ref_energies() const { return m_ref_energies; }
 
     /* return the differential fluxes for the test source model spectrum */
-    inline const std::vector<double>& ref_dfdes() const { return m_ref_dfdes; }
+    inline const std::vector<double>& ref_dndes() const { return m_ref_dndes; }
 
     /* return the integral photon fluxes for the test source model spectrum */
     inline const std::vector<double>& ref_fluxes() const { return  m_ref_fluxes; }
@@ -478,7 +478,7 @@ namespace Likelihood {
     std::vector<double> m_ref_energies;    
 
     // differential fluxes for the test source model spectrum
-    std::vector<double> m_ref_dfdes;
+    std::vector<double> m_ref_dndes;
 
     // integral photon fluxes for the test source model spectrum
     std::vector<double> m_ref_fluxes;
