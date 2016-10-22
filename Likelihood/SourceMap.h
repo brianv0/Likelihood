@@ -154,6 +154,9 @@ public:
       functions that add & remove source from the source model */
    void setSource(const Source& src);
 
+   /* Update the DRM cache in this SourceMap */
+   const Drm_Cache* update_drm_cache(const Drm* drm, bool force = false);
+
    /* Extract a vector of spectral normalization values from a Source object
       and latch it in this class.
       

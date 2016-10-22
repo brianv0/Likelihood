@@ -610,6 +610,12 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
 
   bool BinnedLikelihood::fixedModelUpdated() const {
     // Check if the fixed list has changed.
+
+    // Check to see if we have build the m_fixed_counts_spec yet
+    if ( m_fixed_counts_spec.size() == 0 && m_fixedSources.size() != 0 ) {
+      return true;
+    }
+
     std::map<std::string, Source *>::const_iterator srcIt(m_sources.begin());
     std::vector<std::string> fixedSources;
     for ( ; srcIt != m_sources.end(); ++srcIt) {

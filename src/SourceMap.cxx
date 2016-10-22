@@ -282,6 +282,12 @@ void SourceMap::setSource(const Source& src) {
   m_npred_weights.clear();  
 }
 
+const Drm_Cache* SourceMap::update_drm_cache(const Drm* drm, bool force) {
+  bool changed = m_drm != drm;
+  m_drm = drm;
+  return drm_cache(force || changed);
+}
+
 void SourceMap::setSpectralValues(const std::vector<double>& energies,
 				    bool latch_params ) {
   if ( m_src == 0 ) return;
