@@ -109,7 +109,7 @@ namespace Likelihood {
      MapBase * mapBaseObject();
 
      /// Return the flag that flux must be intergrated over a map
-     inline bool mapBasedIntegral() const { m_mapBasedIntegral; }
+     inline bool mapBasedIntegral() const { return m_mapBasedIntegral; }
 
      /// Return the size of the source, computing it if needed
      double mapRadius() const {
