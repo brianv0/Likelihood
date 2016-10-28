@@ -166,7 +166,7 @@ void SourceFactory::readXml(DOMElement* source_library,
    
 
    std::vector<Source*> sources;
-   makeSources(xmlFile,source_library,sources,funcFactory,loadMaps);
+   makeSources(xmlFile,source_library,sources,funcFactory,requireExposure,addPointSources,loadMaps);
 
    for ( std::vector<Source*>::iterator itr = sources.begin();
 	 itr != sources.end(); itr++ ) {
