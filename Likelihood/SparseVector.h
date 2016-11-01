@@ -114,6 +114,10 @@ namespace Likelihood {
     /* Clear the underlying data struture and set the size to zero */
     void clear() { m_data.clear(); m_size = 0; }
 
+    /* Clear the underlying data struture, but leave the size as is */
+    void clear_data() { m_data.clear(); }
+    
+
     /* -------------------- Functions from the std::vector< std::pair< size_t, T> > interaface ------------------ */
 
     /* Find a particular element */

@@ -94,7 +94,7 @@ namespace Likelihood {
     int read_healpix_table_to_sparse_vector(const std::string& filename, 
 					    const std::string& extension,
 					    SparseVector<float>& vect) {
-      vect.clear();
+      vect.clear_data();
       std::auto_ptr<const tip::Table> 
 	table(tip::IFileSvc::instance().readTable(filename,extension));
 
