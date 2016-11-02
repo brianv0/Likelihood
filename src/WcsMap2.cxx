@@ -475,9 +475,8 @@ ProjMap* WcsMap2::convolve(double energy, const MeanPsf & psf,
       npix = m_naxis2;
    }
 
-   double cdelt_min = std::min(std::abs(m_cdelt1),std::abs(m_cdelt2));
-
-   npix = std::min(npix,int(std::max(1.0,2.0*psf.containmentRadius(energy,0.995))/cdelt_min));
+   // double cdelt_min = std::min(std::abs(m_cdelt1),std::abs(m_cdelt2));
+   // npix = std::min(npix,int(std::max(1.0,2.0*psf.containmentRadius(energy,0.995))/cdelt_min));
 
    ::Image psf_image;
 
