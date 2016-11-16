@@ -97,9 +97,7 @@ namespace Likelihood {
   }
 
   void BinnedCountsCache::identifyFilledPixels() {
-    if ( has_weights()  ) {
-      fillWeightedCounts();
-    }
+    fillWeightedCounts();
     const std::vector<float> & the_data = data(has_weights());
     m_filledPixels.clear();
     for (unsigned int i = 0; i < the_data.size(); i++) {
