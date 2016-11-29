@@ -103,7 +103,7 @@ namespace Likelihood {
     }
     
     /// Get the filled pixel indices
-    inline const std::vector<unsigned int> filledPixels() const { return m_filledPixels; }
+    inline const std::vector<unsigned int>& filledPixels() const { return m_filledPixels; }
 
     /// Set the counts map by hand
     void setCountsMap(const std::vector<float> & counts);
