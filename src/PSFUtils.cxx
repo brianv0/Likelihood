@@ -991,7 +991,8 @@ namespace Likelihood {
 	return -1;
       }      
       if ( compSrc.sourceMapCache() == 0 ) {
-	compSrc.buildSourceMapCache(dataCache,srcMapsFile,drm);
+	CompositeSource& nc_compSrc = const_cast<CompositeSource&>(compSrc);
+	nc_compSrc.buildSourceMapCache(dataCache,srcMapsFile,drm);
       }
       compSrc.fillSummedSourceMap(modelmap);
       if ( compSrc.config().psf_integ_config().verbose() ) {
