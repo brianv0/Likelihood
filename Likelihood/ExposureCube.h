@@ -52,6 +52,10 @@ public:
    double livetime(const astro::SkyDir & dir, double costheta,
                    double phi=-1) const;
 
+   const healpix::CosineBinner& get_cosine_binner(const astro::SkyDir & dir) const {
+      return m_exposure->data()[dir];
+   }
+
    void setEfficiencyFactor(const irfInterface::IEfficiencyFactor * eff) {
       if (eff) {
          m_efficiencyFactor = eff->clone();
