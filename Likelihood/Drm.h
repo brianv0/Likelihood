@@ -36,6 +36,16 @@ public:
       return m_drm.at(k);
    }
        
+  inline const Observation& observation() const { return m_observation; }
+
+  double matrix_element(double etrue, double emeas_min, 
+			double emeas_max) const;
+
+
+protected: 
+
+  void compute_livetime();
+
 private:
 
    astro::SkyDir m_dir;
@@ -43,12 +53,15 @@ private:
    std::deque<double> m_ebounds;
    size_t m_npts;
 
+   std::vector< double > m_costheta_vals;
+   std::vector< double > m_theta_vals;
+   std::vector< double > m_livetime;
+
    std::vector< std::vector<double> > m_drm;
 
    void compute_drm();
-      
-   double matrix_element(double etrue, double emeas_min, 
-                         double emeas_max) const;
+  
+    
                          
 };
 
